@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PRIVATE STATE — Become Unavailable</title>
+
+  <meta
+    name="description"
+    content="PRIVATE STATE — private retreats for people who can afford to disappear."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #f1f1ed;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 24px 0;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 15px;
+      letter-spacing: 0.25em;
+      font-weight: 600;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08), transparent 30%),
+        linear-gradient(135deg, #111 0%, #080808 55%, #151515 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          transparent 65%,
+          #0a0a0a 100%
+        );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding-top: 70px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(60px, 11vw, 150px);
+      line-height: 0.88;
+      letter-spacing: -0.065em;
+      font-weight: 500;
+      margin-bottom: 35px;
+    }
+
+    .hero-title {
+      max-width: 780px;
+      font-size: clamp(30px, 5vw, 64px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin-bottom: 35px;
+    }
+
+    .hero-description {
+      max-width: 600px;
+      font-size: 17px;
+      color: rgba(241,241,237,0.65);
+      margin-bottom: 45px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 17px 27px;
+      border: 1px solid rgba(255,255,255,0.35);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: 0.3s ease;
+    }
+
+    .button:hover {
+      background: #f1f1ed;
+      color: #0a0a0a;
+    }
+
+    section {
+      padding: 130px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(241,241,237,0.45);
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      max-width: 900px;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      font-weight: 400;
+      margin-bottom: 45px;
+    }
+
+    .section-text {
+      max-width: 650px;
+      font-size: 18px;
+      color: rgba(241,241,237,0.62);
+    }
+
+    .states {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.12);
+      margin-top: 70px;
+    }
+
+    .state {
+      background: #0a0a0a;
+      padding: 42px 32px;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.3s ease;
+    }
+
+    .state:hover {
+      background: #111;
+    }
+.state-number {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(241,241,237,0.4);
+    }
+
+    .state-name {
+      font-size: 35px;
+      letter-spacing: -0.04em;
+      margin-bottom: 15px;
+    }
+
+    .state-duration {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(241,241,237,0.5);
+    }
+
+    .state-description {
+      color: rgba(241,241,237,0.58);
+      font-size: 15px;
+      margin: 20px 0;
+    }
+
+    .state-price {
+      font-size: 18px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+      margin-top: 70px;
+    }
+
+    .feature {
+      background: #0a0a0a;
+      padding: 35px;
+      min-height: 170px;
+    }
+
+    .feature h3 {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+
+    .feature p {
+      color: rgba(241,241,237,0.55);
+      max-width: 450px;
+    }
+
+    .timeline {
+      margin-top: 70px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 30px;
+      padding: 30px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .timeline-day {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(241,241,237,0.45);
+    }
+
+    .timeline-text {
+      font-size: 18px;
+      color: rgba(241,241,237,0.7);
+    }
+
+    .privacy-box {
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 55px;
+      margin-top: 60px;
+    }
+
+    .privacy-box h3 {
+      font-size: 34px;
+      font-weight: 400;
+      margin-bottom: 25px;
+    }
+
+    .privacy-box p {
+      max-width: 700px;
+      color: rgba(241,241,237,0.6);
+      font-size: 16px;
+    }
+
+    .contact {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+
+    form {
+      max-width: 700px;
+      margin-top: 60px;
+    }
+
+    .field {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(241,241,237,0.45);
+      margin-bottom: 10px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      color: #f1f1ed;
+      padding: 13px 0;
+      font-size: 16px;
+      outline: none;
+    }
+
+    select option {
+      background: #0a0a0a;
+      color: #f1f1ed;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(241,241,237,0.35);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .states,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 90px 0;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .privacy-box {
+        padding: 30px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">PRIVATE STATE</div>
+    <a class="nav-link" href="#request">Request access</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="eyebrow">
+        Private digital retreats
+      </div>
+
+      <h1>
+        BECOME<br>
+        UNAVAILABLE.
+      </h1>
+
+      <div class="hero-description">
+        Частная неделя вне цифрового мира.
+        Для тех, кто может позволить себе исчезнуть.
+      </div>
+
+      <a class="button" href="#request">
+        Request access
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- CONCEPT -->
+
+  <section>
+    <div class="container">
+
+      <div class="section-label">
+        01 — The State
+      </div>
+<div class="section-title">
+        Вам не нужен ещё один отпуск.
+      </div>
+
+      <div class="section-text">
+        Не нужен ещё один отель.
+        Не нужен ещё один уикенд, который вы проведёте,
+        отвечая на сообщения.
+        <br><br>
+        Иногда нужно просто исчезнуть.
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PRODUCTS -->
+
+  <section>
+    <div class="container">
+
+      <div class="section-label">
+        02 — States
+      </div>
+
+      <div class="section-title">
+        Choose your state.
+      </div>
+
+      <div class="states">
+
+        <div class="state">
+          <div class="state-number">01</div>
+
+          <div>
+            <div class="state-name">OFFLINE</div>
+            <div class="state-duration">7 DAYS</div>
+
+            <div class="state-description">
+              Телефон остаётся у нас.
+              Вы остаётесь наедине с собой.
+            </div>
+
+            <div class="state-price">
+              169 000 ₽
+            </div>
+          </div>
+        </div>
+
+
+        <div class="state">
+          <div class="state-number">02</div>
+
+          <div>
+            <div class="state-name">DARKNESS</div>
+            <div class="state-duration">72 HOURS</div>
+
+            <div class="state-description">
+              Полная темнота.
+              Минимум внешних стимулов.
+              Индивидуальное сопровождение.
+            </div>
+
+            <div class="state-price">
+              от 149 000 ₽
+            </div>
+          </div>
+        </div>
+
+
+        <div class="state">
+          <div class="state-number">03</div>
+
+          <div>
+            <div class="state-name">PRIVATE</div>
+            <div class="state-duration">CUSTOM</div>
+
+            <div class="state-description">
+              Индивидуальная программа,
+              созданная полностью под вас.
+            </div>
+
+            <div class="state-price">
+              от 299 000 ₽
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CONCIERGE -->
+
+  <section>
+    <div class="container">
+
+      <div class="section-label">
+        03 — Concierge
+      </div>
+
+      <div class="section-title">
+        Your world keeps running.
+      </div>
+
+      <div class="section-text">
+        Пока вас нет, мир не останавливается.
+        Ваш персональный concierge остаётся на связи.
+        <br><br>
+        Работа. Семья. Экстренные ситуации.
+        Всё необходимое проходит через одного человека.
+      </div>
+
+      <div class="features">
+
+        <div class="feature">
+          <h3>Private Concierge</h3>
+          <p>
+            Один человек сопровождает вас
+            на протяжении всего пребывания.
+          </p>
+        </div>
+
+        <div class="feature">
+          <h3>Phone Storage</h3>
+          <p>
+            Телефон помещается в персональный сейф
+            до момента завершения программы.
+          </p>
+        </div>
+
+        <div class="feature">
+          <h3>Accommodation</h3>
+          <p>
+            Частная резиденция,
+            подобранная под формат вашего пребывания.
+          </p>
+        </div>
+
+        <div class="feature">
+          <h3>Wellness</h3>
+          <p>
+            SPA, массаж, прогулки,
+            питание и индивидуальные активности.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- EXPERIENCE -->
+
+  <section>
+    <div class="container">
+
+      <div class="section-label">
+        04 — Seven days
+      </div>
+
+      <div class="section-title">
+        Вам не обязательно быть продуктивным.
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-day">DAY 01</div>
+          <div class="timeline-text">
+            Прибытие. Знакомство.
+            Передача телефона. Заселение.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-day">DAY 02–03</div>
+          <div class="timeline-text">
+            Сон. Еда. Прогулки.
+            SPA. Свободное время.
+          </div>
+        </div>
+<div class="timeline-item">
+          <div class="timeline-day">DAY 04–06</div>
+          <div class="timeline-text">
+            Время, которое больше не определяется
+            уведомлениями.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-day">DAY 07</div>
+          <div class="timeline-text">
+            Возвращение.
+            Телефон возвращается вам.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PRIVACY -->
+
+  <section>
+    <div class="container">
+
+      <div class="section-label">
+        05 — Privacy
+      </div>
+
+      <div class="section-title">
+        Privacy is not an option.
+      </div>
+
+      <div class="section-text">
+        Это часть продукта.
+      </div>
+
+      <div class="privacy-box">
+
+        <h3>Exit Protocol</h3>
+
+        <p>
+          После завершения пребывания мы проводим
+          финальную процедуру конфиденциальности.
+          По запросу клиента удаляются необязательные
+          персональные данные в пределах,
+          допускаемых законодательством.
+          Данные, которые необходимо хранить по закону,
+          сохраняются в установленном порядке.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- REQUEST -->
+
+  <section class="contact" id="request">
+    <div class="container">
+
+      <div class="section-label">
+        06 — Request access
+      </div>
+
+      <div class="section-title">
+        Ready to become unavailable?
+      </div>
+
+      <div class="section-text">
+        Оставьте заявку.
+        Мы свяжемся с вами и расскажем о ближайших
+        доступных заездах.
+      </div>
+
+      <form>
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Ваше имя">
+        </div>
+
+        <div class="field">
+          <label for="contact">Contact</label>
+          <input id="contact" type="text" placeholder="Телефон или Telegram">
+        </div>
+
+        <div class="field">
+          <label for="state">Preferred state</label>
+
+          <select id="state">
+            <option>OFFLINE — 7 DAYS</option>
+            <option>DARKNESS — 72 HOURS</option>
+            <option>PRIVATE — CUSTOM</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            placeholder="Что привело вас в PRIVATE STATE?"
+          ></textarea>
+        </div>
+
+        <button class="button" type="button">
+          Submit request
+        </button>
+
+      </form>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="container footer-inner">
+    <div>PRIVATE STATE</div>
+    <div>Become unavailable.</div>
+  </div>
+</footer>
+
+</body>
+</html>
