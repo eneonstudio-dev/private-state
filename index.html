@@ -3182,6 +3182,7 @@ document
 });
 
 
+```html
 /* ==================================================
    FORM
 ================================================== */
@@ -3229,7 +3230,7 @@ form.addEventListener(
 
             const response =
                 await fetch(
-                    "/api/telegram",
+                    "https://private-state.vercel.app/api/telegram",
                     {
                         method: "POST",
 
@@ -3324,72 +3325,6 @@ form.addEventListener(
         }
     }
 );
-        event.preventDefault();
-
-        const name =
-            document.getElementById("name").value;
-
-        const telegram =
-            document.getElementById("telegram").value;
-
-        const state =
-            document.getElementById("state").value;
-
-        const duration =
-            document.getElementById("duration").value;
-
-        const note =
-            document.getElementById("note").value;
-
-
-        console.log({
-
-            name,
-            telegram,
-            state,
-            duration,
-            note
-
-        });
-
-
-        const button =
-            form.querySelector(".submit");
-
-        const original =
-            button.textContent;
-
-        button.textContent =
-            currentLang === "ru"
-            ? "ЗАПРОС ПРИНЯТ ✓"
-            : currentLang === "en"
-            ? "REQUEST RECEIVED ✓"
-            : "申请已收到 ✓";
-
-
-        button.style.background =
-            "transparent";
-
-        button.style.color =
-            "var(--green)";
-
-
-        setTimeout(() => {
-
-            button.textContent =
-                original;
-
-            button.style.background =
-                "";
-
-            button.style.color =
-                "";
-
-        },3500);
-
-    }
-);
-
 
 /* ==================================================
    INITIAL LANGUAGE
@@ -3401,3 +3336,5 @@ applyLanguage(currentLang);
 
 </body>
 </html>
+```
+
