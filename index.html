@@ -3189,11 +3189,141 @@ document
 const form =
     document.getElementById("form");
 
-
 form.addEventListener(
     "submit",
-    event => {
+    async event => {
 
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const telegram =
+            document.getElementById("telegram").value.trim();
+
+        const state =
+            document.getElementById("state").value;
+
+        const duration =
+            document.getElementById("duration").value;
+
+        const note =
+            document.getElementById("note").value.trim();
+
+        const button =
+            form.querySelector(".submit");
+
+        const original =
+            button.textContent;
+
+        button.disabled = true;
+
+        button.textContent =
+            currentLang === "ru"
+            ? "ОТПРАВКА..."
+            : currentLang === "en"
+            ? "SENDING..."
+            : "发送中...";
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/telegram",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name,
+                            telegram,
+                            state,
+                            duration,
+                            note
+                        })
+                    }
+                );
+
+            const result =
+                await response.json();
+
+            if (!response.ok || !result.ok) {
+                throw new Error(
+                    result.error ||
+                    "Request failed"
+                );
+            }
+
+            button.textContent =
+                currentLang === "ru"
+                ? "ЗАПРОС ПРИНЯТ ✓"
+                : currentLang === "en"
+                ? "REQUEST RECEIVED ✓"
+                : "申请已收到 ✓";
+
+            button.style.background =
+                "transparent";
+
+            button.style.color =
+                "var(--green)";
+
+            form.reset();
+
+            setTimeout(() => {
+
+                button.textContent =
+                    original;
+
+                button.style.background =
+                    "";
+
+                button.style.color =
+                    "";
+
+                button.disabled =
+                    false;
+
+            }, 3500);
+
+        } catch (error) {
+
+            console.error(error);
+
+            button.textContent =
+                currentLang === "ru"
+                ? "ОШИБКА — ПОПРОБУЙТЕ ЕЩЁ РАЗ"
+                : currentLang === "en"
+                ? "ERROR — TRY AGAIN"
+                : "发送失败 — 请重试";
+
+            button.style.background =
+                "transparent";
+
+            button.style.color =
+                "#ff6b6b";
+
+            setTimeout(() => {
+
+                button.textContent =
+                    original;
+
+                button.style.background =
+                    "";
+
+                button.style.color =
+                    "";
+
+                button.disabled =
+                    false;
+
+            }, 3500);
+        }
+    }
+);
         event.preventDefault();
 
         const name =
