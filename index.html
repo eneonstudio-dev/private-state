@@ -1,108 +1,228 @@
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#050505">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030403">
 <title>PRIVATE STATE</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap');
 
 :root{
-    --bg:#050505;
-    --fg:#f1f1ed;
-    --muted:#989894;
-    --dim:#393936;
-    --line:rgba(255,255,255,.10);
-    --soft:rgba(255,255,255,.045);
-    --accent:#d7ff42;
+    --black:#030403;
+    --white:#f0f1ec;
+    --gray:#8d918b;
+    --dark:#252a25;
+    --green:#baff32;
+    --green-soft:rgba(186,255,50,.12);
+    --line:rgba(255,255,255,.095);
     --mono:"DM Mono",monospace;
     --sans:"Inter",sans-serif;
 }
 
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 html{
-    background:var(--bg);
     scroll-behavior:smooth;
+    background:var(--black);
 }
 
 body{
-    background:var(--bg);
-    color:var(--fg);
+    background:var(--black);
+    color:var(--white);
     font-family:var(--sans);
     overflow-x:hidden;
 }
 
-/* ---------- ATMOSPHERE ---------- */
+/* =========================================================
+   GLOBAL GRAIN
+========================================================= */
 
-body::before{
+body:before{
     content:"";
     position:fixed;
     inset:0;
+    z-index:9998;
     pointer-events:none;
-    z-index:9000;
-    opacity:.055;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
-    animation:grain .18s steps(2) infinite;
+    opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    animation:grain .17s steps(2) infinite;
 }
 
 @keyframes grain{
     0%{transform:translate(0,0)}
-    25%{transform:translate(-2%,1%)}
-    50%{transform:translate(1%,-2%)}
-    75%{transform:translate(2%,2%)}
-    100%{transform:translate(-1%,-1%)}
+    20%{transform:translate(-2%,1%)}
+    40%{transform:translate(1%,-2%)}
+    60%{transform:translate(2%,2%)}
+    80%{transform:translate(-1%,-1%)}
+    100%{transform:translate(0,0)}
 }
 
-body::after{
+body:after{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:8998;
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            transparent 20%,
-            rgba(0,0,0,.48) 100%
-        );
+    z-index:9997;
+    background:radial-gradient(circle,transparent 25%,rgba(0,0,0,.55) 100%);
 }
 
-/* ---------- CURSOR ---------- */
+/* =========================================================
+   INTRO
+========================================================= */
 
-.cursor{
+.intro{
     position:fixed;
-    width:7px;
-    height:7px;
-    border:1px solid white;
-    border-radius:50%;
+    inset:0;
+    z-index:10000;
+    background:#020302;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    transition:
+        opacity 1s cubic-bezier(.77,0,.18,1),
+        visibility 1s;
+}
+
+.intro.hide{
+    opacity:0;
+    visibility:hidden;
     pointer-events:none;
-    z-index:99999;
-    transform:translate(-50%,-50%);
-    mix-blend-mode:difference;
-    transition:.25s ease;
 }
 
-.cursor.big{
-    width:38px;
-    height:38px;
-    background:rgba(255,255,255,.08);
+.intro-grid{
+    position:absolute;
+    inset:-50%;
+    background:
+        linear-gradient(rgba(186,255,50,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(186,255,50,.035) 1px,transparent 1px);
+    background-size:65px 65px;
+    transform:perspective(600px) rotateX(64deg);
+    animation:introGrid 7s linear infinite;
 }
 
-/* ---------- NAV ---------- */
+@keyframes introGrid{
+    to{
+        background-position:0 65px;
+    }
+}
+
+.intro-radar{
+    position:absolute;
+    width:620px;
+    height:620px;
+    border:1px solid rgba(186,255,50,.08);
+    border-radius:50%;
+    animation:introRadar 6s linear infinite;
+}
+
+.intro-radar:before,
+.intro-radar:after{
+    content:"";
+    position:absolute;
+    border:1px solid rgba(186,255,50,.045);
+    border-radius:50%;
+}
+
+.intro-radar:before{inset:15%}
+.intro-radar:after{inset:35%}
+
+@keyframes introRadar{
+    from{transform:rotate(0)}
+    to{transform:rotate(360deg)}
+}
+
+.intro-center{
+    position:relative;
+    z-index:3;
+    text-align:center;
+}
+
+.intro-code{
+    color:var(--gray);
+    font:10px var(--mono);
+    letter-spacing:.3em;
+    margin-bottom:25px;
+    opacity:0;
+    animation:introText .8s .2s forwards;
+}
+
+.intro-title{
+    font-size:clamp(45px,8vw,100px);
+    line-height:.8;
+    letter-spacing:-.07em;
+    font-weight:500;
+    opacity:0;
+    animation:introText 1s .45s forwards;
+}
+
+.intro-title span{
+    color:var(--green);
+}
+
+.intro-line{
+    width:160px;
+    height:1px;
+    background:rgba(255,255,255,.12);
+    margin:32px auto 0;
+    overflow:hidden;
+}
+
+.intro-line:after{
+    content:"";
+    display:block;
+    width:45px;
+    height:1px;
+    background:var(--green);
+    animation:introLine 1.4s infinite;
+}
+
+@keyframes introLine{
+    from{transform:translateX(-50px)}
+    to{transform:translateX(165px)}
+}
+
+@keyframes introText{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+        filter:blur(7px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:none;
+    }
+}
+
+.intro-meta{
+    position:absolute;
+    bottom:35px;
+    left:5vw;
+    right:5vw;
+    display:flex;
+    justify-content:space-between;
+    color:#555a54;
+    font:9px var(--mono);
+    letter-spacing:.18em;
+}
+
+/* =========================================================
+   NAV
+========================================================= */
 
 .nav{
     position:fixed;
     top:0;
     left:0;
-    width:100%;
+    right:0;
     height:78px;
     padding:0 5vw;
     display:flex;
@@ -110,22 +230,22 @@ body::after{
     justify-content:space-between;
     z-index:5000;
     border-bottom:1px solid transparent;
-    transition:.45s ease;
+    transition:.45s;
 }
 
 .nav.scrolled{
-    background:rgba(5,5,5,.76);
-    backdrop-filter:blur(20px);
+    background:rgba(3,4,3,.76);
+    backdrop-filter:blur(18px);
     border-color:var(--line);
 }
 
 .logo{
     font:11px var(--mono);
-    letter-spacing:.25em;
+    letter-spacing:.2em;
 }
 
 .logo span{
-    color:var(--accent);
+    color:var(--green);
 }
 
 .nav-right{
@@ -134,68 +254,136 @@ body::after{
     gap:25px;
 }
 
-.status{
+.system{
     display:flex;
-    gap:9px;
     align-items:center;
-    color:var(--muted);
+    gap:9px;
+    color:var(--gray);
     font:9px var(--mono);
-    letter-spacing:.15em;
+    letter-spacing:.16em;
 }
 
-.status-dot{
+.system-dot{
     width:5px;
     height:5px;
     border-radius:50%;
-    background:var(--accent);
-    animation:pulse 2s infinite;
+    background:var(--green);
+    box-shadow:0 0 12px rgba(186,255,50,.6);
+    animation:systemPulse 2s infinite;
 }
 
-@keyframes pulse{
+@keyframes systemPulse{
     50%{
         opacity:.25;
-        box-shadow:0 0 18px var(--accent);
+        transform:scale(.6);
     }
 }
 
-/* ---------- LANGUAGE ---------- */
-
-.lang{
+.language{
     border:1px solid var(--line);
     background:rgba(255,255,255,.025);
-    color:var(--muted);
-    padding:8px 11px;
+    color:var(--gray);
+    padding:9px 12px;
     cursor:pointer;
     font:9px var(--mono);
     letter-spacing:.12em;
     transition:.3s;
 }
 
-.lang:hover{
+.language:hover{
+    border-color:rgba(186,255,50,.45);
     color:white;
-    border-color:rgba(255,255,255,.3);
 }
 
-.lang .active{
-    color:var(--accent);
+.language .current{
+    color:var(--green);
 }
 
-/* ---------- HERO ---------- */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
     min-height:100vh;
     position:relative;
     display:flex;
     align-items:center;
-    padding:130px 8vw 90px;
+    padding:120px 8vw 90px;
     overflow:hidden;
 }
 
-.hero-background{
+.hero-bg{
     position:absolute;
     inset:0;
     overflow:hidden;
 }
+
+/* GREEN MOVING LINES */
+
+.energy-lines{
+    position:absolute;
+    inset:-20%;
+    opacity:.55;
+    transform:rotate(-12deg);
+}
+
+.energy-line{
+    position:absolute;
+    height:1px;
+    width:100%;
+    left:-20%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(186,255,50,0),
+        rgba(186,255,50,.35),
+        rgba(186,255,50,.05),
+        transparent
+    );
+    animation:energy 5s linear infinite;
+}
+
+.energy-line:nth-child(1){
+    top:12%;
+    animation-duration:7s;
+}
+
+.energy-line:nth-child(2){
+    top:26%;
+    animation-duration:5.5s;
+    animation-delay:-2s;
+}
+
+.energy-line:nth-child(3){
+    top:41%;
+    animation-duration:8s;
+    animation-delay:-4s;
+}
+
+.energy-line:nth-child(4){
+    top:58%;
+    animation-duration:6s;
+    animation-delay:-1s;
+}
+
+.energy-line:nth-child(5){
+    top:73%;
+    animation-duration:9s;
+    animation-delay:-5s;
+}
+
+.energy-line:nth-child(6){
+    top:88%;
+    animation-duration:5s;
+    animation-delay:-3s;
+}
+
+@keyframes energy{
+    from{transform:translateX(-35%)}
+    to{transform:translateX(35%)}
+}
+
+/* HERO GRID */
 
 .hero-grid{
     position:absolute;
@@ -203,61 +391,56 @@ body::after{
     height:150%;
     left:-25%;
     top:-5%;
-    background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-    background-size:90px 90px;
-    transform:
-        perspective(800px)
-        rotateX(64deg);
+    background:
+        linear-gradient(rgba(255,255,255,.027) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.027) 1px,transparent 1px);
+    background-size:85px 85px;
+    transform:perspective(800px) rotateX(62deg);
     transform-origin:center bottom;
-    opacity:.34;
-    animation:gridDrift 20s linear infinite;
+    animation:gridMove 18s linear infinite;
 }
 
-@keyframes gridDrift{
+@keyframes gridMove{
     to{
-        background-position:0 90px;
+        background-position:0 85px;
     }
 }
 
-.hero-orb{
+.hero-core{
     position:absolute;
-    width:680px;
-    height:680px;
-    border-radius:50%;
-    left:57%;
-    top:48%;
+    width:650px;
+    height:650px;
+    left:62%;
+    top:50%;
     transform:translate(-50%,-50%);
-    border:1px solid rgba(255,255,255,.045);
+    border:1px solid rgba(186,255,50,.055);
+    border-radius:50%;
     box-shadow:
-        0 0 120px rgba(255,255,255,.025),
-        inset 0 0 100px rgba(255,255,255,.015);
-    animation:orbFloat 12s ease-in-out infinite;
+        0 0 120px rgba(186,255,50,.025),
+        inset 0 0 90px rgba(186,255,50,.018);
+    animation:core 10s ease-in-out infinite;
 }
 
-.hero-orb::before{
+.hero-core:before{
     content:"";
     position:absolute;
-    inset:13%;
+    inset:14%;
     border:1px solid rgba(255,255,255,.035);
     border-radius:50%;
 }
 
-.hero-orb::after{
+.hero-core:after{
     content:"";
     position:absolute;
-    inset:29%;
-    border:1px dashed rgba(255,255,255,.035);
+    inset:31%;
+    border:1px dashed rgba(186,255,50,.065);
     border-radius:50%;
-    animation:spin 28s linear infinite;
+    animation:spin 24s linear infinite;
 }
 
-@keyframes orbFloat{
+@keyframes core{
     50%{
-        transform:
-            translate(-50%,-52%)
-            scale(1.025);
+        transform:translate(-50%,-52%) scale(1.035);
     }
 }
 
@@ -265,56 +448,34 @@ body::after{
     to{transform:rotate(360deg)}
 }
 
-.signal{
-    position:absolute;
-    width:420px;
-    height:420px;
-    border-radius:50%;
-    border:1px solid rgba(215,255,66,.045);
-    left:57%;
-    top:48%;
-    transform:translate(-50%,-50%);
-    animation:signalPulse 4s ease-in-out infinite;
-}
-
-@keyframes signalPulse{
-    50%{
-        opacity:.25;
-        transform:translate(-50%,-50%) scale(1.08);
-    }
-}
-
 .hero-content{
     position:relative;
-    z-index:10;
-    max-width:1250px;
+    z-index:5;
+    max-width:1150px;
 }
 
-.hero-kicker{
+.kicker{
     display:flex;
     align-items:center;
     gap:13px;
     margin-bottom:35px;
+    color:var(--gray);
     font:10px var(--mono);
-    color:var(--muted);
     letter-spacing:.27em;
-    opacity:0;
-    animation:fadeUp .8s .4s forwards;
 }
 
-.hero-kicker::before{
+.kicker:before{
     content:"";
-    width:34px;
+    width:38px;
     height:1px;
-    background:var(--accent);
+    background:var(--green);
 }
 
 .hero-title{
-    font-size:clamp(76px,13vw,190px);
+    font-size:clamp(80px,13vw,185px);
     line-height:.77;
     letter-spacing:-.085em;
     font-weight:500;
-    text-transform:uppercase;
 }
 
 .hero-title span{
@@ -331,107 +492,92 @@ body::after{
 }
 
 .hero-title span:nth-child(2) i{
-    animation-delay:.13s;
+    animation-delay:.12s;
 }
 
 @keyframes titleIn{
     to{
-        transform:translateY(0);
+        transform:none;
         opacity:1;
     }
 }
 
-.hero-big-copy{
-    max-width:610px;
+.hero-subtitle{
+    max-width:620px;
     margin-top:45px;
-    font-size:clamp(18px,2.1vw,28px);
-    line-height:1.35;
+    font-size:clamp(21px,2.3vw,32px);
+    line-height:1.3;
     letter-spacing:-.025em;
-    opacity:0;
-    animation:fadeUp .9s .8s forwards;
 }
 
-.hero-small-copy{
-    max-width:480px;
+.hero-description{
+    max-width:570px;
     margin-top:18px;
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.75;
-    opacity:0;
-    animation:fadeUp .9s 1s forwards;
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(24px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    color:var(--gray);
+    font-size:15px;
+    line-height:1.8;
 }
 
 .hero-button{
     display:inline-flex;
-    margin-top:42px;
-    padding:16px 22px;
-    border:1px solid rgba(255,255,255,.22);
-    background:rgba(255,255,255,.025);
+    margin-top:38px;
+    padding:17px 22px;
     color:white;
     text-decoration:none;
+    border:1px solid rgba(255,255,255,.22);
+    background:rgba(255,255,255,.025);
     font:10px var(--mono);
     letter-spacing:.18em;
     transition:.4s;
-    opacity:0;
-    animation:fadeUp .9s 1.2s forwards;
 }
 
 .hero-button:hover{
-    color:#050505;
-    background:var(--accent);
-    border-color:var(--accent);
-    transform:translateY(-2px);
+    background:var(--green);
+    color:#030403;
+    border-color:var(--green);
+    box-shadow:0 0 40px rgba(186,255,50,.12);
 }
 
-.hero-scroll{
+.scroll-indicator{
     position:absolute;
     bottom:38px;
     left:8vw;
     display:flex;
     align-items:center;
     gap:15px;
+    color:var(--gray);
     font:9px var(--mono);
-    color:var(--muted);
     letter-spacing:.18em;
 }
 
 .scroll-line{
     width:65px;
     height:1px;
-    background:var(--dim);
+    background:#292d29;
     overflow:hidden;
 }
 
-.scroll-line::after{
+.scroll-line:after{
     content:"";
     display:block;
-    width:25px;
+    width:24px;
     height:1px;
-    background:white;
+    background:var(--green);
     animation:scrollLine 2s infinite;
 }
 
 @keyframes scrollLine{
-    0%{transform:translateX(-30px)}
+    from{transform:translateX(-30px)}
     50%,100%{transform:translateX(70px)}
 }
 
-/* ---------- SECTIONS ---------- */
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
 
 .state{
-    position:relative;
     min-height:100vh;
+    position:relative;
     display:flex;
     align-items:center;
     padding:12vw 8vw;
@@ -440,324 +586,235 @@ body::after{
     isolation:isolate;
 }
 
-.digital{
+.state-bg{
     position:absolute;
     inset:-20%;
+    z-index:-1;
     pointer-events:none;
-    opacity:0;
+    transition:transform .25s linear;
+}
+
+/* atmospheric grid */
+.state-grid{
+    position:absolute;
+    inset:0;
     background:
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(255,255,255,.025),
-            transparent 42%
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent 0,
-            transparent 60px,
-            rgba(255,255,255,.018) 61px,
-            transparent 62px
-        ),
-        repeating-linear-gradient(
-            0deg,
-            transparent 0,
-            transparent 100px,
-            rgba(255,255,255,.014) 101px,
-            transparent 102px
-        );
-    transition:opacity 1.4s;
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:100px 100px;
 }
 
-.state.visible .digital{
-    opacity:1;
-}
-
-.scan{
+/* moving glow */
+.state-glow{
     position:absolute;
-    left:0;
-    right:0;
-    top:-10%;
+    width:650px;
+    height:650px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:radial-gradient(
+        circle,
+        rgba(186,255,50,.045),
+        transparent 62%
+    );
+    animation:glowFloat 9s ease-in-out infinite;
+}
+
+@keyframes glowFloat{
+    50%{
+        transform:translate(-50%,-53%) scale(1.12);
+    }
+}
+
+.state-lines{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+}
+
+.state-lines i{
+    position:absolute;
     height:1px;
-    background:rgba(255,255,255,.25);
-    box-shadow:0 0 35px rgba(255,255,255,.12);
-    opacity:0;
+    width:70%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(186,255,50,.16),
+        transparent
+    );
+    animation:stateLine 10s linear infinite;
 }
 
-.state.visible .scan{
-    animation:scan 1.3s cubic-bezier(.2,.8,.2,1) forwards;
+.state-lines i:nth-child(1){
+    top:20%;
+    left:-70%;
 }
 
-@keyframes scan{
-    0%{
-        top:-10%;
-        opacity:0;
-    }
-    15%{opacity:.8}
-    100%{
-        top:110%;
-        opacity:0;
-    }
+.state-lines i:nth-child(2){
+    top:67%;
+    left:-30%;
+    animation-delay:-4s;
 }
 
-.glitch-frame{
-    position:absolute;
-    inset:7%;
-    border:1px solid rgba(255,255,255,.025);
-    opacity:0;
-}
-
-.state.visible .glitch-frame{
-    animation:frame .8s ease-out forwards;
-}
-
-@keyframes frame{
-    0%{
-        opacity:0;
-        transform:translateX(-8px);
-    }
-    25%{
-        opacity:.7;
-        transform:translateX(5px);
-    }
-    45%{
-        opacity:.1;
-        transform:translateX(-3px);
-    }
-    100%{
-        opacity:0;
-        transform:none;
+@keyframes stateLine{
+    to{
+        transform:translateX(240%);
     }
 }
 
 .content{
+    width:100%;
+    max-width:1100px;
     position:relative;
-    z-index:5;
-    max-width:1050px;
-    opacity:0;
-    transform:translateY(35px);
-    filter:blur(7px);
-    transition:
-        opacity 1s .2s,
-        transform 1s cubic-bezier(.16,1,.3,1) .2s,
-        filter 1s .2s;
+    z-index:3;
 }
-
-.state.visible .content{
-    opacity:1;
-    transform:none;
-    filter:blur(0);
-}
-
-/* ---------- TYPOGRAPHY ---------- */
 
 .index{
-    margin-bottom:30px;
-    color:var(--muted);
+    color:var(--gray);
     font:10px var(--mono);
     letter-spacing:.2em;
+    margin-bottom:30px;
 }
 
 .index b{
-    color:var(--accent);
+    color:var(--green);
 }
 
 .title{
-    display:inline-block;
-    min-height:.9em;
     font-size:clamp(70px,10vw,145px);
-    line-height:.84;
+    line-height:.82;
+    letter-spacing:-.08em;
     font-weight:500;
-    letter-spacing:-.075em;
-    text-transform:uppercase;
     cursor:pointer;
     user-select:none;
+    transition:.3s;
 }
 
 .title:hover{
     text-shadow:
-        3px 0 rgba(255,255,255,.08),
-        -3px 0 rgba(215,255,66,.08);
+        3px 0 rgba(255,255,255,.07),
+        -3px 0 rgba(186,255,50,.08);
 }
 
 .lead{
-    max-width:750px;
+    max-width:780px;
     margin-top:45px;
-    font-size:clamp(22px,2.7vw,36px);
+    font-size:clamp(23px,2.7vw,38px);
     line-height:1.3;
     letter-spacing:-.025em;
 }
 
 .description{
-    max-width:650px;
+    max-width:680px;
     margin-top:22px;
-    color:var(--muted);
+    color:var(--gray);
     font-size:16px;
     line-height:1.8;
 }
 
-.typing-cursor{
-    display:inline-block;
-    margin-left:4px;
-    color:var(--accent);
-    animation:blink .7s steps(1) infinite;
-}
-
-@keyframes blink{
-    0%,50%{opacity:1}
-    51%,100%{opacity:0}
-}
-
-/* ---------- LANGUAGE BUTTON INSIDE BLOCK ---------- */
-
-.block-lang{
+.block-language{
     position:absolute;
     right:8vw;
-    top:12vw;
-    z-index:20;
-    padding:9px 12px;
-    background:rgba(5,5,5,.5);
+    top:11vw;
+    z-index:10;
     border:1px solid var(--line);
-    color:var(--muted);
+    background:rgba(3,4,3,.55);
+    color:var(--gray);
+    padding:9px 12px;
     cursor:pointer;
     font:9px var(--mono);
-    letter-spacing:.15em;
+    letter-spacing:.12em;
     backdrop-filter:blur(10px);
 }
 
-.block-lang:hover{
-    color:white;
-    border-color:rgba(255,255,255,.25);
+.block-language:hover{
+    color:var(--green);
+    border-color:rgba(186,255,50,.4);
 }
 
-.block-lang.flash{
-    animation:langFlash .35s steps(2);
+/* =========================================================
+   04 PRIVATE
+========================================================= */
+
+.private-state{
+    justify-content:center;
 }
 
-@keyframes langFlash{
+.private-orbit{
+    position:absolute;
+    width:800px;
+    height:800px;
+    left:68%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border:1px solid rgba(186,255,50,.045);
+    border-radius:50%;
+    animation:orbitFloat 11s ease-in-out infinite;
+}
+
+.private-orbit:before{
+    content:"";
+    position:absolute;
+    inset:17%;
+    border:1px solid rgba(255,255,255,.035);
+    border-radius:50%;
+}
+
+.private-orbit:after{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 25px var(--green);
+    top:4%;
+    left:50%;
+    animation:orbitSpin 13s linear infinite;
+    transform-origin:0 380px;
+}
+
+@keyframes orbitFloat{
     50%{
-        color:var(--accent);
-        transform:translateX(3px);
+        transform:translate(-50%,-48%) scale(1.04);
     }
 }
 
-/* ---------- PHONE ---------- */
-
-.phone-section{
-    justify-content:center;
+@keyframes orbitSpin{
+    to{transform:rotate(360deg)}
 }
 
-.phone-layout{
-    width:100%;
-    max-width:1250px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:center;
-    gap:8vw;
-}
-
-.phone-wrap{
+.private-code{
+    margin-top:55px;
     display:flex;
-    justify-content:center;
-    position:relative;
-    z-index:20;
-}
-
-.phone{
-    width:245px;
-    height:490px;
-    border:1px solid rgba(255,255,255,.22);
-    border-radius:37px;
-    background:#080808;
-    position:relative;
-    cursor:pointer;
-    box-shadow:
-        0 35px 100px rgba(0,0,0,.8),
-        0 0 0 8px rgba(255,255,255,.012);
-    transform:translateY(55px) rotate(6deg);
-    transition:
-        transform 1.35s cubic-bezier(.16,1,.3,1);
-}
-
-.state.visible .phone{
-    transform:translateY(0) rotate(0);
-}
-
-.phone::before{
-    content:"";
-    position:absolute;
-    width:74px;
-    height:18px;
-    top:9px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#111;
-    border-radius:20px;
-    z-index:4;
-}
-
-.phone-screen{
-    position:absolute;
-    inset:13px;
-    border-radius:27px;
-    overflow:hidden;
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,.06),
-            transparent 48%
-        ),
-        #020202;
-    display:flex;
+    gap:9px;
     align-items:center;
-    justify-content:center;
+    color:#626761;
+    font:9px var(--mono);
+    letter-spacing:.15em;
 }
 
-.phone-screen::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:repeating-linear-gradient(
-        0deg,
-        transparent 0,
-        transparent 3px,
-        rgba(255,255,255,.025) 4px
-    );
+.private-code span{
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--green);
 }
 
-.phone-text{
-    position:relative;
-    z-index:2;
-    font:10px var(--mono);
-    letter-spacing:.18em;
-    color:rgba(255,255,255,.42);
-}
+/* =========================================================
+   05 NOTHING
+========================================================= */
 
-.phone.active{
-    animation:phoneGlitch .42s steps(2);
-}
-
-.phone.active .phone-text{
-    color:var(--accent);
-    text-shadow:0 0 15px var(--accent);
-}
-
-@keyframes phoneGlitch{
-    20%{transform:translateX(4px)}
-    40%{transform:translateX(-4px)}
-    60%{transform:translateX(2px)}
-}
-
-/* ---------- NOTHING ---------- */
-
-.empty{
+.nothing{
     justify-content:center;
     text-align:center;
 }
 
 .radar{
     position:absolute;
-    width:650px;
-    height:650px;
+    width:700px;
+    height:700px;
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
@@ -765,54 +822,64 @@ body::after{
     border-radius:50%;
 }
 
-.radar::before,
-.radar::after{
+.radar:before,
+.radar:after{
     content:"";
     position:absolute;
-    border:1px solid rgba(255,255,255,.025);
+    border:1px solid rgba(186,255,50,.03);
     border-radius:50%;
 }
 
-.radar::before{inset:20%}
-.radar::after{inset:40%}
+.radar:before{inset:18%}
+.radar:after{inset:40%}
 
-.sweep{
+.radar-sweep{
     position:absolute;
-    left:50%;
-    top:50%;
     width:50%;
     height:1px;
+    left:50%;
+    top:50%;
     transform-origin:left center;
     background:linear-gradient(
         90deg,
-        rgba(215,255,66,.42),
+        rgba(186,255,50,.45),
         transparent
     );
-    animation:radar 5s linear infinite;
+    animation:radarSweep 5s linear infinite;
 }
 
-@keyframes radar{
+@keyframes radarSweep{
     to{transform:rotate(360deg)}
 }
 
-.empty-title{
+.nothing-title{
     position:relative;
-    z-index:4;
-    font-size:clamp(65px,11vw,155px);
-    line-height:.8;
+    z-index:3;
+    font-size:clamp(62px,10vw,145px);
+    line-height:.82;
     letter-spacing:-.08em;
     font-weight:500;
-    cursor:pointer;
 }
 
-/* ---------- BUILD ---------- */
+.nothing-sub{
+    position:relative;
+    z-index:3;
+    max-width:580px;
+    margin:40px auto 0;
+    color:var(--gray);
+    font-size:16px;
+    line-height:1.8;
+}
+
+/* =========================================================
+   06 BUILD
+========================================================= */
 
 .build{
     display:block;
 }
 
 .build-inner{
-    width:100%;
     max-width:1300px;
     margin:auto;
 }
@@ -822,6 +889,14 @@ body::after{
     line-height:.82;
     letter-spacing:-.08em;
     font-weight:500;
+}
+
+.build-description{
+    max-width:600px;
+    margin-top:35px;
+    color:var(--gray);
+    line-height:1.8;
+    font-size:16px;
 }
 
 .build-grid{
@@ -839,163 +914,278 @@ body::after{
     border-bottom:1px solid var(--line);
     position:relative;
     overflow:hidden;
-    transition:.45s;
+    transition:.5s;
+}
+
+.card:after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:1px;
+    top:0;
+    left:0;
+    background:var(--green);
+    transition:.6s;
 }
 
 .card:hover{
-    background:rgba(255,255,255,.035);
+    background:rgba(186,255,50,.025);
 }
 
-.card::before{
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:0;
-    height:1px;
-    background:var(--accent);
-    transition:.6s cubic-bezier(.16,1,.3,1);
-}
-
-.card:hover::before{
+.card:hover:after{
     width:100%;
 }
 
 .card-number{
-    color:var(--muted);
+    color:var(--gray);
     font:10px var(--mono);
 }
 
 .card-title{
-    margin-top:105px;
+    margin-top:110px;
     font-size:24px;
-    letter-spacing:-.03em;
+    letter-spacing:-.035em;
 }
 
 .card-text{
     max-width:220px;
     margin-top:15px;
-    color:var(--muted);
+    color:var(--gray);
     font-size:14px;
     line-height:1.7;
 }
 
-/* ---------- PRIVACY ---------- */
+/* =========================================================
+   07 PRIVACY
+========================================================= */
 
 .privacy{
     justify-content:center;
     text-align:center;
 }
 
-.privacy-ring{
+.privacy-rings{
     position:absolute;
-    width:720px;
-    height:720px;
+    width:760px;
+    height:760px;
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%) scale(.75);
-    border:1px solid rgba(255,255,255,.04);
-    border-radius:50%;
-    opacity:0;
-    transition:2s cubic-bezier(.16,1,.3,1);
+    transform:translate(-50%,-50%);
 }
 
-.state.visible .privacy-ring{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1);
-}
-
-.privacy-ring::before{
-    content:"";
+.privacy-rings span{
     position:absolute;
-    inset:17%;
-    border:1px dashed rgba(255,255,255,.045);
+    inset:0;
+    border:1px solid rgba(186,255,50,.045);
     border-radius:50%;
-    animation:spin 25s linear infinite;
+}
+
+.privacy-rings span:nth-child(1){
+    animation:privacyRotate 22s linear infinite;
+}
+
+.privacy-rings span:nth-child(2){
+    inset:14%;
+    border-color:rgba(255,255,255,.035);
+    animation:privacyRotate 17s linear infinite reverse;
+}
+
+.privacy-rings span:nth-child(3){
+    inset:31%;
+    border-style:dashed;
+    animation:privacyRotate 12s linear infinite;
+}
+
+@keyframes privacyRotate{
+    to{transform:rotate(360deg)}
+}
+
+.privacy-core{
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:
+        0 0 15px var(--green),
+        0 0 50px rgba(186,255,50,.35);
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    animation:corePulse 2.5s infinite;
+}
+
+@keyframes corePulse{
+    50%{
+        box-shadow:
+            0 0 30px var(--green),
+            0 0 100px rgba(186,255,50,.4);
+    }
 }
 
 .privacy-title{
     position:relative;
-    z-index:5;
-    font-size:clamp(55px,10vw,145px);
+    z-index:4;
+    font-size:clamp(55px,9vw,140px);
     line-height:.82;
     letter-spacing:-.08em;
     font-weight:500;
-    cursor:pointer;
 }
 
 .privacy-text{
     position:relative;
-    z-index:5;
+    z-index:4;
     max-width:650px;
-    margin:50px auto 0;
-    color:var(--muted);
+    margin:45px auto 0;
+    color:var(--gray);
     font-size:16px;
     line-height:1.8;
 }
 
-/* ---------- EXIT ---------- */
+/* =========================================================
+   08 FINAL PROCEDURE
+========================================================= */
 
-.exit{
+.final{
     justify-content:center;
     text-align:center;
 }
 
-.exit-label{
-    margin-bottom:35px;
-    color:var(--muted);
-    font:10px var(--mono);
-    letter-spacing:.3em;
+.final-bg{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
 }
 
-.exit-title{
+.final-grid{
+    position:absolute;
+    width:160%;
+    height:160%;
+    left:-30%;
+    top:-30%;
+    background:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:75px 75px;
+    transform:perspective(700px) rotateX(65deg);
+    animation:finalGrid 22s linear infinite;
+}
+
+@keyframes finalGrid{
+    to{
+        background-position:0 75px;
+    }
+}
+
+.final-ring{
+    position:absolute;
+    width:900px;
+    height:900px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border:1px solid rgba(186,255,50,.04);
+    border-radius:50%;
+}
+
+.final-ring:before{
+    content:"";
+    position:absolute;
+    inset:18%;
+    border:1px solid rgba(255,255,255,.03);
+    border-radius:50%;
+}
+
+.final-label{
+    position:relative;
+    z-index:5;
+    color:var(--gray);
+    font:10px var(--mono);
+    letter-spacing:.3em;
+    margin-bottom:35px;
+}
+
+.final-title{
+    position:relative;
+    z-index:5;
     font-size:clamp(60px,10vw,145px);
     line-height:.82;
     letter-spacing:-.08em;
     font-weight:500;
 }
 
-.exit-text{
+.final-description{
+    position:relative;
+    z-index:5;
     max-width:650px;
-    margin:45px auto;
-    color:var(--muted);
+    margin:45px auto 0;
+    color:var(--gray);
     font-size:16px;
     line-height:1.8;
 }
 
+/* =========================================================
+   CONTACT
+========================================================= */
+
 .contact{
-    width:min(680px,90vw);
-    margin:55px auto 0;
+    position:relative;
+    z-index:5;
+    width:min(700px,100%);
+    margin:50px auto 0;
     display:grid;
     gap:12px;
+    text-align:left;
+}
+
+.input-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.input-wrap{
+    position:relative;
+}
+
+.input-icon{
+    position:absolute;
+    left:17px;
+    top:50%;
+    transform:translateY(-50%);
+    width:17px;
+    height:17px;
+    color:#70756d;
+    pointer-events:none;
 }
 
 .input{
     width:100%;
-    padding:19px 20px;
+    padding:18px 18px 18px 48px;
     border:1px solid var(--line);
-    outline:none;
     background:rgba(255,255,255,.025);
     color:white;
-    font:12px var(--mono);
-    transition:.3s;
+    outline:none;
+    font:11px var(--mono);
+    transition:.35s;
 }
 
 .input:focus{
-    border-color:rgba(215,255,66,.5);
-    background:rgba(215,255,66,.02);
+    border-color:rgba(186,255,50,.45);
+    background:rgba(186,255,50,.018);
 }
 
 textarea.input{
-    min-height:130px;
+    min-height:125px;
     resize:vertical;
+    padding-left:18px;
 }
 
 .submit{
-    padding:20px;
-    border:1px solid rgba(255,255,255,.24);
+    border:1px solid rgba(255,255,255,.22);
     background:transparent;
     color:white;
+    padding:19px;
     cursor:pointer;
     font:10px var(--mono);
     letter-spacing:.2em;
@@ -1003,40 +1193,55 @@ textarea.input{
 }
 
 .submit:hover{
-    background:var(--accent);
-    color:#050505;
-    border-color:var(--accent);
+    background:var(--green);
+    border-color:var(--green);
+    color:#030403;
 }
 
-/* ---------- SYSTEM MESSAGE ---------- */
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:40px 5vw;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    color:#626760;
+    font:9px var(--mono);
+    letter-spacing:.14em;
+}
+
+/* =========================================================
+   SYSTEM MESSAGE
+========================================================= */
 
 .system-message{
     position:fixed;
+    z-index:9500;
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
-    z-index:8000;
     pointer-events:none;
-    color:var(--accent);
+    color:var(--green);
     font:11px var(--mono);
     letter-spacing:.2em;
-    text-align:center;
-    white-space:nowrap;
     opacity:0;
+    white-space:nowrap;
 }
 
 .system-message.show{
-    animation:message 1.45s ease forwards;
+    animation:message 1.4s ease forwards;
 }
 
 @keyframes message{
     0%{
         opacity:0;
-        filter:blur(7px);
+        filter:blur(8px);
     }
     20%{
         opacity:1;
-        filter:blur(0);
+        filter:none;
     }
     70%{opacity:1}
     100%{
@@ -1045,46 +1250,27 @@ textarea.input{
     }
 }
 
-.screen-darkness{
-    position:fixed;
-    inset:0;
-    z-index:7000;
-    background:#000;
-    pointer-events:none;
-    opacity:0;
-    transition:.6s;
-}
-
-.screen-darkness.active{
-    opacity:.97;
-}
-
-/* ---------- FOOTER ---------- */
-
-footer{
-    padding:40px 5vw;
-    border-top:1px solid var(--line);
-    display:flex;
-    justify-content:space-between;
-    color:var(--muted);
-    font:9px var(--mono);
-    letter-spacing:.14em;
-}
-
-/* ---------- MOBILE ---------- */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:800px){
 
-    .cursor{
-        display:none;
+    .intro-radar{
+        width:400px;
+        height:400px;
+    }
+
+    .intro-meta{
+        font-size:7px;
     }
 
     .nav{
-        height:65px;
+        height:66px;
         padding:0 6vw;
     }
 
-    .status{
+    .system{
         display:none;
     }
 
@@ -1092,36 +1278,23 @@ footer{
         padding:110px 7vw 90px;
     }
 
-    .hero-orb{
+    .hero-title{
+        font-size:clamp(68px,18vw,112px);
+    }
+
+    .hero-core{
         width:420px;
         height:420px;
-        left:65%;
+        left:70%;
+        opacity:.6;
     }
 
-    .signal{
-        width:280px;
-        height:280px;
-        left:65%;
+    .hero-subtitle{
+        font-size:22px;
     }
 
-    .hero-grid{
-        background-size:50px 50px;
-    }
-
-    .hero-title{
-        font-size:clamp(65px,18vw,110px);
-    }
-
-    .hero-big-copy{
-        font-size:21px;
-    }
-
-    .hero-small-copy{
+    .hero-description{
         font-size:14px;
-    }
-
-    .hero-scroll{
-        left:7vw;
     }
 
     .state{
@@ -1129,13 +1302,13 @@ footer{
         padding:110px 7vw;
     }
 
-    .block-lang{
+    .block-language{
         right:7vw;
-        top:90px;
+        top:88px;
     }
 
     .title{
-        font-size:clamp(65px,18vw,108px);
+        font-size:clamp(66px,18vw,108px);
     }
 
     .lead{
@@ -1144,46 +1317,53 @@ footer{
 
     .description,
     .privacy-text,
-    .exit-text{
+    .final-description{
         font-size:15px;
     }
 
-    .phone-layout{
-        grid-template-columns:1fr;
-        gap:75px;
+    .private-orbit{
+        width:480px;
+        height:480px;
+        left:75%;
+        opacity:.55;
     }
 
-    .phone{
-        width:205px;
-        height:410px;
-    }
-
-    .radar,
-    .privacy-ring{
+    .radar{
         width:430px;
         height:430px;
     }
 
     .build-grid{
         grid-template-columns:1fr 1fr;
+        margin-top:55px;
     }
 
     .card{
-        min-height:235px;
-        padding:22px;
+        min-height:230px;
+        padding:21px;
     }
 
     .card-title{
         margin-top:65px;
-        font-size:19px;
+        font-size:18px;
     }
 
     .card-text{
         font-size:12px;
     }
 
-    .contact{
-        width:100%;
+    .privacy-rings{
+        width:440px;
+        height:440px;
+    }
+
+    .final-ring{
+        width:520px;
+        height:520px;
+    }
+
+    .input-row{
+        grid-template-columns:1fr;
     }
 
     footer{
@@ -1196,8 +1376,8 @@ footer{
 @media(prefers-reduced-motion:reduce){
 
     *,
-    *::before,
-    *::after{
+    *:before,
+    *:after{
         animation-duration:.01ms!important;
         animation-iteration-count:1!important;
         scroll-behavior:auto!important;
@@ -1209,9 +1389,40 @@ footer{
 
 <body>
 
-<div class="cursor"></div>
-<div class="screen-darkness"></div>
-<div class="system-message"></div>
+<!-- ======================================================
+     INTRO
+====================================================== -->
+
+<div class="intro" id="intro">
+
+    <div class="intro-grid"></div>
+    <div class="intro-radar"></div>
+
+    <div class="intro-center">
+
+        <div class="intro-code">
+            INITIALIZING / 0001
+        </div>
+
+        <div class="intro-title">
+            PRIVATE <span>STATE</span>
+        </div>
+
+        <div class="intro-line"></div>
+
+    </div>
+
+    <div class="intro-meta">
+        <span>PRIVATE SYSTEM</span>
+        <span>NO PUBLIC ACCESS</span>
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     NAV
+====================================================== -->
 
 <nav class="nav">
 
@@ -1221,15 +1432,15 @@ footer{
 
     <div class="nav-right">
 
-        <div class="status">
-            <span class="status-dot"></span>
+        <div class="system">
+            <span class="system-dot"></span>
             SYSTEM AVAILABLE
         </div>
 
-        <button class="lang" id="globalLang">
-            <span class="active">EN</span>
+        <button class="language" id="languageButton">
+            <span class="current">RU</span>
             /
-            <span>RU</span>
+            <span>EN</span>
         </button>
 
     </div>
@@ -1237,21 +1448,33 @@ footer{
 </nav>
 
 
-<!-- HERO -->
+<!-- ======================================================
+     HERO
+====================================================== -->
 
 <header class="hero">
 
-    <div class="hero-background">
+    <div class="hero-bg">
+
+        <div class="energy-lines">
+
+            <i class="energy-line"></i>
+            <i class="energy-line"></i>
+            <i class="energy-line"></i>
+            <i class="energy-line"></i>
+            <i class="energy-line"></i>
+            <i class="energy-line"></i>
+
+        </div>
 
         <div class="hero-grid"></div>
-        <div class="hero-orb"></div>
-        <div class="signal"></div>
+        <div class="hero-core"></div>
 
     </div>
 
     <div class="hero-content">
 
-        <div class="hero-kicker">
+        <div class="kicker">
             PRIVATE EXPERIENCE / 001
         </div>
 
@@ -1261,117 +1484,111 @@ footer{
         </h1>
 
         <p
-            class="hero-big-copy"
-            data-en="The world can wait."
-            data-ru="Мир может подождать.">
-            The world can wait.
+            class="hero-subtitle"
+            data-ru="Мир может подождать."
+            data-en="The world can wait.">
+            Мир может подождать.
         </p>
 
         <p
-            class="hero-small-copy"
-            data-en="A private space where you can disappear from notifications, expectations and constant availability."
-            data-ru="Пространство, где можно исчезнуть из уведомлений, ожиданий и бесконечной необходимости быть на связи.">
-            A private space where you can disappear from notifications,
-            expectations and constant availability.
+            class="hero-description"
+            data-ru="Пространство, где можно исчезнуть из уведомлений, ожиданий и постоянной необходимости быть на связи."
+            data-en="A private space where you can disappear from notifications, expectations and constant availability.">
+            Пространство, где можно исчезнуть из уведомлений,
+            ожиданий и постоянной необходимости быть на связи.
         </p>
 
         <a
             href="#offline"
-            class="hero-button">
-            ENTER PRIVATE STATE
+            class="hero-button"
+            data-ru="ВОЙТИ В PRIVATE STATE"
+            data-en="ENTER PRIVATE STATE">
+            ВОЙТИ В PRIVATE STATE
         </a>
 
     </div>
 
-    <div class="hero-scroll">
-        SCROLL TO DISCONNECT
+    <div class="scroll-indicator">
+        ЛИСТАЙТЕ, ЧТОБЫ ОТКЛЮЧИТЬСЯ
         <span class="scroll-line"></span>
     </div>
 
 </header>
 
 
-<!-- OFFLINE -->
+<!-- ======================================================
+     02 OFFLINE
+====================================================== -->
 
-<section class="state phone-section" id="offline">
+<section class="state">
 
-    <div class="digital"></div>
-    <div class="scan"></div>
-    <div class="glitch-frame"></div>
+    <div class="state-bg">
 
-    <button
-        class="block-lang"
-        data-block="offline">
-        EN / RU
+        <div class="state-grid"></div>
+        <div class="state-glow"></div>
+
+        <div class="state-lines">
+            <i></i>
+            <i></i>
+        </div>
+
+    </div>
+
+    <button class="block-language">
+        RU / EN
     </button>
 
-    <div class="phone-layout">
+    <div class="content">
 
-        <div class="content">
-
-            <div class="index">
-                <b>02</b> / OFFLINE
-            </div>
-
-            <h2
-                class="title interactive"
-                data-action="signal">
-                OFFLINE
-            </h2>
-
-            <p
-                class="lead"
-                data-en="Your phone stays with us."
-                data-ru="Ваш телефон остаётся у нас.">
-                Your phone stays with us.
-            </p>
-
-            <p
-                class="description"
-                data-en="Not because you need another place to leave your phone. Because you need a place where nobody can reach you. No notifications. No calls. No digital noise."
-                data-ru="Не потому, что вам нужно ещё одно место, куда можно положить телефон. А потому, что вам нужно пространство, где до вас никто не сможет достучаться. Без уведомлений. Без звонков. Без цифрового шума.">
-                Not because you need another place to leave your phone.
-                Because you need a place where nobody can reach you.
-                No notifications. No calls. No digital noise.
-            </p>
-
+        <div class="index">
+            <b>02</b> / OFFLINE
         </div>
 
-        <div class="phone-wrap">
+        <h2 class="title">
+            OFFLINE
+        </h2>
 
-            <div class="phone" id="phone">
+        <p
+            class="lead"
+            data-ru="Ваш телефон остаётся у нас."
+            data-en="Your phone stays with us.">
+            Ваш телефон остаётся у нас.
+        </p>
 
-                <div class="phone-screen">
-
-                    <span
-                        class="phone-text"
-                        id="phoneText">
-                        NO SIGNAL
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
+        <p
+            class="description"
+            data-ru="Не потому, что вам нужно ещё одно место, куда можно положить телефон. А потому, что вам нужно место, где до вас никто не сможет достучаться. Без уведомлений. Без звонков. Без цифрового шума."
+            data-en="Not because you need another place to leave your phone. Because you need a place where nobody can reach you. No notifications. No calls. No digital noise.">
+            Не потому, что вам нужно ещё одно место, куда можно положить телефон.
+            А потому, что вам нужно место, где до вас никто не сможет достучаться.
+            Без уведомлений. Без звонков. Без цифрового шума.
+        </p>
 
     </div>
 
 </section>
 
 
-<!-- DARKNESS -->
+<!-- ======================================================
+     03 DARKNESS
+====================================================== -->
 
 <section class="state">
 
-    <div class="digital"></div>
-    <div class="scan"></div>
-    <div class="glitch-frame"></div>
+    <div class="state-bg">
 
-    <button
-        class="block-lang"
-        data-block="darkness">
-        EN / RU
+        <div class="state-grid"></div>
+        <div class="state-glow"></div>
+
+        <div class="state-lines">
+            <i></i>
+            <i></i>
+        </div>
+
+    </div>
+
+    <button class="block-language">
+        RU / EN
     </button>
 
     <div class="content">
@@ -1380,25 +1597,23 @@ footer{
             <b>03</b> / DARKNESS
         </div>
 
-        <h2
-            class="title interactive"
-            data-action="darkness">
+        <h2 class="title">
             DARKNESS
         </h2>
 
         <p
             class="lead"
-            data-en="Nothing demands your attention."
-            data-ru="Ничто не требует вашего внимания.">
-            Nothing demands your attention.
+            data-ru="Ничто не требует вашего внимания."
+            data-en="Nothing demands your attention.">
+            Ничто не требует вашего внимания.
         </p>
 
         <p
             class="description"
-            data-en="Low light. Silence. Space. An environment designed to let your mind stop reacting to everything around it."
-            data-ru="Приглушённый свет. Тишина. Пространство. Среда, созданная для того, чтобы ваш мозг наконец перестал реагировать на всё вокруг.">
-            Low light. Silence. Space. An environment designed to let
-            your mind stop reacting to everything around it.
+            data-ru="Приглушённый свет. Тишина. Пространство. Среда, созданная для того, чтобы перестать реагировать на всё вокруг."
+            data-en="Low light. Silence. Space. An environment designed to let your mind stop reacting to everything around it.">
+            Приглушённый свет. Тишина. Пространство.
+            Среда, созданная для того, чтобы перестать реагировать на всё вокруг.
         </p>
 
     </div>
@@ -1406,69 +1621,82 @@ footer{
 </section>
 
 
-<!-- PRIVATE -->
+<!-- ======================================================
+     04 PRIVATE STATE
+====================================================== -->
 
-<section class="state">
+<section class="state private-state">
 
-    <div class="digital"></div>
-    <div class="scan"></div>
-    <div class="glitch-frame"></div>
+    <div class="state-bg">
 
-    <button
-        class="block-lang"
-        data-block="private">
-        EN / RU
+        <div class="state-grid"></div>
+        <div class="state-glow"></div>
+
+        <div class="private-orbit"></div>
+
+    </div>
+
+    <button class="block-language">
+        RU / EN
     </button>
 
     <div class="content">
 
         <div class="index">
-            <b>04</b> / PRIVATE
+            <b>04</b> / PRIVATE STATE
         </div>
 
-        <h2
-            class="title interactive"
-            data-action="private">
+        <h2 class="title">
             PRIVATE
         </h2>
 
         <p
             class="lead"
-            data-en="Your time. Your rules."
-            data-ru="Ваше время. Ваши правила.">
-            Your time. Your rules.
+            data-ru="Ваше время. Ваши правила."
+            data-en="Your time. Your rules.">
+            Ваше время. Ваши правила.
         </p>
 
         <p
             class="description"
-            data-en="No strangers. No unnecessary interaction. No predefined script for how you are supposed to relax."
-            data-ru="Никаких посторонних людей. Никакого лишнего общения. Никакого сценария, которому вы обязаны следовать.">
-            No strangers. No unnecessary interaction.
-            No predefined script for how you are supposed to relax.
+            data-ru="Никаких посторонних людей. Никакого обязательного сценария. Пространство полностью настраивается под вас."
+            data-en="No strangers. No predefined script. The space is configured around you.">
+            Никаких посторонних людей.
+            Никакого обязательного сценария.
+            Пространство полностью настраивается под вас.
         </p>
+
+        <div class="private-code">
+            <span></span>
+            PRIVATE ACCESS
+            <span></span>
+            ACTIVE
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- NOTHING -->
+<!-- ======================================================
+     05 NOTHING
+====================================================== -->
 
-<section class="state empty">
+<section class="state nothing">
 
-    <div class="digital"></div>
-    <div class="scan"></div>
-    <div class="glitch-frame"></div>
+    <div class="state-bg">
 
-    <button
-        class="block-lang"
-        data-block="nothing">
-        EN / RU
-    </button>
+        <div class="state-glow"></div>
+
+    </div>
 
     <div class="radar">
-        <div class="sweep"></div>
+        <div class="radar-sweep"></div>
     </div>
+
+    <button class="block-language">
+        RU / EN
+    </button>
 
     <div class="content">
 
@@ -1476,20 +1704,18 @@ footer{
             <b>05</b> / ZERO INPUT
         </div>
 
-        <h2
-            class="empty-title interactive"
-            data-action="nothing">
-            NOTHING TO SEE
+        <h2 class="nothing-title">
+            NOTHING<br>TO SEE
         </h2>
 
         <p
-            class="empty-text"
-            data-en="Ничего не происходит. И именно в этом весь смысл. Вам не нужно придумывать, чем заполнить освободившееся время."
-            data-ru="Ничего не происходит. И именно в этом весь смысл. Вам не нужно придумывать, чем заполнить освободившееся время.">
+            class="nothing-sub"
+            data-ru="Ничего не происходит. И именно в этом весь смысл. Вам не нужно придумывать, чем заполнить освободившееся время."
+            data-en="Nothing happens. And that is exactly the point. You do not need to invent something to fill the time.">
             Ничего не происходит.
             И именно в этом весь смысл.
-            Вам не нужно придумывать, чем заполнить
-            освободившееся время.
+            Вам не нужно придумывать,
+            чем заполнить освободившееся время.
         </p>
 
     </div>
@@ -1497,23 +1723,26 @@ footer{
 </section>
 
 
-<!-- BUILD -->
+<!-- ======================================================
+     06 BUILD
+====================================================== -->
 
 <section class="state build">
 
-    <div class="digital"></div>
-    <div class="scan"></div>
-    <div class="glitch-frame"></div>
+    <div class="state-bg">
 
-    <button
-        class="block-lang"
-        data-block="build">
-        EN / RU
+        <div class="state-grid"></div>
+        <div class="state-glow"></div>
+
+    </div>
+
+    <button class="block-language">
+        RU / EN
     </button>
 
     <div class="build-inner">
 
-        <div class="build-head content">
+        <div class="content">
 
             <div class="index">
                 <b>06</b> / CONFIGURATION
@@ -1526,10 +1755,11 @@ footer{
             </h2>
 
             <p
-                class="description"
-                data-en="The experience is configured around what you actually need."
-                data-ru="Опыт создаётся вокруг того, что действительно нужно именно вам.">
-                The experience is configured around what you actually need.
+                class="build-description"
+                data-ru="Всё строится вокруг того, что действительно нужно именно вам."
+                data-en="Everything is built around what you actually need.">
+                Всё строится вокруг того,
+                что действительно нужно именно вам.
             </p>
 
         </div>
@@ -1541,9 +1771,9 @@ footer{
                 <div class="card-title">LOCATION</div>
                 <div
                     class="card-text"
-                    data-en="Choose where your time happens."
-                    data-ru="Выберите место, где пройдёт ваше время.">
-                    Choose where your time happens.
+                    data-ru="Выберите место, где пройдёт ваше время."
+                    data-en="Choose where your time happens.">
+                    Выберите место, где пройдёт ваше время.
                 </div>
             </div>
 
@@ -1552,9 +1782,9 @@ footer{
                 <div class="card-title">MODE</div>
                 <div
                     class="card-text"
-                    data-en="Silence, darkness, solitude or something else."
-                    data-ru="Тишина, темнота, одиночество или другой режим.">
-                    Silence, darkness, solitude or something else.
+                    data-ru="Тишина, темнота, одиночество или другой режим."
+                    data-en="Silence, darkness, solitude or another mode.">
+                    Тишина, темнота, одиночество или другой режим.
                 </div>
             </div>
 
@@ -1563,9 +1793,9 @@ footer{
                 <div class="card-title">SUPPORT</div>
                 <div
                     class="card-text"
-                    data-en="Completely alone or with discreet assistance nearby."
-                    data-ru="Полностью самостоятельно или с ненавязчивым сопровождением.">
-                    Completely alone or with discreet assistance nearby.
+                    data-ru="Полностью самостоятельно или с ненавязчивым сопровождением."
+                    data-en="Completely alone or with discreet assistance.">
+                    Полностью самостоятельно или с ненавязчивым сопровождением.
                 </div>
             </div>
 
@@ -1574,9 +1804,9 @@ footer{
                 <div class="card-title">PRIVACY</div>
                 <div
                     class="card-text"
-                    data-en="Your boundaries define the experience."
-                    data-ru="Ваши границы определяют весь опыт.">
-                    Your boundaries define the experience.
+                    data-ru="Ваши границы определяют весь опыт."
+                    data-en="Your boundaries define the experience.">
+                    Ваши границы определяют весь опыт.
                 </div>
             </div>
 
@@ -1587,21 +1817,26 @@ footer{
 </section>
 
 
-<!-- PRIVACY -->
+<!-- ======================================================
+     07 PRIVACY
+====================================================== -->
 
 <section class="state privacy">
 
-    <div class="digital"></div>
-    <div class="scan"></div>
-    <div class="glitch-frame"></div>
+    <div class="state-bg">
+        <div class="state-glow"></div>
+    </div>
 
-    <button
-        class="block-lang"
-        data-block="privacy">
-        EN / RU
+    <div class="privacy-rings">
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class="privacy-core"></div>
+    </div>
+
+    <button class="block-language">
+        RU / EN
     </button>
-
-    <div class="privacy-ring"></div>
 
     <div class="content">
 
@@ -1609,19 +1844,17 @@ footer{
             <b>07</b> / PRIVACY
         </div>
 
-        <h2
-            class="privacy-title interactive"
-            data-action="private">
+        <h2 class="privacy-title">
             PRIVACY IS<br>
             NOT AN OPTION.
         </h2>
 
         <p
             class="privacy-text"
-            data-en="Privacy is not an extra feature. It is the foundation of the experience."
-            data-ru="Приватность — не дополнительная опция. Это основа всего опыта.">
-            Privacy is not an extra feature.
-            It is the foundation of the experience.
+            data-ru="Приватность — не дополнительная функция. Это основа всего опыта."
+            data-en="Privacy is not an extra feature. It is the foundation of the experience.">
+            Приватность — не дополнительная функция.
+            Это основа всего опыта.
         </p>
 
     </div>
@@ -1629,63 +1862,106 @@ footer{
 </section>
 
 
-<!-- EXIT -->
+<!-- ======================================================
+     08 FINAL PROCEDURE
+====================================================== -->
 
-<section class="state exit">
+<section class="state final">
 
-    <div class="digital"></div>
-    <div class="scan"></div>
-    <div class="glitch-frame"></div>
+    <div class="final-bg">
 
-    <button
-        class="block-lang"
-        data-block="exit">
-        EN / RU
+        <div class="final-grid"></div>
+        <div class="final-ring"></div>
+
+    </div>
+
+    <button class="block-language">
+        RU / EN
     </button>
 
     <div class="content">
 
-        <div class="exit-label">
+        <div class="final-label">
             FINAL PROCEDURE / 08
         </div>
 
-        <h2 class="exit-title">
+        <h2 class="final-title">
             TIME TO<br>
             DISAPPEAR.
         </h2>
 
         <p
-            class="exit-text"
-            data-en="Your stay ends quietly. We perform the final privacy procedure and contact you only when necessary."
-            data-ru="Ваше пребывание заканчивается спокойно. Мы проводим финальную процедуру конфиденциальности и связываемся с вами только при необходимости.">
-            Your stay ends quietly.
-            We perform the final privacy procedure
-            and contact you only when necessary.
+            class="final-description"
+            data-ru="Ваше пребывание заканчивается спокойно. Мы проводим финальную процедуру конфиденциальности и связываемся с вами только при необходимости."
+            data-en="Your stay ends quietly. We perform the final privacy procedure and contact you only when necessary.">
+            Ваше пребывание заканчивается спокойно.
+            Мы проводим финальную процедуру конфиденциальности
+            и связываемся с вами только при необходимости.
         </p>
 
         <form class="contact" id="contactForm">
 
-            <input
-                class="input"
-                type="text"
-                placeholder="NAME"
-                required>
+            <div class="input-row">
+
+                <div class="input-wrap">
+
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5">
+                        <circle cx="12" cy="8" r="3.5"/>
+                        <path d="M5 20c.7-3.4 3-5.2 7-5.2s6.3 1.8 7 5.2"/>
+                    </svg>
+
+                    <input
+                        class="input"
+                        type="text"
+                        placeholder="NAME"
+                        required>
+
+                </div>
+
+                <div class="input-wrap">
+
+                    <!-- Telegram icon -->
+                    <svg
+                        class="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M21 4 3.5 10.8c-.8.3-.8 1.4 0 1.7l4.5 1.6 1.7 5.3c.2.7 1.1.9 1.6.4l2.7-2.8 4.7 3.4c.6.4 1.4.1 1.6-.6L22 5.2c.2-.8-.3-1.5-1-1.2Z"/>
+                        <path d="m8 14 10-7"/>
+                    </svg>
+
+                    <input
+                        class="input"
+                        type="text"
+                        placeholder="TELEGRAM"
+                        required>
+
+                </div>
+
+            </div>
 
             <input
                 class="input"
                 type="text"
-                placeholder="TELEGRAM / CONTACT"
-                required>
+                placeholder="CONTACT">
 
             <textarea
                 class="input"
-                placeholder="WHAT ARE YOU LOOKING FOR?">
+                placeholder="TELL US WHAT YOU ARE LOOKING FOR">
             </textarea>
 
             <button
                 class="submit"
-                type="submit">
-                REQUEST PRIVATE CONTACT
+                type="submit"
+                data-ru="ОСТАВИТЬ ЗАПРОС"
+                data-en="REQUEST PRIVATE CONTACT">
+                ОСТАВИТЬ ЗАПРОС
             </button>
 
         </form>
@@ -1698,29 +1974,136 @@ footer{
 <footer>
 
     <span>PRIVATE STATE © 2026</span>
-
     <span>NOTHING TO PROVE. NOTHING TO EXPLAIN.</span>
 
 </footer>
 
 
+<!-- ======================================================
+     SYSTEM MESSAGE
+====================================================== -->
+
+<div class="system-message" id="systemMessage"></div>
+
+
 <script>
 
-/* ---------- NAV ---------- */
+/* =========================================================
+   INTRO
+========================================================= */
+
+const intro=document.getElementById("intro");
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        intro.classList.add("hide");
+
+    },2300);
+
+});
+
+
+/* =========================================================
+   NAV
+========================================================= */
 
 const nav=document.querySelector(".nav");
 
 window.addEventListener("scroll",()=>{
+
     nav.classList.toggle(
         "scrolled",
         window.scrollY>40
     );
-},{passive:true});
+
+});
 
 
-/* ---------- SYSTEM MESSAGE ---------- */
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
 
-const message=document.querySelector(".system-message");
+let language="ru";
+
+const languageButton=
+    document.getElementById("languageButton");
+
+function applyLanguage(){
+
+    document.documentElement.lang=language;
+
+    document
+    .querySelectorAll("[data-ru][data-en]")
+    .forEach(element=>{
+
+        element.textContent=
+            element.dataset[language];
+
+    });
+
+    languageButton.innerHTML=
+        language==="ru"
+        ? '<span class="current">RU</span> / <span>EN</span>'
+        : '<span>RU</span> / <span class="current">EN</span>';
+
+}
+
+languageButton.addEventListener("click",()=>{
+
+    language=
+        language==="ru"
+        ? "en"
+        : "ru";
+
+    applyLanguage();
+
+    systemMessage(
+        language==="ru"
+        ? "РУССКИЙ / ENABLED"
+        : "ENGLISH / ENABLED"
+    );
+
+});
+
+applyLanguage();
+
+
+/* =========================================================
+   BLOCK LANGUAGE
+========================================================= */
+
+document
+.querySelectorAll(".block-language")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        language=
+            language==="ru"
+            ? "en"
+            : "ru";
+
+        applyLanguage();
+
+        systemMessage(
+            language==="ru"
+            ? "РУССКИЙ / ENABLED"
+            : "ENGLISH / ENABLED"
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   SYSTEM MESSAGE
+========================================================= */
+
+const message=
+    document.getElementById("systemMessage");
 
 function systemMessage(text){
 
@@ -1731,352 +2114,67 @@ function systemMessage(text){
     void message.offsetWidth;
 
     message.classList.add("show");
+
 }
 
 
-/* ---------- SECTION REVEAL ---------- */
-
-const sections=document.querySelectorAll(".state");
-
-const observer=new IntersectionObserver(
-    entries=>{
-        entries.forEach(entry=>{
-            if(entry.isIntersecting){
-                entry.target.classList.add("visible");
-            }
-        });
-    },
-    {threshold:.2}
-);
-
-sections.forEach(s=>observer.observe(s));
-
-
-/* ---------- LANGUAGE ---------- */
-
-let currentLanguage="en";
-
-const langButtons=document.querySelectorAll(".block-lang");
-
-function updateBlock(block,language){
-
-    block.querySelectorAll(
-        "[data-en][data-ru]"
-    ).forEach(element=>{
-
-        element.classList.add("language-switching");
-
-        setTimeout(()=>{
-
-            element.textContent=
-                element.dataset[language];
-
-            element.classList.remove(
-                "language-switching"
-            );
-
-        },100);
-
-    });
-}
-
-langButtons.forEach(button=>{
-
-    button.addEventListener("click",()=>{
-
-        const section=
-            button.closest(".state");
-
-        const nextLanguage=
-            button.dataset.language==="ru"
-                ? "en"
-                : "ru";
-
-        button.dataset.language=
-            nextLanguage;
-
-        button.classList.remove("flash");
-
-        void button.offsetWidth;
-
-        button.classList.add("flash");
-
-        updateBlock(
-            section,
-            nextLanguage
-        );
-
-        systemMessage(
-            nextLanguage==="ru"
-                ? "РУССКИЙ / ENABLED"
-                : "ENGLISH / ENABLED"
-        );
-
-    });
-
-});
-
-
-/* ---------- GLOBAL LANGUAGE ---------- */
-
-document
-.getElementById("globalLang")
-.addEventListener("click",()=>{
-
-    currentLanguage=
-        currentLanguage==="en"
-            ? "ru"
-            : "en";
-
-    document
-    .querySelectorAll(
-        "[data-en][data-ru]"
-    )
-    .forEach(element=>{
-
-        element.textContent=
-            element.dataset[currentLanguage];
-
-    });
-
-    systemMessage(
-        currentLanguage==="ru"
-            ? "РУССКИЙ / ENABLED"
-            : "ENGLISH / ENABLED"
-    );
-
-});
-
-
-/* ---------- PHONE ---------- */
-
-const phone=document.getElementById("phone");
-const phoneText=document.getElementById("phoneText");
-
-let phoneStep=0;
-
-const phoneStates=[
-    "SEARCHING...",
-    "NO NETWORK",
-    "NO DEVICE",
-    "NO TRACE",
-    "GOOD."
-];
-
-phone.addEventListener("click",()=>{
-
-    phone.classList.remove("active");
-
-    void phone.offsetWidth;
-
-    phone.classList.add("active");
-
-    phoneStep++;
-
-    if(phoneStep>phoneStates.length){
-        phoneStep=1;
-    }
-
-    phoneText.textContent=
-        phoneStates[phoneStep-1];
-
-    systemMessage(
-        phoneStates[phoneStep-1]
-    );
-
-    if(phoneStep===5){
-
-        setTimeout(()=>{
-
-            phoneText.textContent=
-                "NO SIGNAL";
-
-            phoneStep=0;
-
-        },1600);
-
-    }
-
-});
-
-
-/* ---------- INTERACTIVE TITLES ---------- */
-
-document
-.querySelectorAll(".interactive")
-.forEach(element=>{
-
-    element.addEventListener("click",()=>{
-
-        const action=
-            element.dataset.action;
-
-        if(action==="signal"){
-
-            systemMessage(
-                "SIGNAL LOST"
-            );
-
-            document.body.animate(
-                [
-                    {filter:"none"},
-                    {filter:"contrast(1.45) brightness(.7)"},
-                    {filter:"none"}
-                ],
-                {
-                    duration:430,
-                    easing:"steps(2)"
-                }
-            );
-
-        }
-
-        if(action==="darkness"){
-
-            const screen=
-                document.querySelector(
-                    ".screen-darkness"
-                );
-
-            screen.classList.add("active");
-
-            systemMessage(
-                "LIGHT LEVEL 00.00%"
-            );
-
-            setTimeout(()=>{
-                systemMessage(
-                    "NO INPUT REQUIRED"
-                );
-            },600);
-
-            setTimeout(()=>{
-                screen.classList.remove(
-                    "active"
-                );
-            },1500);
-
-        }
-
-        if(action==="private"){
-
-            systemMessage(
-                "ACCESS SEALED"
-            );
-
-        }
-
-        if(action==="nothing"){
-
-            systemMessage("...");
-
-            setTimeout(()=>{
-                systemMessage(
-                    "STILL NOTHING."
-                );
-            },650);
-
-        }
-
-    });
-
-});
-
-
-/* ---------- PARALLAX ---------- */
+/* =========================================================
+   PARALLAX BACKGROUNDS
+========================================================= */
 
 const backgrounds=
-    document.querySelectorAll(
-        ".digital"
-    );
+    document.querySelectorAll(".state-bg");
 
 let ticking=false;
 
-function parallax(){
+function updateParallax(){
 
     backgrounds.forEach(bg=>{
 
-        const section=
+        const state=
             bg.closest(".state");
 
-        if(!section)return;
+        if(!state)return;
 
         const rect=
-            section.getBoundingClientRect();
-
-        const center=
-            rect.top+
-            rect.height/2;
+            state.getBoundingClientRect();
 
         const distance=
-            window.innerHeight/2-center;
+            (window.innerHeight/2)
+            -
+            (rect.top+rect.height/2);
 
         bg.style.transform=
-            `translateY(${distance*.018}px)`;
+            `translateY(${distance*.025}px)`;
 
     });
 
     ticking=false;
+
 }
 
 window.addEventListener(
     "scroll",
     ()=>{
+
         if(!ticking){
+
             requestAnimationFrame(
-                parallax
+                updateParallax
             );
+
             ticking=true;
+
         }
+
     },
     {passive:true}
 );
 
 
-/* ---------- CURSOR ---------- */
-
-const cursor=
-    document.querySelector(".cursor");
-
-if(
-    window.matchMedia(
-        "(pointer:fine)"
-    ).matches
-){
-
-    window.addEventListener(
-        "mousemove",
-        e=>{
-            cursor.style.left=
-                e.clientX+"px";
-
-            cursor.style.top=
-                e.clientY+"px";
-        }
-    );
-
-    document
-    .querySelectorAll(
-        "button,a,.phone,.card,.interactive"
-    )
-    .forEach(element=>{
-
-        element.addEventListener(
-            "mouseenter",
-            ()=>cursor.classList.add("big")
-        );
-
-        element.addEventListener(
-            "mouseleave",
-            ()=>cursor.classList.remove("big")
-        );
-
-    });
-
-}
-
-
-/* ---------- FORM ---------- */
+/* =========================================================
+   FORM
+========================================================= */
 
 document
 .getElementById("contactForm")
@@ -2092,36 +2190,46 @@ document
             );
 
         button.textContent=
-            "REQUEST RECEIVED";
+            language==="ru"
+            ? "ЗАПРОС ПРИНЯТ"
+            : "REQUEST RECEIVED";
 
         systemMessage(
-            "PRIVATE REQUEST RECEIVED"
+            language==="ru"
+            ? "ЗАПРОС ПРИНЯТ"
+            : "PRIVATE REQUEST RECEIVED"
         );
 
         setTimeout(()=>{
+
             button.textContent=
-                "WE WILL CONTACT YOU";
-        },1700);
+                language==="ru"
+                ? "МЫ СВЯЖЕМСЯ С ВАМИ"
+                : "WE WILL CONTACT YOU";
+
+        },1800);
 
     }
 );
 
 
-/* ---------- MICRO GLITCH ---------- */
+/* =========================================================
+   MICRO DIGITAL MOVEMENT
+========================================================= */
 
 setInterval(()=>{
 
-    if(Math.random()>.72){
+    if(Math.random()>.65){
 
-        const titles=
+        const elements=
             document.querySelectorAll(
-                ".title,.privacy-title,.exit-title"
+                ".title,.nothing-title,.privacy-title,.final-title"
             );
 
         const element=
-            titles[
+            elements[
                 Math.floor(
-                    Math.random()*titles.length
+                    Math.random()*elements.length
                 )
             ];
 
@@ -2133,14 +2241,37 @@ setInterval(()=>{
                 {transform:"translateX(0)"}
             ],
             {
-                duration:120,
+                duration:130,
                 easing:"steps(2)"
             }
         );
 
     }
 
-},3000);
+},3200);
+
+
+/* =========================================================
+   MOBILE SAFETY
+========================================================= */
+
+if(
+    window.matchMedia(
+        "(max-width:800px)"
+    ).matches
+){
+
+    document
+    .querySelectorAll(
+        ".hero-core,.private-orbit"
+    )
+    .forEach(element=>{
+
+        element.style.animationDuration="14s";
+
+    });
+
+}
 
 </script>
 
