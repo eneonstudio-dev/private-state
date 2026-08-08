@@ -2,13 +2,16 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#030504">
 
 <title>PRIVATE STATE</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ==================================================
+   ROOT
+================================================== */
 
 :root{
     --bg:#030504;
@@ -27,6 +30,11 @@
 
     --ease:cubic-bezier(.16,1,.3,1);
 }
+
+
+/* ==================================================
+   RESET
+================================================== */
 
 *{
     box-sizing:border-box;
@@ -51,8 +59,9 @@ body::after{
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:999;
+    z-index:9999;
     opacity:.035;
+
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -65,12 +74,10 @@ a{
     color:inherit;
 }
 
-button,
-input,
-textarea,
-select{
+button{
     font:inherit;
 }
+
 
 /* ==================================================
    PRELOADER
@@ -80,11 +87,16 @@ select{
     position:fixed;
     inset:0;
     z-index:10000;
+
     background:#020302;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    transition:opacity .9s var(--ease),visibility .9s;
+
+    transition:
+        opacity .9s var(--ease),
+        visibility .9s;
 }
 
 .preloader.hide{
@@ -123,17 +135,23 @@ select{
     width:0;
     height:100%;
     background:var(--green);
-    box-shadow:0 0 12px rgba(66,200,109,.45);
+
+    box-shadow:
+        0 0 12px rgba(66,200,109,.45);
+
     transition:width .15s linear;
 }
 
 .pre-meta{
     display:flex;
     justify-content:space-between;
+
     margin-top:10px;
+
     color:#424b45;
     font:9px "Space Mono",monospace;
 }
+
 
 /* ==================================================
    BACKGROUND
@@ -142,15 +160,19 @@ select{
 .bg{
     position:fixed;
     inset:0;
+
     pointer-events:none;
     z-index:-2;
+
     overflow:hidden;
 }
 
 .grid{
     position:absolute;
+
     width:145%;
     height:145%;
+
     left:-22.5%;
     top:-22.5%;
 
@@ -185,8 +207,10 @@ select{
 
 .orb{
     position:absolute;
+
     width:min(75vw,850px);
     aspect-ratio:1;
+
     left:50%;
     top:42%;
 
@@ -206,6 +230,7 @@ select{
 .orb::after{
     content:"";
     position:absolute;
+
     border:1px solid rgba(66,200,109,.045);
     border-radius:50%;
 }
@@ -220,8 +245,10 @@ select{
 
 .scan{
     position:absolute;
+
     width:100%;
     height:1px;
+
     top:40%;
 
     background:
@@ -237,9 +264,15 @@ select{
 }
 
 @keyframes scan{
-    from{transform:translateY(-50vh)}
-    to{transform:translateY(65vh)}
+    from{
+        transform:translateY(-50vh);
+    }
+
+    to{
+        transform:translateY(65vh);
+    }
 }
+
 
 /* ==================================================
    HEADER
@@ -247,6 +280,7 @@ select{
 
 .header{
     position:fixed;
+
     top:0;
     left:0;
     right:0;
@@ -266,12 +300,15 @@ select{
 
 .header.scrolled{
     background:rgba(2,4,3,.72);
+
     backdrop-filter:blur(18px);
+
     border-bottom:1px solid rgba(255,255,255,.055);
 }
 
 .logo{
     text-decoration:none;
+
     font:700 13px "Space Mono",monospace;
     letter-spacing:.14em;
 
@@ -282,11 +319,17 @@ select{
 
 .logo::before{
     content:"";
+
     width:6px;
     height:6px;
+
     border-radius:50%;
+
     background:var(--green);
-    box-shadow:0 0 12px rgba(66,200,109,.55);
+
+    box-shadow:
+        0 0 12px rgba(66,200,109,.55);
+
     animation:pulse 2.8s infinite;
 }
 
@@ -296,14 +339,36 @@ select{
 }
 
 @keyframes pulse{
-    0%,100%{transform:scale(.75);opacity:.45}
-    50%{transform:scale(1.1);opacity:1}
+
+    0%,
+    100%{
+        transform:scale(.75);
+        opacity:.45;
+    }
+
+    50%{
+        transform:scale(1.1);
+        opacity:1;
+    }
+
 }
 
 @keyframes logoFlicker{
-    0%,92%,100%{opacity:1}
-    94%{opacity:.45}
-    96%{opacity:1}
+
+    0%,
+    92%,
+    100%{
+        opacity:1;
+    }
+
+    94%{
+        opacity:.45;
+    }
+
+    96%{
+        opacity:1;
+    }
+
 }
 
 .header-right{
@@ -320,10 +385,15 @@ select{
 .lang button{
     border:0;
     background:none;
+
     color:#58635b;
+
     cursor:pointer;
+
     font:9px "Space Mono",monospace;
+
     padding:5px;
+
     transition:.3s;
 }
 
@@ -354,7 +424,9 @@ select{
 
 .music:hover{
     transform:scale(1.06);
-    border-color:rgba(66,200,109,.5);
+
+    border-color:
+        rgba(66,200,109,.5);
 }
 
 .eq{
@@ -367,19 +439,41 @@ select{
 .eq i{
     width:2px;
     height:4px;
+
     background:currentColor;
+
     animation:eq 1s infinite ease-in-out;
 }
 
-.eq i:nth-child(2){animation-delay:.12s}
-.eq i:nth-child(3){animation-delay:.24s}
-.eq i:nth-child(4){animation-delay:.18s}
-.eq i:nth-child(5){animation-delay:.3s}
+.eq i:nth-child(2){
+    animation-delay:.12s;
+}
+
+.eq i:nth-child(3){
+    animation-delay:.24s;
+}
+
+.eq i:nth-child(4){
+    animation-delay:.18s;
+}
+
+.eq i:nth-child(5){
+    animation-delay:.3s;
+}
 
 @keyframes eq{
-    0%,100%{height:4px}
-    50%{height:13px}
+
+    0%,
+    100%{
+        height:4px;
+    }
+
+    50%{
+        height:13px;
+    }
+
 }
+
 
 /* ==================================================
    GENERAL
@@ -391,8 +485,11 @@ main{
 
 section{
     position:relative;
+
     min-height:100vh;
+
     padding:130px 7vw;
+
     display:flex;
     align-items:center;
 }
@@ -404,8 +501,11 @@ section{
 
 .eyebrow{
     color:var(--green);
+
     font:9px "Space Mono",monospace;
+
     letter-spacing:.2em;
+
     margin-bottom:25px;
 }
 
@@ -416,18 +516,26 @@ section{
 
 h2{
     font-size:clamp(43px,7vw,92px);
+
     line-height:.92;
+
     letter-spacing:-.055em;
+
     font-weight:500;
 }
 
 .lead{
     color:#98a39b;
+
     font-size:clamp(15px,1.4vw,19px);
+
     line-height:1.7;
+
     max-width:650px;
+
     margin-top:30px;
 }
+
 
 /* ==================================================
    HERO
@@ -441,6 +549,7 @@ h2{
 .hero-content{
     width:min(1250px,100%);
     margin:auto;
+
     position:relative;
     z-index:2;
 }
@@ -451,7 +560,9 @@ h2{
     align-items:center;
 
     color:#69746d;
+
     font:9px "Space Mono",monospace;
+
     letter-spacing:.18em;
 
     margin-bottom:28px;
@@ -460,15 +571,22 @@ h2{
 .dot{
     width:6px;
     height:6px;
+
     border-radius:50%;
+
     background:var(--green);
-    box-shadow:0 0 12px rgba(66,200,109,.5);
+
+    box-shadow:
+        0 0 12px rgba(66,200,109,.5);
 }
 
 .hero h1{
     font-size:clamp(72px,13vw,185px);
+
     line-height:.78;
+
     letter-spacing:-.085em;
+
     font-weight:500;
 }
 
@@ -479,78 +597,114 @@ h2{
 
 .typewriter{
     margin-top:42px;
+
     color:#8c978f;
-    font:clamp(12px,1.3vw,17px) "Space Mono",monospace;
+
+    font:clamp(12px,1.3vw,17px)
+        "Space Mono",monospace;
+
     max-width:700px;
+
     min-height:45px;
 }
 
 .cursor{
     display:inline-block;
+
     width:6px;
     height:1em;
+
     background:var(--green);
+
     vertical-align:-2px;
+
     animation:blink .8s infinite;
 }
 
 @keyframes blink{
-    50%{opacity:0}
+    50%{
+        opacity:0;
+    }
 }
 
 .hero-bottom{
     position:absolute;
+
     bottom:35px;
+
     left:7vw;
     right:7vw;
 
     display:flex;
+
     justify-content:space-between;
     align-items:end;
 }
 
 .price-label{
     color:#566159;
+
     font:9px "Space Mono",monospace;
 }
 
 .price-label strong{
     display:block;
+
     color:var(--text);
+
     font-size:17px;
+
     margin-top:7px;
 }
 
 .scroll{
     color:#4c574f;
+
     font:8px "Space Mono",monospace;
+
     letter-spacing:.15em;
 
     display:flex;
+
     align-items:center;
+
     gap:12px;
 }
 
 .scroll-line{
     width:65px;
     height:1px;
+
     background:#253028;
+
     overflow:hidden;
 }
 
 .scroll-line::after{
     content:"";
+
     display:block;
+
     width:100%;
     height:100%;
+
     background:var(--green);
+
     animation:scrollLine 2.5s infinite;
 }
 
 @keyframes scrollLine{
-    from{transform:translateX(-100%)}
-    to{transform:translateX(100%)}
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(100%);
+    }
+
 }
+
 
 /* ==================================================
    INTRO
@@ -562,14 +716,19 @@ h2{
 
 .intro-grid{
     display:grid;
+
     grid-template-columns:1fr 1fr;
+
     gap:10vw;
+
     align-items:end;
 }
 
 .quote{
     font-size:clamp(35px,5vw,70px);
+
     line-height:1;
+
     letter-spacing:-.055em;
 }
 
@@ -579,14 +738,18 @@ h2{
 
 .info{
     border-left:1px solid var(--green-soft);
+
     padding-left:28px;
 }
 
 .info p{
     color:#929e96;
+
     font-size:15px;
+
     line-height:1.8;
 }
+
 
 /* ==================================================
    STATES
@@ -598,26 +761,35 @@ h2{
 
 .states-head{
     display:flex;
+
     justify-content:space-between;
     align-items:end;
+
     gap:30px;
+
     margin-bottom:60px;
 }
 
 .states-note{
     color:#566159;
+
     font:9px "Space Mono",monospace;
+
     line-height:1.8;
 }
 
 .state-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:12px;
 }
 
 .card{
     min-height:550px;
+
     padding:32px;
 
     border:1px solid var(--border);
@@ -630,6 +802,7 @@ h2{
         );
 
     position:relative;
+
     overflow:hidden;
 
     transition:
@@ -639,11 +812,14 @@ h2{
 
 .card:hover{
     transform:translateY(-10px);
-    border-color:rgba(66,200,109,.32);
+
+    border-color:
+        rgba(66,200,109,.32);
 }
 
 .card::before{
     content:"";
+
     position:absolute;
 
     width:220px;
@@ -653,6 +829,7 @@ h2{
     top:-100px;
 
     border:1px solid rgba(66,200,109,.07);
+
     border-radius:50%;
 
     transition:1s var(--ease);
@@ -664,54 +841,72 @@ h2{
 
 .card-number{
     color:#4c574f;
+
     font:9px "Space Mono",monospace;
 }
 
 .card-name{
     margin-top:75px;
+
     font-size:clamp(34px,4vw,55px);
+
     letter-spacing:-.06em;
 }
 
 .card-price{
     color:var(--green);
+
     margin-top:10px;
+
     font:13px "Space Mono",monospace;
 }
 
 .card-desc{
     color:#89958d;
+
     font-size:13px;
+
     line-height:1.75;
+
     margin-top:24px;
 }
 
 .card ul{
     list-style:none;
+
     margin-top:25px;
 }
 
 .card li{
     padding:10px 0;
-    border-bottom:1px solid rgba(255,255,255,.055);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.055);
+
     color:#a2aca5;
+
     font-size:12px;
 }
 
 .card li::before{
     content:"↗";
+
     color:var(--green);
+
     margin-right:9px;
 }
 
 .card-link{
     display:inline-block;
+
     margin-top:30px;
 
     text-decoration:none;
 
     color:#dce4dd;
+
     font:9px "Space Mono",monospace;
+
     letter-spacing:.12em;
 
     transition:.3s;
@@ -719,8 +914,10 @@ h2{
 
 .card-link:hover{
     color:var(--green);
+
     letter-spacing:.18em;
 }
+
 
 /* ==================================================
    PHONE
@@ -732,8 +929,11 @@ h2{
 
 .phone-grid{
     display:grid;
+
     grid-template-columns:1fr 1fr;
+
     gap:10vw;
+
     align-items:center;
 }
 
@@ -741,6 +941,7 @@ h2{
     min-height:630px;
 
     display:flex;
+
     justify-content:center;
     align-items:center;
 
@@ -749,31 +950,42 @@ h2{
 
 .phone-orbit{
     position:absolute;
+
     width:470px;
     height:470px;
+
     border:1px solid rgba(66,200,109,.08);
+
     border-radius:50%;
+
     animation:orbit 18s linear infinite;
 }
 
 .phone-orbit::before{
     content:"";
+
     position:absolute;
 
     width:6px;
     height:6px;
 
     border-radius:50%;
+
     background:var(--green);
 
     top:27px;
     left:50%;
 
-    box-shadow:0 0 18px rgba(66,200,109,.55);
+    box-shadow:
+        0 0 18px rgba(66,200,109,.55);
 }
 
 @keyframes orbit{
-    to{transform:rotate(360deg)}
+
+    to{
+        transform:rotate(360deg);
+    }
+
 }
 
 .phone{
@@ -781,6 +993,7 @@ h2{
     height:510px;
 
     border:2px solid #303832;
+
     border-radius:38px;
 
     background:#020302;
@@ -794,7 +1007,11 @@ h2{
     overflow:hidden;
 
     transform:
-        translate3d(var(--px,0),var(--py,0),0)
+        translate3d(
+            var(--px,0),
+            var(--py,0),
+            0
+        )
         rotateZ(-3deg)
         rotateY(var(--pr,0deg));
 
@@ -805,6 +1022,7 @@ h2{
     content:"";
 
     position:absolute;
+
     z-index:3;
 
     width:72px;
@@ -822,6 +1040,7 @@ h2{
 
 .phone-screen{
     position:absolute;
+
     inset:7px;
 
     border-radius:31px;
@@ -835,33 +1054,43 @@ h2{
         #050705;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     flex-direction:column;
 }
 
 .signal-label{
     color:#59655d;
+
     font:9px "Space Mono",monospace;
+
     letter-spacing:.15em;
 }
 
 .signal-main{
     color:var(--green);
+
     font:22px "Space Mono",monospace;
+
     margin-top:12px;
 }
 
 .phone-message{
     position:absolute;
+
     bottom:55px;
+
     left:30px;
     right:30px;
 
     text-align:center;
 
     color:#515d55;
+
     font:8px "Space Mono",monospace;
+
     line-height:1.6;
 }
 
@@ -871,38 +1100,51 @@ h2{
 
 .phone-click{
     position:absolute;
+
     inset:0;
+
     cursor:pointer;
+
     z-index:5;
 }
 
 .protocol{
     margin-top:45px;
+
     border-top:1px solid var(--border);
 }
 
 .protocol-row{
     display:grid;
+
     grid-template-columns:50px 1fr;
+
     padding:20px 0;
-    border-bottom:1px solid rgba(255,255,255,.055);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.055);
 }
 
 .protocol-num{
     color:var(--green);
+
     font:9px "Space Mono",monospace;
 }
 
 .protocol-title{
     font-size:14px;
+
     margin-bottom:6px;
 }
 
 .protocol-text{
     color:#737e76;
+
     font-size:12px;
+
     line-height:1.6;
 }
+
 
 /* ==================================================
    CONCIERGE
@@ -920,45 +1162,64 @@ h2{
 
 .concierge-grid{
     display:grid;
+
     grid-template-columns:.65fr 1.35fr;
+
     gap:10vw;
 }
 
 .concierge-number{
-    font:clamp(90px,15vw,200px) "Space Mono",monospace;
+    font:
+        clamp(90px,15vw,200px)
+        "Space Mono",monospace;
+
     color:rgba(66,200,109,.035);
+
     line-height:.8;
 }
 
 .concierge-copy p{
     max-width:700px;
+
     color:#929e96;
+
     font-size:17px;
+
     line-height:1.8;
+
     margin-top:30px;
 }
 
 .concierge-box{
     margin-top:45px;
+
     padding:28px;
 
     border:1px solid var(--border);
+
     background:rgba(5,9,6,.55);
 }
 
 .concierge-box strong{
     display:block;
+
     color:var(--green);
+
     font:9px "Space Mono",monospace;
+
     letter-spacing:.15em;
+
     margin-bottom:13px;
 }
 
 .concierge-box span{
     color:#aab3ac;
+
     font-size:14px;
+
     line-height:1.7;
 }
+
 
 /* ==================================================
    SERVICES
@@ -970,8 +1231,12 @@ h2{
 
 .service-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:10px;
+
     margin-top:65px;
 }
 
@@ -981,6 +1246,7 @@ h2{
     padding:27px;
 
     border:1px solid var(--border);
+
     background:rgba(5,9,6,.52);
 
     position:relative;
@@ -989,7 +1255,8 @@ h2{
 }
 
 .service:hover{
-    border-color:rgba(66,200,109,.32);
+    border-color:
+        rgba(66,200,109,.32);
 }
 
 .service-icon{
@@ -999,6 +1266,7 @@ h2{
     border:1px solid rgba(66,200,109,.18);
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -1010,20 +1278,28 @@ h2{
 }
 
 .service:hover .service-icon{
-    transform:rotate(8deg) scale(1.08);
-    box-shadow:0 0 30px rgba(66,200,109,.06);
+    transform:
+        rotate(8deg)
+        scale(1.08);
+
+    box-shadow:
+        0 0 30px rgba(66,200,109,.06);
 }
 
 .service-title{
     font-size:15px;
+
     margin-bottom:10px;
 }
 
 .service-text{
     color:#727d75;
+
     font-size:12px;
+
     line-height:1.7;
 }
+
 
 /* ==================================================
    LOCATION
@@ -1041,6 +1317,7 @@ h2{
     border:1px solid var(--border);
 
     position:relative;
+
     overflow:hidden;
 
     background:
@@ -1054,11 +1331,21 @@ h2{
 
 .map-grid{
     position:absolute;
+
     inset:-20%;
 
     background-image:
-        linear-gradient(rgba(66,200,109,.055) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(66,200,109,.055) 1px,transparent 1px);
+        linear-gradient(
+            rgba(66,200,109,.055)
+            1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(66,200,109,.055)
+            1px,
+            transparent 1px
+        );
 
     background-size:55px 55px;
 
@@ -1085,11 +1372,13 @@ h2{
         );
 
     opacity:.25;
+
     transform:rotate(-13deg);
 }
 
 .road.two{
     transform:rotate(27deg);
+
     opacity:.1;
 }
 
@@ -1102,28 +1391,38 @@ h2{
     width:15px;
     height:15px;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     border:1px solid var(--green);
+
     border-radius:50%;
 
-    box-shadow:0 0 25px rgba(66,200,109,.3);
+    box-shadow:
+        0 0 25px rgba(66,200,109,.3);
 }
 
 .pin::after{
     content:"";
+
     position:absolute;
+
     inset:-20px;
+
     border:1px solid rgba(66,200,109,.22);
+
     border-radius:50%;
+
     animation:ping 2.5s infinite;
 }
 
 @keyframes ping{
+
     to{
         inset:-65px;
         opacity:0;
     }
+
 }
 
 .map-label{
@@ -1132,21 +1431,26 @@ h2{
     left:50%;
     top:calc(50% + 40px);
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     text-align:center;
 
     white-space:nowrap;
 
     font:9px "Space Mono",monospace;
+
     letter-spacing:.16em;
 }
 
 .map-label small{
     display:block;
+
     color:#58645b;
+
     margin-top:10px;
 }
+
 
 /* ==================================================
    FINAL
@@ -1154,17 +1458,23 @@ h2{
 
 .final{
     text-align:center;
+
+    min-height:90vh;
 }
 
 .final .inner{
     display:flex;
+
     align-items:center;
+
     flex-direction:column;
 }
 
 .final-title{
     font-size:clamp(60px,11vw,145px);
+
     line-height:.8;
+
     letter-spacing:-.08em;
 }
 
@@ -1174,71 +1484,30 @@ h2{
 
 .final-sub{
     max-width:600px;
+
     color:#858f88;
+
     line-height:1.7;
+
     margin-top:30px;
 }
 
-.form{
-    width:min(700px,100%);
-    margin-top:55px;
-    text-align:left;
-}
 
-.form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+/* ==================================================
+   TELEGRAM CTA
+================================================== */
+
+.telegram-cta{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
     gap:12px;
-}
 
-.field{
-    margin-bottom:12px;
-}
+    margin-top:50px;
 
-.field label{
-    display:block;
-    color:#535e56;
-    font:8px "Space Mono",monospace;
-    letter-spacing:.15em;
-    margin-bottom:8px;
-}
-
-.field input,
-.field textarea,
-.field select{
-    width:100%;
-
-    padding:16px;
-
-    border:1px solid rgba(255,255,255,.09);
-
-    outline:none;
-
-    background:rgba(6,10,7,.78);
-
-    color:var(--text);
-
-    border-radius:0;
-
-    transition:.3s;
-}
-
-.field textarea{
-    min-height:100px;
-    resize:vertical;
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus{
-    border-color:rgba(66,200,109,.35);
-}
-
-.submit{
-    width:100%;
-
-    margin-top:8px;
-    padding:19px;
+    padding:20px 32px;
 
     border:1px solid var(--green);
 
@@ -1246,43 +1515,40 @@ h2{
 
     color:#020703;
 
-    cursor:pointer;
+    text-decoration:none;
 
     font:9px "Space Mono",monospace;
+
     letter-spacing:.13em;
 
     transition:.4s var(--ease);
 }
 
-.submit:hover{
+.telegram-cta:hover{
     background:transparent;
+
     color:var(--green);
+
+    transform:
+        translateY(-3px);
 }
 
-.telegram-note{
-    text-align:center;
+.telegram-cta-icon{
+    font-size:13px;
+
+    line-height:1;
+}
+
+.telegram-handle{
     margin-top:18px;
 
     color:#525d55;
+
     font:8px "Space Mono",monospace;
+
+    letter-spacing:.08em;
 }
 
-.telegram-icon{
-    display:inline-flex;
-
-    width:24px;
-    height:24px;
-
-    margin-right:7px;
-
-    border:1px solid rgba(66,200,109,.2);
-    border-radius:50%;
-
-    align-items:center;
-    justify-content:center;
-
-    color:var(--green);
-}
 
 /* ==================================================
    FOOTER
@@ -1291,15 +1557,18 @@ h2{
 footer{
     min-height:100px;
 
-    border-top:1px solid rgba(255,255,255,.05);
+    border-top:
+        1px solid rgba(255,255,255,.05);
 
     padding:30px 7vw;
 
     display:flex;
+
     justify-content:space-between;
     align-items:center;
 
     color:#424b45;
+
     font:8px "Space Mono",monospace;
 }
 
@@ -1307,13 +1576,16 @@ footer span{
     color:var(--green);
 }
 
+
 /* ==================================================
    REVEAL
 ================================================== */
 
 .reveal{
     opacity:0;
+
     transform:translateY(35px);
+
     transition:
         opacity .9s var(--ease),
         transform .9s var(--ease);
@@ -1321,8 +1593,10 @@ footer span{
 
 .reveal.visible{
     opacity:1;
+
     transform:translateY(0);
 }
+
 
 /* ==================================================
    MOBILE
@@ -1342,6 +1616,7 @@ footer span{
     .phone-grid,
     .concierge-grid{
         grid-template-columns:1fr;
+
         gap:60px;
     }
 
@@ -1356,7 +1631,9 @@ footer span{
     .phone-stage{
         order:2;
     }
+
 }
+
 
 @media(max-width:600px){
 
@@ -1403,36 +1680,54 @@ footer span{
         min-height:500px;
     }
 
-    .form-row{
-        grid-template-columns:1fr;
+    .final{
+        min-height:85vh;
     }
 
     .final-title{
         font-size:18vw;
     }
 
+    .telegram-cta{
+        width:100%;
+
+        padding:19px 15px;
+    }
+
     footer{
         flex-direction:column;
+
         gap:14px;
+
         text-align:center;
     }
+
 }
+
 
 @media(prefers-reduced-motion:reduce){
 
     *,
     *::before,
     *::after{
+
         animation-duration:.01ms!important;
+
         animation-iteration-count:1!important;
+
         transition-duration:.01ms!important;
+
         scroll-behavior:auto!important;
     }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- ==================================================
      PRELOADER
@@ -1451,12 +1746,24 @@ footer span{
         </div>
 
         <div class="pre-line">
-            <div class="pre-progress" id="preProgress"></div>
+
+            <div
+                class="pre-progress"
+                id="preProgress">
+            </div>
+
         </div>
 
         <div class="pre-meta">
-            <span>PRIVATE SESSION</span>
-            <span id="prePercent">00%</span>
+
+            <span>
+                PRIVATE SESSION
+            </span>
+
+            <span id="prePercent">
+                00%
+            </span>
+
         </div>
 
     </div>
@@ -1469,9 +1776,19 @@ footer span{
 ================================================== -->
 
 <div class="bg">
-    <div class="grid" id="grid"></div>
-    <div class="orb" id="orb"></div>
+
+    <div
+        class="grid"
+        id="grid">
+    </div>
+
+    <div
+        class="orb"
+        id="orb">
+    </div>
+
     <div class="scan"></div>
+
 </div>
 
 
@@ -1479,11 +1796,21 @@ footer span{
      HEADER
 ================================================== -->
 
-<header class="header" id="header">
+<header
+    class="header"
+    id="header">
 
-    <a href="#top" class="logo">
-        PRIVATE <span class="logo-state">STATE</span>
+    <a
+        href="#top"
+        class="logo">
+
+        PRIVATE
+        <span class="logo-state">
+            STATE
+        </span>
+
     </a>
+
 
     <div class="header-right">
 
@@ -1495,15 +1822,18 @@ footer span{
                 RU
             </button>
 
-            <button data-lang="en">
+            <button
+                data-lang="en">
                 EN
             </button>
 
-            <button data-lang="zh">
+            <button
+                data-lang="zh">
                 中文
             </button>
 
         </div>
+
 
         <button
             class="music"
@@ -1511,17 +1841,27 @@ footer span{
             aria-label="Music">
 
             <span class="eq">
+
                 <i></i>
                 <i></i>
                 <i></i>
                 <i></i>
                 <i></i>
+
             </span>
 
         </button>
 
-        <audio id="music" loop preload="none">
-            <source src="music.mp3" type="audio/mpeg">
+
+        <audio
+            id="music"
+            loop
+            preload="none">
+
+            <source
+                src="music.mp3"
+                type="audio/mpeg">
+
         </audio>
 
     </div>
@@ -1530,6 +1870,7 @@ footer span{
 
 
 <main id="top">
+
 
 <!-- ==================================================
      HERO
@@ -1540,42 +1881,69 @@ footer span{
     <div class="hero-content">
 
         <div class="kicker reveal">
+
             <span class="dot"></span>
-            <span data-i18n="heroKicker">
+
+            <span
+                data-i18n="heroKicker">
                 ПРИВАТНЫЙ СЕРВИС · МОСКОВСКАЯ ОБЛАСТЬ
             </span>
+
         </div>
 
+
         <h1 class="reveal">
+
             <span
                 data-i18n="heroLine1"
-                style="color:var(--text);display:inline;">
+                style="
+                    color:var(--text);
+                    display:inline;
+                ">
                 БУДЬ
             </span>
+
             <span data-i18n="heroLine2">
                 НЕДОСТУПЕН.
             </span>
+
         </h1>
 
+
         <div class="typewriter reveal">
+
             <span id="typewriter"></span>
+
             <span class="cursor"></span>
+
         </div>
 
     </div>
 
+
     <div class="hero-bottom">
 
         <div class="price-label">
-            <span data-i18n="from">ОТ</span>
-            <strong>35 000 ₽ / 24 Ч</strong>
+
+            <span data-i18n="from">
+                ОТ
+            </span>
+
+            <strong>
+                35 000 ₽ / 24 Ч
+            </strong>
+
         </div>
 
+
         <div class="scroll">
+
             <span data-i18n="scroll">
                 ЛИСТАЙТЕ, ЧТОБЫ ОТКЛЮЧИТЬСЯ
             </span>
+
             <span class="scroll-line"></span>
+
         </div>
 
     </div>
@@ -1594,21 +1962,28 @@ footer span{
         <div class="intro-grid">
 
             <div class="quote reveal">
+
                 <span data-i18n="quote1">
                     Вам не нужно исчезать.
                 </span>
+
                 <br>
+
                 <span data-i18n="quote2">
                     Достаточно перестать быть доступным.
                 </span>
+
             </div>
+
 
             <div class="info reveal">
 
-                <div class="eyebrow"
-                     data-i18n="concept">
+                <div
+                    class="eyebrow"
+                    data-i18n="concept">
                     КОНЦЕПЦИЯ
                 </div>
+
 
                 <p data-i18n="intro1">
                     PRIVATE STATE — это организованное
@@ -1616,7 +1991,9 @@ footer span{
                     за пределами Москвы.
                 </p>
 
+
                 <br>
+
 
                 <p data-i18n="intro2">
                     Вы выбираете формат и продолжительность.
@@ -1645,10 +2022,12 @@ footer span{
 
             <div>
 
-                <div class="eyebrow"
-                     data-i18n="chooseState">
+                <div
+                    class="eyebrow"
+                    data-i18n="chooseState">
                     ВЫБЕРИТЕ ФОРМАТ
                 </div>
+
 
                 <h2 data-i18n="threeStates">
                     Три способа<br>
@@ -1657,10 +2036,13 @@ footer span{
 
             </div>
 
+
             <div class="states-note">
+
                 MOSCOW REGION<br>
                 PRIVATE LOCATIONS<br>
                 ₽ RUB
+
             </div>
 
         </div>
@@ -1669,22 +2051,28 @@ footer span{
         <div class="state-grid">
 
 
+            <!-- OFFLINE -->
+
             <article class="card reveal">
 
                 <div class="card-number">
                     01 / OFFLINE
                 </div>
 
+
                 <div class="card-name">
                     OFFLINE
                 </div>
+
 
                 <div class="card-price">
                     35 000 ₽ / 24 ЧАСА
                 </div>
 
-                <p class="card-desc"
-                   data-i18n="offlineDesc">
+
+                <p
+                    class="card-desc"
+                    data-i18n="offlineDesc">
                     Базовый формат полного цифрового
                     отключения. Вы приезжаете в
                     подготовленное пространство,
@@ -1692,31 +2080,39 @@ footer span{
                     и перестаёте быть доступным.
                 </p>
 
+
                 <ul>
+
                     <li data-i18n="offline1">
                         Подготовленная локация
                     </li>
+
                     <li data-i18n="offline2">
                         Хранение телефона
                     </li>
+
                     <li data-i18n="offline3">
                         Concierge
                     </li>
+
                     <li data-i18n="offline4">
                         Связь только при важном событии
                     </li>
+
                 </ul>
+
 
                 <a
                     href="#request"
                     class="card-link"
-                    data-state="OFFLINE"
                     data-i18n="select">
                     ВЫБРАТЬ →
                 </a>
 
             </article>
 
+
+            <!-- DARKNESS -->
 
             <article class="card reveal">
 
@@ -1724,40 +2120,50 @@ footer span{
                     02 / DARKNESS
                 </div>
 
+
                 <div class="card-name">
                     DARKNESS
                 </div>
+
 
                 <div class="card-price">
                     65 000 ₽ / 24 ЧАСА
                 </div>
 
-                <p class="card-desc"
-                   data-i18n="darknessDesc">
+
+                <p
+                    class="card-desc"
+                    data-i18n="darknessDesc">
                     Более глубокое отключение.
                     Больше приватности, индивидуальная
                     организация и расширенное сопровождение.
                 </p>
 
+
                 <ul>
+
                     <li data-i18n="darkness1">
                         Индивидуальная подготовка
                     </li>
+
                     <li data-i18n="darkness2">
                         Расширенный concierge
                     </li>
+
                     <li data-i18n="darkness3">
                         Организация прибытия
                     </li>
+
                     <li data-i18n="darkness4">
                         Дополнительные пожелания
                     </li>
+
                 </ul>
+
 
                 <a
                     href="#request"
                     class="card-link"
-                    data-state="DARKNESS"
                     data-i18n="select">
                     ВЫБРАТЬ →
                 </a>
@@ -1765,47 +2171,59 @@ footer span{
             </article>
 
 
+            <!-- PRIVATE -->
+
             <article class="card reveal">
 
                 <div class="card-number">
                     03 / PRIVATE
                 </div>
 
+
                 <div class="card-name">
                     PRIVATE
                 </div>
+
 
                 <div class="card-price">
                     ОТ 120 000 ₽ / 24 ЧАСА
                 </div>
 
-                <p class="card-desc"
-                   data-i18n="privateDesc">
+
+                <p
+                    class="card-desc"
+                    data-i18n="privateDesc">
                     Полностью индивидуальный сценарий.
                     Локация, маршрут, сопровождение
                     и детали пребывания создаются
                     под конкретного клиента.
                 </p>
 
+
                 <ul>
+
                     <li data-i18n="private1">
                         Индивидуальная локация
                     </li>
+
                     <li data-i18n="private2">
                         Персональный сценарий
                     </li>
+
                     <li data-i18n="private3">
                         Full concierge
                     </li>
+
                     <li data-i18n="private4">
                         Индивидуальная организация
                     </li>
+
                 </ul>
+
 
                 <a
                     href="#request"
                     class="card-link"
-                    data-state="PRIVATE"
                     data-i18n="request">
                     ЗАПРОСИТЬ →
                 </a>
@@ -1829,9 +2247,11 @@ footer span{
 
         <div class="phone-grid">
 
+
             <div class="phone-stage reveal">
 
                 <div class="phone-orbit"></div>
+
 
                 <div class="phone">
 
@@ -1841,18 +2261,26 @@ footer span{
                             SIGNAL
                         </div>
 
+
                         <div
                             class="signal-main"
                             id="signalText">
                             NO SIGNAL
                         </div>
 
+
                         <div class="phone-message">
+
                             TAP TO<br>
-                            <strong>CHANGE STATE</strong>
+
+                            <strong>
+                                CHANGE STATE
+                            </strong>
+
                         </div>
 
                     </div>
+
 
                     <div
                         class="phone-click"
@@ -1866,40 +2294,54 @@ footer span{
 
             <div class="reveal">
 
-                <div class="eyebrow"
-                     data-i18n="phoneProtocol">
+                <div
+                    class="eyebrow"
+                    data-i18n="phoneProtocol">
                     ПРОТОКОЛ ТЕЛЕФОНА
                 </div>
+
 
                 <h2 data-i18n="phoneTitle">
                     Телефон остаётся.<br>
                     Вы — исчезаете.
                 </h2>
 
-                <p class="lead"
-                   data-i18n="phoneLead">
+
+                <p
+                    class="lead"
+                    data-i18n="phoneLead">
                     Ваш телефон передаётся concierge
                     и хранится до окончания пребывания.
                     Обычные сообщения ждут вашего возвращения.
                 </p>
 
+
                 <div class="protocol">
+
 
                     <div class="protocol-row">
 
-                        <div class="protocol-num">01</div>
+                        <div class="protocol-num">
+                            01
+                        </div>
+
 
                         <div>
-                            <div class="protocol-title"
-                                 data-i18n="transfer">
+
+                            <div
+                                class="protocol-title"
+                                data-i18n="transfer">
                                 Передача
                             </div>
 
-                            <div class="protocol-text"
-                                 data-i18n="transferText">
+
+                            <div
+                                class="protocol-text"
+                                data-i18n="transferText">
                                 Вы передаёте устройство
                                 concierge в начале пребывания.
                             </div>
+
                         </div>
 
                     </div>
@@ -1907,19 +2349,27 @@ footer span{
 
                     <div class="protocol-row">
 
-                        <div class="protocol-num">02</div>
+                        <div class="protocol-num">
+                            02
+                        </div>
+
 
                         <div>
-                            <div class="protocol-title"
-                                 data-i18n="silence">
+
+                            <div
+                                class="protocol-title"
+                                data-i18n="silence">
                                 Тишина
                             </div>
 
-                            <div class="protocol-text"
-                                 data-i18n="silenceText">
+
+                            <div
+                                class="protocol-text"
+                                data-i18n="silenceText">
                                 Уведомления и обычные сообщения
                                 не нарушают ваше пребывание.
                             </div>
+
                         </div>
 
                     </div>
@@ -1927,19 +2377,27 @@ footer span{
 
                     <div class="protocol-row">
 
-                        <div class="protocol-num">03</div>
+                        <div class="protocol-num">
+                            03
+                        </div>
+
 
                         <div>
-                            <div class="protocol-title"
-                                 data-i18n="important">
+
+                            <div
+                                class="protocol-title"
+                                data-i18n="important">
                                 Важное
                             </div>
 
-                            <div class="protocol-text"
-                                 data-i18n="importantText">
+
+                            <div
+                                class="protocol-text"
+                                data-i18n="importantText">
                                 Действительно важная информация
                                 передаётся вам через concierge.
                             </div>
+
                         </div>
 
                     </div>
@@ -1965,16 +2423,20 @@ footer span{
 
         <div class="concierge-grid">
 
+
             <div class="concierge-number reveal">
                 02
             </div>
 
+
             <div class="concierge-copy reveal">
 
-                <div class="eyebrow"
-                     data-i18n="concierge">
+                <div
+                    class="eyebrow"
+                    data-i18n="concierge">
                     CONCIERGE
                 </div>
+
 
                 <h2 data-i18n="conciergeTitle">
                     Пока вы недоступны —
@@ -1982,17 +2444,20 @@ footer span{
                     доступен вместо вас.
                 </h2>
 
+
                 <p data-i18n="conciergeText">
                     Concierge принимает ваш телефон,
                     остаётся на связи с внешним миром
                     и отсеивает обычный информационный шум.
                 </p>
 
+
                 <div class="concierge-box">
 
                     <strong data-i18n="importantOnly">
                         ТОЛЬКО ВАЖНОЕ
                     </strong>
+
 
                     <span data-i18n="importantOnlyText">
                         Мы не отвлекаем вас по мелочам.
@@ -2019,19 +2484,24 @@ footer span{
 
     <div class="inner">
 
-        <div class="eyebrow reveal"
-             data-i18n="builtAround">
+        <div
+            class="eyebrow reveal"
+            data-i18n="builtAround">
             ОРГАНИЗОВАНО ПОД ВАС
         </div>
 
-        <h2 class="reveal"
+
+        <h2
+            class="reveal"
             data-i18n="servicesTitle">
             Вам не нужно<br>
             думать о деталях.
         </h2>
 
-        <p class="lead reveal"
-           data-i18n="servicesLead">
+
+        <p
+            class="lead reveal"
+            data-i18n="servicesLead">
             От прибытия до возвращения —
             основные детали пребывания
             согласуются заранее.
@@ -2040,17 +2510,24 @@ footer span{
 
         <div class="service-grid">
 
+
             <div class="service reveal">
 
-                <div class="service-icon">⌖</div>
+                <div class="service-icon">
+                    ⌖
+                </div>
 
-                <div class="service-title"
-                     data-i18n="location">
+
+                <div
+                    class="service-title"
+                    data-i18n="location">
                     ЛОКАЦИЯ
                 </div>
 
-                <div class="service-text"
-                     data-i18n="locationText">
+
+                <div
+                    class="service-text"
+                    data-i18n="locationText">
                     Подготовленная приватная локация
                     в Московской области.
                 </div>
@@ -2060,15 +2537,21 @@ footer span{
 
             <div class="service reveal">
 
-                <div class="service-icon">↗</div>
+                <div class="service-icon">
+                    ↗
+                </div>
 
-                <div class="service-title"
-                     data-i18n="mode">
+
+                <div
+                    class="service-title"
+                    data-i18n="mode">
                     ФОРМАТ
                 </div>
 
-                <div class="service-text"
-                     data-i18n="modeText">
+
+                <div
+                    class="service-text"
+                    data-i18n="modeText">
                     Вы выбираете сценарий пребывания —
                     мы подстраиваем организацию.
                 </div>
@@ -2078,15 +2561,21 @@ footer span{
 
             <div class="service reveal">
 
-                <div class="service-icon">◌</div>
+                <div class="service-icon">
+                    ◌
+                </div>
 
-                <div class="service-title"
-                     data-i18n="support">
+
+                <div
+                    class="service-title"
+                    data-i18n="support">
                     ПОДДЕРЖКА
                 </div>
 
-                <div class="service-text"
-                     data-i18n="supportText">
+
+                <div
+                    class="service-text"
+                    data-i18n="supportText">
                     Concierge остаётся доступен,
                     пока вы недоступны.
                 </div>
@@ -2096,15 +2585,21 @@ footer span{
 
             <div class="service reveal">
 
-                <div class="service-icon">□</div>
+                <div class="service-icon">
+                    □
+                </div>
 
-                <div class="service-title"
-                     data-i18n="privacy">
+
+                <div
+                    class="service-title"
+                    data-i18n="privacy">
                     ПРИВАТНОСТЬ
                 </div>
 
-                <div class="service-text"
-                     data-i18n="privacyText">
+
+                <div
+                    class="service-text"
+                    data-i18n="privacyText">
                     Минимум внешнего шума.
                     Максимум контроля над своим временем.
                 </div>
@@ -2126,19 +2621,24 @@ footer span{
 
     <div class="inner">
 
-        <div class="eyebrow reveal"
-             data-i18n="arrival">
+        <div
+            class="eyebrow reveal"
+            data-i18n="arrival">
             ПРОТОКОЛ ПРИБЫТИЯ
         </div>
 
-        <h2 class="reveal"
+
+        <h2
+            class="reveal"
             data-i18n="arrivalTitle">
             Вы можете приехать сами.<br>
             Или мы организуем прибытие.
         </h2>
 
-        <p class="lead reveal"
-           data-i18n="arrivalText">
+
+        <p
+            class="lead reveal"
+            data-i18n="arrivalText">
             После подтверждения бронирования
             мы согласовываем точку встречи,
             маршрут и остальные детали.
@@ -2153,16 +2653,23 @@ footer span{
                 id="mapGrid">
             </div>
 
+
             <div class="road"></div>
+
             <div class="road two"></div>
+
 
             <div class="pin"></div>
 
+
             <div class="map-label">
+
                 MOSCOW REGION
+
                 <small>
                     EXACT LOCATION · AFTER CONFIRMATION
                 </small>
+
             </div>
 
         </div>
@@ -2176,173 +2683,78 @@ footer span{
      FINAL
 ================================================== -->
 
-<section class="final" id="request">
+<section
+    class="final"
+    id="request">
 
     <div class="inner">
 
-        <div class="eyebrow reveal"
-             data-i18n="finalState">
+
+        <div
+            class="eyebrow reveal"
+            data-i18n="finalState">
             ФИНАЛЬНЫЙ ШАГ
         </div>
 
+
         <h2 class="final-title reveal">
+
             <span
                 style="color:var(--text)"
                 data-i18n="ready">
                 ГОТОВЫ
-            </span><br>
+            </span>
+
+            <br>
 
             <span data-i18n="disappear">
                 ИСЧЕЗНУТЬ?
             </span>
+
         </h2>
 
-        <p class="final-sub reveal"
-           data-i18n="finalText">
-            Выберите формат и оставьте контакт.
-            Мы свяжемся с вами, ответим на вопросы
-            и согласуем детали пребывания.
+
+        <p
+            class="final-sub reveal"
+            data-i18n="finalText">
+            Обсудим формат, даты и детали лично.
+            Без анкет и лишних вопросов.
         </p>
 
 
-        <form class="form reveal" id="form">
+        <a
+            class="telegram-cta reveal"
+            href="https://t.me/kaipovich"
+            target="_blank"
+            rel="noopener noreferrer">
 
-            <div class="form-row">
-
-                <div class="field">
-
-                    <label data-i18n="nameLabel">
-                        ИМЯ
-                    </label>
-
-                    <input
-                        id="name"
-                        type="text"
-                        placeholder="Ваше имя"
-                        data-placeholder="namePlaceholder"
-                        required>
-
-                </div>
+            <span class="telegram-cta-icon">
+                ➤
+            </span>
 
 
-                <div class="field">
+            <span data-i18n="telegramCta">
+                СВЯЗАТЬСЯ В TELEGRAM →
+            </span>
 
-                    <label>TELEGRAM</label>
-
-                    <input
-                        id="telegram"
-                        type="text"
-                        placeholder="@username"
-                        data-placeholder="telegramPlaceholder"
-                        required>
-
-                </div>
-
-            </div>
+        </a>
 
 
-            <div class="form-row">
-
-                <div class="field">
-
-                    <label data-i18n="stateLabel">
-                        ФОРМАТ
-                    </label>
-
-                    <select id="state">
-
-                        <option value="OFFLINE">
-                            OFFLINE — 35 000 ₽
-                        </option>
-
-                        <option value="DARKNESS">
-                            DARKNESS — 65 000 ₽
-                        </option>
-
-                        <option value="PRIVATE">
-                            PRIVATE — от 120 000 ₽
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label data-i18n="durationLabel">
-                        ПРОДОЛЖИТЕЛЬНОСТЬ
-                    </label>
-
-                    <select id="duration">
-
-                        <option data-i18n="day">
-                            24 часа
-                        </option>
-
-                        <option data-i18n="twoDays">
-                            48 часов
-                        </option>
-
-                        <option data-i18n="threeDays">
-                            72 часа
-                        </option>
-
-                        <option data-i18n="individual">
-                            Индивидуально
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <div class="field">
-
-                <label data-i18n="noteLabel">
-                    КОММЕНТАРИЙ
-                </label>
-
-                <textarea
-                    id="note"
-                    placeholder="Когда планируете приехать? Есть ли пожелания?"
-                    data-placeholder="notePlaceholder">
-                </textarea>
-
-            </div>
-
-
-            <button
-                class="submit"
-                type="submit"
-                data-i18n="submit">
-                ОТПРАВИТЬ ЗАПРОС →
-            </button>
-
-
-            <div class="telegram-note">
-
-                <span class="telegram-icon">
-                    ➤
-                </span>
-
-                <span data-i18n="telegramNote">
-                    После отправки заявки мы свяжемся
-                    с вами напрямую в Telegram.
-                </span>
-
-            </div>
-
-        </form>
+        <div class="telegram-handle reveal">
+            @kaipovich · PRIVATE CONTACT
+        </div>
 
     </div>
 
 </section>
 
+
 </main>
 
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
 
 <footer>
 
@@ -2350,9 +2762,13 @@ footer span{
         © 2026 PRIVATE STATE
     </div>
 
+
     <div>
-        <span>THE WORLD CAN WAIT.</span>
+        <span>
+            THE WORLD CAN WAIT.
+        </span>
     </div>
+
 
     <div>
         MOSCOW REGION · RU / EN / 中文
@@ -2369,295 +2785,619 @@ footer span{
 
 const translations = {
 
-ru:{
+    ru:{
 
-heroKicker:"ПРИВАТНЫЙ СЕРВИС · МОСКОВСКАЯ ОБЛАСТЬ",
-heroLine1:"БУДЬ",
-heroLine2:"НЕДОСТУПЕН.",
-from:"ОТ",
-scroll:"ЛИСТАЙТЕ, ЧТОБЫ ОТКЛЮЧИТЬСЯ",
+        heroKicker:
+            "ПРИВАТНЫЙ СЕРВИС · МОСКОВСКАЯ ОБЛАСТЬ",
 
-concept:"КОНЦЕПЦИЯ",
+        heroLine1:
+            "БУДЬ",
 
-quote1:"Вам не нужно исчезать.",
-quote2:"Достаточно перестать быть доступным.",
+        heroLine2:
+            "НЕДОСТУПЕН.",
 
-intro1:"PRIVATE STATE — это организованное пребывание в цифровой тишине за пределами Москвы.",
-intro2:"Вы выбираете формат и продолжительность. Мы заранее организуем локацию, прибытие, сопровождение и concierge.",
+        from:
+            "ОТ",
 
-chooseState:"ВЫБЕРИТЕ ФОРМАТ",
-threeStates:"Три способа<br>стать недоступным.",
+        scroll:
+            "ЛИСТАЙТЕ, ЧТОБЫ ОТКЛЮЧИТЬСЯ",
 
-offlineDesc:"Базовый формат полного цифрового отключения. Вы приезжаете в подготовленное пространство, передаёте телефон concierge и перестаёте быть доступным.",
-offline1:"Подготовленная локация",
-offline2:"Хранение телефона",
-offline3:"Concierge",
-offline4:"Связь только при важном событии",
 
-darknessDesc:"Более глубокое отключение. Больше приватности, индивидуальная организация и расширенное сопровождение.",
-darkness1:"Индивидуальная подготовка",
-darkness2:"Расширенный concierge",
-darkness3:"Организация прибытия",
-darkness4:"Дополнительные пожелания",
+        concept:
+            "КОНЦЕПЦИЯ",
 
-privateDesc:"Полностью индивидуальный сценарий. Локация, маршрут, сопровождение и детали пребывания создаются под конкретного клиента.",
-private1:"Индивидуальная локация",
-private2:"Персональный сценарий",
-private3:"Full concierge",
-private4:"Индивидуальная организация",
+        quote1:
+            "Вам не нужно исчезать.",
 
-select:"ВЫБРАТЬ →",
-request:"ЗАПРОСИТЬ →",
+        quote2:
+            "Достаточно перестать быть доступным.",
 
-phoneProtocol:"ПРОТОКОЛ ТЕЛЕФОНА",
-phoneTitle:"Телефон остаётся.<br>Вы — исчезаете.",
-phoneLead:"Ваш телефон передаётся concierge и хранится до окончания пребывания. Обычные сообщения ждут вашего возвращения.",
 
-transfer:"Передача",
-transferText:"Вы передаёте устройство concierge в начале пребывания.",
-silence:"Тишина",
-silenceText:"Уведомления и обычные сообщения не нарушают ваше пребывание.",
-important:"Важное",
-importantText:"Действительно важная информация передаётся вам через concierge.",
+        intro1:
+            "PRIVATE STATE — это организованное пребывание в цифровой тишине за пределами Москвы.",
 
-concierge:"CONCIERGE",
-conciergeTitle:"Пока вы недоступны — кто-то остаётся доступен вместо вас.",
-conciergeText:"Concierge принимает ваш телефон, остаётся на связи с внешним миром и отсеивает обычный информационный шум.",
-importantOnly:"ТОЛЬКО ВАЖНОЕ",
-importantOnlyText:"Мы не отвлекаем вас по мелочам. Если происходит действительно важное — информация будет передана вам.",
+        intro2:
+            "Вы выбираете формат и продолжительность. Мы заранее организуем локацию, прибытие, сопровождение и concierge.",
 
-builtAround:"ОРГАНИЗОВАНО ПОД ВАС",
-servicesTitle:"Вам не нужно<br>думать о деталях.",
-servicesLead:"От прибытия до возвращения — основные детали пребывания согласуются заранее.",
 
-location:"ЛОКАЦИЯ",
-locationText:"Подготовленная приватная локация в Московской области.",
-mode:"ФОРМАТ",
-modeText:"Вы выбираете сценарий пребывания — мы подстраиваем организацию.",
-support:"ПОДДЕРЖКА",
-supportText:"Concierge остаётся доступен, пока вы недоступны.",
-privacy:"ПРИВАТНОСТЬ",
-privacyText:"Минимум внешнего шума. Максимум контроля над своим временем.",
+        chooseState:
+            "ВЫБЕРИТЕ ФОРМАТ",
 
-arrival:"ПРОТОКОЛ ПРИБЫТИЯ",
-arrivalTitle:"Вы можете приехать сами.<br>Или мы организуем прибытие.",
-arrivalText:"После подтверждения бронирования мы согласовываем точку встречи, маршрут и остальные детали. Конкретная локация не публикуется открыто.",
+        threeStates:
+            "Три способа<br>стать недоступным.",
 
-finalState:"ФИНАЛЬНЫЙ ШАГ",
-ready:"ГОТОВЫ",
-disappear:"ИСЧЕЗНУТЬ?",
-finalText:"Выберите формат и оставьте контакт. Мы свяжемся с вами, ответим на вопросы и согласуем детали пребывания.",
 
-nameLabel:"ИМЯ",
-namePlaceholder:"Ваше имя",
-telegramPlaceholder:"@username",
-stateLabel:"ФОРМАТ",
-durationLabel:"ПРОДОЛЖИТЕЛЬНОСТЬ",
-noteLabel:"КОММЕНТАРИЙ",
-notePlaceholder:"Когда планируете приехать? Есть ли пожелания?",
-submit:"ОТПРАВИТЬ ЗАПРОС →",
-telegramNote:"После отправки заявки мы свяжемся с вами напрямую в Telegram.",
+        offlineDesc:
+            "Базовый формат полного цифрового отключения. Вы приезжаете в подготовленное пространство, передаёте телефон concierge и перестаёте быть доступным.",
 
-day:"24 часа",
-twoDays:"48 часов",
-threeDays:"72 часа",
-individual:"Индивидуально"
+        offline1:
+            "Подготовленная локация",
 
-},
+        offline2:
+            "Хранение телефона",
 
-en:{
+        offline3:
+            "Concierge",
 
-heroKicker:"PRIVATE SERVICE · MOSCOW REGION",
-heroLine1:"BE",
-heroLine2:"UNAVAILABLE.",
-from:"FROM",
-scroll:"SCROLL TO DISCONNECT",
+        offline4:
+            "Связь только при важном событии",
 
-concept:"THE CONCEPT",
 
-quote1:"You don't have to disappear.",
-quote2:"You simply stop being available.",
+        darknessDesc:
+            "Более глубокое отключение. Больше приватности, индивидуальная организация и расширенное сопровождение.",
 
-intro1:"PRIVATE STATE is an organized retreat into digital silence outside Moscow.",
-intro2:"Choose your format and duration. We organize the location, arrival, support and concierge in advance.",
+        darkness1:
+            "Индивидуальная подготовка",
 
-chooseState:"CHOOSE YOUR STATE",
-threeStates:"Three ways<br>to become unavailable.",
+        darkness2:
+            "Расширенный concierge",
 
-offlineDesc:"The essential digital disconnect. Arrive at a prepared private space, hand your phone to the concierge and become unavailable.",
-offline1:"Prepared location",
-offline2:"Phone storage",
-offline3:"Concierge",
-offline4:"Contact only when truly important",
+        darkness3:
+            "Организация прибытия",
 
-darknessDesc:"A deeper level of disconnection with increased privacy, individual organization and extended support.",
-darkness1:"Individual preparation",
-darkness2:"Extended concierge",
-darkness3:"Arrival organization",
-darkness4:"Additional requests",
+        darkness4:
+            "Дополнительные пожелания",
 
-privateDesc:"A completely individual scenario. Location, route, support and details are created specifically for you.",
-private1:"Individual location",
-private2:"Personal scenario",
-private3:"Full concierge",
-private4:"Individual organization",
 
-select:"SELECT →",
-request:"REQUEST →",
+        privateDesc:
+            "Полностью индивидуальный сценарий. Локация, маршрут, сопровождение и детали пребывания создаются под конкретного клиента.",
 
-phoneProtocol:"THE PHONE PROTOCOL",
-phoneTitle:"The phone stays.<br>You disappear.",
-phoneLead:"Your phone is handed to the concierge and stored until your stay is complete. Ordinary messages can wait.",
+        private1:
+            "Индивидуальная локация",
 
-transfer:"Transfer",
-transferText:"You hand your device to the concierge at the beginning of your stay.",
-silence:"Silence",
-silenceText:"Notifications and ordinary messages do not interrupt your time.",
-important:"Important",
-importantText:"Truly important information is passed to you through the concierge.",
+        private2:
+            "Персональный сценарий",
 
-concierge:"CONCIERGE",
-conciergeTitle:"While you are unavailable — someone remains available for you.",
-conciergeText:"The concierge holds your phone, remains connected to the outside world and filters ordinary noise.",
-importantOnly:"IMPORTANT ONLY",
-importantOnlyText:"We don't interrupt you for small things. If something truly important happens, you will know.",
+        private3:
+            "Full concierge",
 
-builtAround:"BUILT AROUND YOU",
-servicesTitle:"You don't need<br>to think about the details.",
-servicesLead:"From arrival to departure, the important details are agreed in advance.",
+        private4:
+            "Индивидуальная организация",
 
-location:"LOCATION",
-locationText:"A prepared private location in the Moscow region.",
-mode:"MODE",
-modeText:"Choose your preferred scenario — we organize around it.",
-support:"SUPPORT",
-supportText:"Concierge remains available while you remain unavailable.",
-privacy:"PRIVACY",
-privacyText:"Less external noise. More control over your time.",
 
-arrival:"ARRIVAL PROTOCOL",
-arrivalTitle:"Come yourself.<br>Or let us arrange your arrival.",
-arrivalText:"After confirmation, we coordinate the meeting point, route and remaining details. The exact location is not published publicly.",
+        select:
+            "ВЫБРАТЬ →",
 
-finalState:"FINAL STEP",
-ready:"READY TO",
-disappear:"DISAPPEAR?",
-finalText:"Choose a format and leave your contact. We will reach out, answer your questions and coordinate the details.",
+        request:
+            "ЗАПРОСИТЬ →",
 
-nameLabel:"NAME",
-namePlaceholder:"Your name",
-telegramPlaceholder:"@username",
-stateLabel:"STATE",
-durationLabel:"DURATION",
-noteLabel:"NOTE",
-notePlaceholder:"When are you planning to arrive? Any requests?",
-submit:"REQUEST PRIVATE STATE →",
-telegramNote:"After submitting, we will contact you directly via Telegram.",
 
-day:"24 hours",
-twoDays:"48 hours",
-threeDays:"72 hours",
-individual:"Individual"
+        phoneProtocol:
+            "ПРОТОКОЛ ТЕЛЕФОНА",
 
-},
+        phoneTitle:
+            "Телефон остаётся.<br>Вы — исчезаете.",
 
-zh:{
+        phoneLead:
+            "Ваш телефон передаётся concierge и хранится до окончания пребывания. Обычные сообщения ждут вашего возвращения.",
 
-heroKicker:"私人服务 · 莫斯科地区",
-heroLine1:"暂时",
-heroLine2:"不可用。",
 
-from:"起",
-scroll:"向下，进入离线状态",
+        transfer:
+            "Передача",
 
-concept:"概念",
+        transferText:
+            "Вы передаёте устройство concierge в начале пребывания.",
 
-quote1:"你不需要消失。",
-quote2:"只需要暂时不再回应。",
+        silence:
+            "Тишина",
 
-intro1:"PRIVATE STATE 是位于莫斯科郊外的私人数字静默体验。",
-intro2:"选择你的形式和时长。我们提前安排地点、抵达、支持以及私人管家。",
+        silenceText:
+            "Уведомления и обычные сообщения не нарушают ваше пребывание.",
 
-chooseState:"选择状态",
-threeStates:"三种方式<br>暂时离开世界。",
+        important:
+            "Важное",
 
-offlineDesc:"基础数字断联体验。抵达准备好的私人空间，将手机交给私人管家，暂时不再接收外界信息。",
-offline1:"私人地点",
-offline2:"手机保管",
-offline3:"私人管家",
-offline4:"仅在重要情况下联系",
+        importantText:
+            "Действительно важная информация передаётся вам через concierge.",
 
-darknessDesc:"更深层的断联体验。更高的隐私、更个性化的安排以及更完整的支持。",
-darkness1:"个性化准备",
-darkness2:"高级私人管家",
-darkness3:"抵达安排",
-darkness4:"额外需求",
 
-privateDesc:"完全私人定制的体验。地点、路线、陪同以及所有细节均根据客户需求安排。",
-private1:"私人地点",
-private2:"个人方案",
-private3:"私人管家",
-private4:"完全定制",
+        concierge:
+            "CONCIERGE",
 
-select:"选择 →",
-request:"申请 →",
+        conciergeTitle:
+            "Пока вы недоступны — кто-то остаётся доступен вместо вас.",
 
-phoneProtocol:"手机协议",
-phoneTitle:"手机留下。<br>你暂时离开。",
-phoneLead:"你的手机交给私人管家保管，直到体验结束。普通消息可以等待。",
+        conciergeText:
+            "Concierge принимает ваш телефон, остаётся на связи с внешним миром и отсеивает обычный информационный шум.",
 
-transfer:"交接",
-transferText:"进入体验后，将设备交给私人管家。",
-silence:"安静",
-silenceText:"通知和普通消息不会打扰你的时间。",
-important:"重要信息",
-importantText:"真正重要的信息会通过私人管家传达给你。",
+        importantOnly:
+            "ТОЛЬКО ВАЖНОЕ",
 
-concierge:"私人管家",
-conciergeTitle:"当你暂时不可用时，有人替你保持联系。",
-conciergeText:"私人管家保管你的手机，与外界保持必要联系，并过滤普通信息。",
-importantOnly:"仅重要信息",
-importantOnlyText:"我们不会因为小事打扰你。如果发生真正重要的事情，你会知道。",
+        importantOnlyText:
+            "Мы не отвлекаем вас по мелочам. Если происходит действительно важное — информация будет передана вам.",
 
-builtAround:"为你安排",
-servicesTitle:"你不需要<br>考虑这些细节。",
-servicesLead:"从抵达到离开，重要细节都会提前确认。",
 
-location:"地点",
-locationText:"莫斯科地区的私人准备地点。",
-mode:"模式",
-modeText:"选择你的体验方式，我们负责安排。",
-support:"支持",
-supportText:"当你暂时不可用时，私人管家仍保持联系。",
-privacy:"隐私",
-privacyText:"减少外界干扰，重新掌控自己的时间。",
+        builtAround:
+            "ОРГАНИЗОВАНО ПОД ВАС",
 
-arrival:"抵达协议",
-arrivalTitle:"你可以自己抵达。<br>也可以由我们安排。",
-arrivalText:"确认后，我们会协调会面地点、路线以及其他细节。具体地点不会公开发布。",
+        servicesTitle:
+            "Вам не нужно<br>думать о деталях.",
 
-finalState:"最后一步",
-ready:"准备好",
-disappear:"暂时离开？",
+        servicesLead:
+            "От прибытия до возвращения — основные детали пребывания согласуются заранее.",
 
-finalText:"选择体验形式并留下联系方式。我们会联系你，回答问题并确认具体安排。",
 
-nameLabel:"姓名",
-namePlaceholder:"你的姓名",
-telegramPlaceholder:"@username",
-stateLabel:"状态",
-durationLabel:"时长",
-noteLabel:"备注",
-notePlaceholder:"计划什么时候抵达？有什么要求？",
-submit:"提交申请 →",
-telegramNote:"提交后，我们会通过 Telegram 直接联系你。",
+        location:
+            "ЛОКАЦИЯ",
 
-day:"24小时",
-twoDays:"48小时",
-threeDays:"72小时",
-individual:"定制"
+        locationText:
+            "Подготовленная приватная локация в Московской области.",
 
-}
+        mode:
+            "ФОРМАТ",
+
+        modeText:
+            "Вы выбираете сценарий пребывания — мы подстраиваем организацию.",
+
+        support:
+            "ПОДДЕРЖКА",
+
+        supportText:
+            "Concierge остаётся доступен, пока вы недоступны.",
+
+        privacy:
+            "ПРИВАТНОСТЬ",
+
+        privacyText:
+            "Минимум внешнего шума. Максимум контроля над своим временем.",
+
+
+        arrival:
+            "ПРОТОКОЛ ПРИБЫТИЯ",
+
+        arrivalTitle:
+            "Вы можете приехать сами.<br>Или мы организуем прибытие.",
+
+        arrivalText:
+            "После подтверждения бронирования мы согласовываем точку встречи, маршрут и остальные детали. Конкретная локация не публикуется открыто.",
+
+
+        finalState:
+            "ФИНАЛЬНЫЙ ШАГ",
+
+        ready:
+            "ГОТОВЫ",
+
+        disappear:
+            "ИСЧЕЗНУТЬ?",
+
+        finalText:
+            "Обсудим формат, даты и детали лично. Без анкет и лишних вопросов.",
+
+        telegramCta:
+            "СВЯЗАТЬСЯ В TELEGRAM →"
+
+    },
+
+
+    en:{
+
+        heroKicker:
+            "PRIVATE SERVICE · MOSCOW REGION",
+
+        heroLine1:
+            "BE",
+
+        heroLine2:
+            "UNAVAILABLE.",
+
+        from:
+            "FROM",
+
+        scroll:
+            "SCROLL TO DISCONNECT",
+
+
+        concept:
+            "THE CONCEPT",
+
+        quote1:
+            "You don't have to disappear.",
+
+        quote2:
+            "You simply stop being available.",
+
+
+        intro1:
+            "PRIVATE STATE is an organized retreat into digital silence outside Moscow.",
+
+        intro2:
+            "Choose your format and duration. We organize the location, arrival, support and concierge in advance.",
+
+
+        chooseState:
+            "CHOOSE YOUR STATE",
+
+        threeStates:
+            "Three ways<br>to become unavailable.",
+
+
+        offlineDesc:
+            "The essential digital disconnect. Arrive at a prepared private space, hand your phone to the concierge and become unavailable.",
+
+        offline1:
+            "Prepared location",
+
+        offline2:
+            "Phone storage",
+
+        offline3:
+            "Concierge",
+
+        offline4:
+            "Contact only when truly important",
+
+
+        darknessDesc:
+            "A deeper level of disconnection with increased privacy, individual organization and extended support.",
+
+        darkness1:
+            "Individual preparation",
+
+        darkness2:
+            "Extended concierge",
+
+        darkness3:
+            "Arrival organization",
+
+        darkness4:
+            "Additional requests",
+
+
+        privateDesc:
+            "A completely individual scenario. Location, route, support and details are created specifically for you.",
+
+        private1:
+            "Individual location",
+
+        private2:
+            "Personal scenario",
+
+        private3:
+            "Full concierge",
+
+        private4:
+            "Individual organization",
+
+
+        select:
+            "SELECT →",
+
+        request:
+            "REQUEST →",
+
+
+        phoneProtocol:
+            "THE PHONE PROTOCOL",
+
+        phoneTitle:
+            "The phone stays.<br>You disappear.",
+
+        phoneLead:
+            "Your phone is handed to the concierge and stored until your stay is complete. Ordinary messages can wait.",
+
+
+        transfer:
+            "Transfer",
+
+        transferText:
+            "You hand your device to the concierge at the beginning of your stay.",
+
+        silence:
+            "Silence",
+
+        silenceText:
+            "Notifications and ordinary messages do not interrupt your time.",
+
+        important:
+            "Important",
+
+        importantText:
+            "Truly important information is passed to you through the concierge.",
+
+
+        concierge:
+            "CONCIERGE",
+
+        conciergeTitle:
+            "While you are unavailable — someone remains available for you.",
+
+        conciergeText:
+            "The concierge holds your phone, remains connected to the outside world and filters ordinary noise.",
+
+        importantOnly:
+            "IMPORTANT ONLY",
+
+        importantOnlyText:
+            "We don't interrupt you for small things. If something truly important happens, you will know.",
+
+
+        builtAround:
+            "BUILT AROUND YOU",
+
+        servicesTitle:
+            "You don't need<br>to think about the details.",
+
+        servicesLead:
+            "From arrival to departure, the important details are agreed in advance.",
+
+
+        location:
+            "LOCATION",
+
+        locationText:
+            "A prepared private location in the Moscow region.",
+
+        mode:
+            "MODE",
+
+        modeText:
+            "Choose your preferred scenario — we organize around it.",
+
+        support:
+            "SUPPORT",
+
+        supportText:
+            "Concierge remains available while you remain unavailable.",
+
+        privacy:
+            "PRIVACY",
+
+        privacyText:
+            "Less external noise. More control over your time.",
+
+
+        arrival:
+            "ARRIVAL PROTOCOL",
+
+        arrivalTitle:
+            "Come yourself.<br>Or let us arrange your arrival.",
+
+        arrivalText:
+            "After confirmation, we coordinate the meeting point, route and remaining details. The exact location is not published publicly.",
+
+
+        finalState:
+            "FINAL STEP",
+
+        ready:
+            "READY TO",
+
+        disappear:
+            "DISAPPEAR?",
+
+        finalText:
+            "Discuss the format, dates and details privately. No forms. No unnecessary questions.",
+
+        telegramCta:
+            "CONTACT VIA TELEGRAM →"
+
+    },
+
+
+    zh:{
+
+        heroKicker:
+            "私人服务 · 莫斯科地区",
+
+        heroLine1:
+            "暂时",
+
+        heroLine2:
+            "不可用。",
+
+        from:
+            "起",
+
+        scroll:
+            "向下，进入离线状态",
+
+
+        concept:
+            "概念",
+
+        quote1:
+            "你不需要消失。",
+
+        quote2:
+            "只需要暂时不再回应。",
+
+
+        intro1:
+            "PRIVATE STATE 是位于莫斯科郊外的私人数字静默体验。",
+
+        intro2:
+            "选择你的形式和时长。我们提前安排地点、抵达、支持以及私人管家。",
+
+
+        chooseState:
+            "选择状态",
+
+        threeStates:
+            "三种方式<br>暂时离开世界。",
+
+
+        offlineDesc:
+            "基础数字断联体验。抵达准备好的私人空间，将手机交给私人管家，暂时不再接收外界信息。",
+
+        offline1:
+            "私人地点",
+
+        offline2:
+            "手机保管",
+
+        offline3:
+            "私人管家",
+
+        offline4:
+            "仅在重要情况下联系",
+
+
+        darknessDesc:
+            "更深层的断联体验。更高的隐私、更个性化的安排以及更完整的支持。",
+
+        darkness1:
+            "个性化准备",
+
+        darkness2:
+            "高级私人管家",
+
+        darkness3:
+            "抵达安排",
+
+        darkness4:
+            "额外需求",
+
+
+        privateDesc:
+            "完全私人定制的体验。地点、路线、陪同以及所有细节均根据客户需求安排。",
+
+        private1:
+            "私人地点",
+
+        private2:
+            "个人方案",
+
+        private3:
+            "私人管家",
+
+        private4:
+            "完全定制",
+
+
+        select:
+            "选择 →",
+
+        request:
+            "申请 →",
+
+
+        phoneProtocol:
+            "手机协议",
+
+        phoneTitle:
+            "手机留下。<br>你暂时离开。",
+
+        phoneLead:
+            "你的手机交给私人管家保管，直到体验结束。普通消息可以等待。",
+
+
+        transfer:
+            "交接",
+
+        transferText:
+            "进入体验后，将设备交给私人管家。",
+
+        silence:
+            "安静",
+
+        silenceText:
+            "通知和普通消息不会打扰你的时间。",
+
+        important:
+            "重要信息",
+
+        importantText:
+            "真正重要的信息会通过私人管家传达给你。",
+
+
+        concierge:
+            "私人管家",
+
+        conciergeTitle:
+            "当你暂时不可用时，有人替你保持联系。",
+
+        conciergeText:
+            "私人管家保管你的手机，与外界保持必要联系，并过滤普通信息。",
+
+        importantOnly:
+            "仅重要信息",
+
+        importantOnlyText:
+            "我们不会因为小事打扰你。如果发生真正重要的事情，你会知道。",
+
+
+        builtAround:
+            "为你安排",
+
+        servicesTitle:
+            "你不需要<br>考虑这些细节。",
+
+        servicesLead:
+            "从抵达到离开，重要细节都会提前确认。",
+
+
+        location:
+            "地点",
+
+        locationText:
+            "莫斯科地区的私人准备地点。",
+
+        mode:
+            "模式",
+
+        modeText:
+            "选择你的体验方式，我们负责安排。",
+
+        support:
+            "支持",
+
+        supportText:
+            "当你暂时不可用时，私人管家仍保持联系。",
+
+        privacy:
+            "隐私",
+
+        privacyText:
+            "减少外界干扰，重新掌控自己的时间。",
+
+
+        arrival:
+            "抵达协议",
+
+        arrivalTitle:
+            "你可以自己抵达。<br>也可以由我们安排。",
+
+        arrivalText:
+            "确认后，我们会协调会面地点、路线以及其他细节。具体地点不会公开发布。",
+
+
+        finalState:
+            "最后一步",
+
+        ready:
+            "准备好",
+
+        disappear:
+            "暂时离开？",
+
+        finalText:
+            "我们会私下确认体验形式、日期和具体细节。不需要填写表格，也没有多余的问题。",
+
+        telegramCta:
+            "通过 TELEGRAM 联系 →"
+
+    }
 
 };
 
@@ -2666,29 +3406,40 @@ individual:"定制"
    LANGUAGE ENGINE
 ================================================== */
 
-let currentLang = localStorage.getItem("privateStateLang") || "ru";
+let currentLang =
+    localStorage.getItem(
+        "privateStateLang"
+    ) || "ru";
+
 
 const langButtons =
-    document.querySelectorAll(".lang button");
+    document.querySelectorAll(
+        ".lang button"
+    );
+
 
 const translatable =
-    document.querySelectorAll("[data-i18n]");
-
-const placeholders =
-    document.querySelectorAll("[data-placeholder]");
+    document.querySelectorAll(
+        "[data-i18n]"
+    );
 
 
 function applyLanguage(lang){
 
     currentLang = lang;
 
+
     localStorage.setItem(
         "privateStateLang",
         lang
     );
 
+
     document.documentElement.lang =
-        lang === "zh" ? "zh-CN" : lang;
+        lang === "zh"
+            ? "zh-CN"
+            : lang;
+
 
     langButtons.forEach(button => {
 
@@ -2709,24 +3460,12 @@ function applyLanguage(lang){
         const key =
             element.dataset.i18n;
 
-        if(dictionary[key] !== undefined){
+
+        if(
+            dictionary[key] !== undefined
+        ){
 
             element.innerHTML =
-                dictionary[key];
-
-        }
-
-    });
-
-
-    placeholders.forEach(element => {
-
-        const key =
-            element.dataset.placeholder;
-
-        if(dictionary[key] !== undefined){
-
-            element.placeholder =
                 dictionary[key];
 
         }
@@ -2741,23 +3480,31 @@ function applyLanguage(lang){
 
     typewriter.innerHTML = "";
 
-    clearTimeout(typewriterTimer);
+    clearTimeout(
+        typewriterTimer
+    );
 
     typewriterTimer =
-        setTimeout(typeWriter,250);
+        setTimeout(
+            typeWriter,
+            250
+        );
 
 }
 
 
 langButtons.forEach(button => {
 
-    button.addEventListener("click",() => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        applyLanguage(
-            button.dataset.lang
-        );
+            applyLanguage(
+                button.dataset.lang
+            );
 
-    });
+        }
+    );
 
 });
 
@@ -2767,28 +3514,40 @@ langButtons.forEach(button => {
 ================================================== */
 
 const typewriter =
-    document.getElementById("typewriter");
+    document.getElementById(
+        "typewriter"
+    );
+
 
 const typeTexts = {
 
-ru:"Вам не нужно исчезать. Вам нужно лишь перестать быть доступным.",
+    ru:
+        "Вам не нужно исчезать. Вам нужно лишь перестать быть доступным.",
 
-en:"You don't have to disappear. You simply stop being available.",
+    en:
+        "You don't have to disappear. You simply stop being available.",
 
-zh:"你不需要消失，只需要暂时不再回应这个世界。"
+    zh:
+        "你不需要消失，只需要暂时不再回应这个世界。"
 
 };
+
 
 let typewriterText =
     typeTexts[currentLang];
 
+
 let typewriterIndex = 0;
+
 let typewriterTimer;
 
 
 function typeWriter(){
 
-    if(typewriterIndex <= typewriterText.length){
+    if(
+        typewriterIndex <=
+        typewriterText.length
+    ){
 
         typewriter.textContent =
             typewriterText.slice(
@@ -2796,12 +3555,16 @@ function typeWriter(){
                 typewriterIndex
             );
 
+
         typewriterIndex++;
+
 
         typewriterTimer =
             setTimeout(
                 typeWriter,
-                currentLang === "zh" ? 75 : 38
+                currentLang === "zh"
+                    ? 75
+                    : 38
             );
 
     }
@@ -2814,15 +3577,25 @@ function typeWriter(){
 ================================================== */
 
 const preloader =
-    document.getElementById("preloader");
+    document.getElementById(
+        "preloader"
+    );
+
 
 const preProgress =
-    document.getElementById("preProgress");
+    document.getElementById(
+        "preProgress"
+    );
+
 
 const prePercent =
-    document.getElementById("prePercent");
+    document.getElementById(
+        "prePercent"
+    );
+
 
 let preloadFinished = false;
+
 let preloadValue = 0;
 
 
@@ -2831,14 +3604,23 @@ function finishPreloader(){
     if(preloadFinished)
         return;
 
+
     preloadFinished = true;
 
-    preProgress.style.width = "100%";
-    prePercent.textContent = "100%";
+
+    preProgress.style.width =
+        "100%";
+
+
+    prePercent.textContent =
+        "100%";
+
 
     setTimeout(() => {
 
-        preloader.classList.add("hide");
+        preloader.classList.add(
+            "hide"
+        );
 
     },300);
 
@@ -2851,11 +3633,15 @@ const loader =
         preloadValue +=
             Math.random() * 8 + 4;
 
-        if(preloadValue >= 93){
+
+        if(
+            preloadValue >= 93
+        ){
 
             preloadValue = 93;
 
             clearInterval(loader);
+
 
             setTimeout(
                 finishPreloader,
@@ -2864,21 +3650,30 @@ const loader =
 
         }
 
+
         preProgress.style.width =
             preloadValue + "%";
 
+
         prePercent.textContent =
-            Math.floor(preloadValue) + "%";
+            Math.floor(
+                preloadValue
+            ) + "%";
+
 
     },130);
 
 
 window.addEventListener(
     "load",
-    () => setTimeout(
-        finishPreloader,
-        650
-    )
+    () => {
+
+        setTimeout(
+            finishPreloader,
+            650
+        );
+
+    }
 );
 
 
@@ -2893,7 +3688,10 @@ setTimeout(
 ================================================== */
 
 const header =
-    document.getElementById("header");
+    document.getElementById(
+        "header"
+    );
+
 
 window.addEventListener(
     "scroll",
@@ -2905,7 +3703,9 @@ window.addEventListener(
         );
 
     },
-    {passive:true}
+    {
+        passive:true
+    }
 );
 
 
@@ -2914,13 +3714,22 @@ window.addEventListener(
 ================================================== */
 
 const grid =
-    document.getElementById("grid");
+    document.getElementById(
+        "grid"
+    );
+
 
 const orb =
-    document.getElementById("orb");
+    document.getElementById(
+        "orb"
+    );
+
 
 const mapGrid =
-    document.getElementById("mapGrid");
+    document.getElementById(
+        "mapGrid"
+    );
+
 
 let parallaxTick = false;
 
@@ -2930,14 +3739,19 @@ function updateParallax(){
     const y =
         window.scrollY;
 
+
     grid.style.setProperty(
         "--grid-y",
         `${y * -.045}px`
     );
 
+
     orb.style.setProperty(
         "--orb-scale",
-        `${1 + Math.min(y / 16000,.045)}`
+        `${1 + Math.min(
+            y / 16000,
+            .045
+        )}`
     );
 
 
@@ -2947,12 +3761,14 @@ function updateParallax(){
             mapGrid.parentElement
                 .getBoundingClientRect();
 
+
         mapGrid.style.setProperty(
             "--map-y",
             `${rect.top * -.06}px`
         );
 
     }
+
 
     parallaxTick = false;
 
@@ -2974,7 +3790,9 @@ window.addEventListener(
         }
 
     },
-    {passive:true}
+    {
+        passive:true
+    }
 );
 
 
@@ -2984,54 +3802,77 @@ window.addEventListener(
 
 const revealObserver =
     new IntersectionObserver(
+
         entries => {
 
-            entries.forEach(entry => {
+            entries.forEach(
+                entry => {
 
-                if(entry.isIntersecting){
+                    if(
+                        entry.isIntersecting
+                    ){
 
-                    entry.target
-                        .classList
-                        .add("visible");
+                        entry.target
+                            .classList
+                            .add("visible");
 
-                    revealObserver
-                        .unobserve(
-                            entry.target
-                        );
+
+                        revealObserver
+                            .unobserve(
+                                entry.target
+                            );
+
+                    }
 
                 }
-
-            });
+            );
 
         },
+
         {
             threshold:.1,
-            rootMargin:"0px 0px -45px 0px"
+
+            rootMargin:
+                "0px 0px -45px 0px"
         }
+
     );
 
 
 document
-.querySelectorAll(".reveal")
-.forEach(element => {
+    .querySelectorAll(
+        ".reveal"
+    )
+    .forEach(element => {
 
-    revealObserver.observe(element);
+        revealObserver.observe(
+            element
+        );
 
-});
+    });
 
 
 /* ==================================================
-   PHONE
+   PHONE INTERACTION
 ================================================== */
 
 const phone =
-    document.querySelector(".phone");
+    document.querySelector(
+        ".phone"
+    );
+
 
 const phoneClick =
-    document.getElementById("phoneClick");
+    document.getElementById(
+        "phoneClick"
+    );
+
 
 const signalText =
-    document.getElementById("signalText");
+    document.getElementById(
+        "signalText"
+    );
+
 
 let phoneOffline = false;
 
@@ -3043,20 +3884,25 @@ phoneClick.addEventListener(
         phoneOffline =
             !phoneOffline;
 
+
         if(phoneOffline){
 
             signalText.textContent =
                 "STATE: OFFLINE";
+
 
             phone.style.setProperty(
                 "--pr",
                 "8deg"
             );
 
-        }else{
+        }
+
+        else{
 
             signalText.textContent =
                 "NO SIGNAL";
+
 
             phone.style.setProperty(
                 "--pr",
@@ -3077,21 +3923,33 @@ document.addEventListener(
     "mousemove",
     event => {
 
-        if(window.innerWidth < 900)
+        if(
+            window.innerWidth < 900
+        )
             return;
 
+
         const x =
-            (event.clientX /
-            window.innerWidth - .5) * 14;
+            (
+                event.clientX /
+                window.innerWidth
+                - .5
+            ) * 14;
+
 
         const y =
-            (event.clientY /
-            window.innerHeight - .5) * 10;
+            (
+                event.clientY /
+                window.innerHeight
+                - .5
+            ) * 10;
+
 
         phone.style.setProperty(
             "--px",
             `${x}px`
         );
+
 
         phone.style.setProperty(
             "--py",
@@ -3107,10 +3965,16 @@ document.addEventListener(
 ================================================== */
 
 const music =
-    document.getElementById("music");
+    document.getElementById(
+        "music"
+    );
+
 
 const musicButton =
-    document.getElementById("musicButton");
+    document.getElementById(
+        "musicButton"
+    );
+
 
 let playing = false;
 
@@ -3127,21 +3991,27 @@ musicButton.addEventListener(
 
                 playing = true;
 
+
                 musicButton.style.borderColor =
                     "rgba(66,200,109,.5)";
 
-            }else{
+            }
+
+            else{
 
                 music.pause();
 
                 playing = false;
+
 
                 musicButton.style.borderColor =
                     "";
 
             }
 
-        }catch(error){
+        }
+
+        catch(error){
 
             alert(
                 "Добавьте файл music.mp3 рядом с index.html"
@@ -3154,164 +4024,19 @@ musicButton.addEventListener(
 
 
 /* ==================================================
-   CARD → FORM
-================================================== */
-
-document
-.querySelectorAll(".card-link")
-.forEach(link => {
-
-    link.addEventListener(
-        "click",
-        () => {
-
-            const state =
-                link.dataset.state;
-
-            if(state){
-
-                document
-                .getElementById("state")
-                .value = state;
-
-            }
-
-        }
-    );
-
-});
-
-
-/* ==================================================
-   FORM
-================================================== */
-
-const form =
-    document.getElementById("form");
-
-if (form) {
-
-    form.addEventListener(
-        "submit",
-        async event => {
-
-            event.preventDefault();
-
-            const name =
-                document.getElementById("name").value.trim();
-
-            const telegram =
-                document.getElementById("telegram").value.trim();
-
-            const state =
-                document.getElementById("state").value;
-
-            const duration =
-                document.getElementById("duration").value;
-
-            const note =
-                document.getElementById("note").value.trim();
-
-            const button =
-                form.querySelector(".submit");
-
-            const original =
-                button ? button.textContent : "REQUEST";
-
-            if (button) {
-                button.disabled = true;
-                button.textContent =
-                    currentLang === "ru"
-                    ? "ОТПРАВКА..."
-                    : currentLang === "en"
-                    ? "SENDING..."
-                    : "发送中...";
-            }
-
-            try {
-
-                const response =
-                    await fetch(
-                        "https://private-state.vercel.app/api/telegram",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                name,
-                                telegram,
-                                state,
-                                duration,
-                                note
-                            })
-                        }
-                    );
-
-                const result = await response.json();
-
-                if (!response.ok || !result.ok) {
-                    throw new Error(
-                        result.error || "Request failed"
-                    );
-                }
-
-                if (button) {
-                    button.textContent =
-                        currentLang === "ru"
-                        ? "ЗАПРОС ПРИНЯТ ✓"
-                        : currentLang === "en"
-                        ? "REQUEST RECEIVED ✓"
-                        : "申请已收到 ✓";
-
-                    button.style.background = "transparent";
-                    button.style.color = "var(--green)";
-                }
-
-                form.reset();
-
-                setTimeout(() => {
-                    if (!button) return;
-                    button.textContent = original;
-                    button.style.background = "";
-                    button.style.color = "";
-                    button.disabled = false;
-                }, 3500);
-
-            } catch (error) {
-
-                console.error("Telegram API error:", error);
-
-                if (button) {
-                    button.textContent =
-                        currentLang === "ru"
-                        ? "ОШИБКА — ПОПРОБУЙТЕ ЕЩЁ РАЗ"
-                        : currentLang === "en"
-                        ? "ERROR — TRY AGAIN"
-                        : "发送失败 — 请重试";
-
-                    button.style.background = "transparent";
-                    button.style.color = "#ff6b6b";
-                }
-
-                setTimeout(() => {
-                    if (!button) return;
-                    button.textContent = original;
-                    button.style.background = "";
-                    button.style.color = "";
-                    button.disabled = false;
-                }, 3500);
-            }
-        }
-    );
-}
-
-
-/* ==================================================
    INITIAL LANGUAGE
 ================================================== */
 
-applyLanguage(currentLang);
+applyLanguage(
+    currentLang
+);
+
+
+/* ==================================================
+   INITIAL PARALLAX
+================================================== */
+
+updateParallax();
 
 </script>
 
