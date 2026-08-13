@@ -8,10 +8,6 @@
 
 <title>PRIVATE STATE</title>
 
-<!-- ==================================================
-     FAVICON
-================================================== -->
-
 <link
     rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23030504'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='monospace' font-size='22' font-weight='700' fill='%2342c86d'%3EP%C2%B7S%3C/text%3E%3C/svg%3E"
@@ -19,10 +15,6 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
-
-/* ==================================================
-   ROOT
-================================================== */
 
 :root{
     --bg:#030504;
@@ -41,10 +33,6 @@
 
     --ease:cubic-bezier(.16,1,.3,1);
 }
-
-/* ==================================================
-   RESET
-================================================== */
 
 *{
     box-sizing:border-box;
@@ -90,9 +78,7 @@ a{
     color:inherit;
 }
 
-/* ==================================================
-   PRELOADER
-================================================== */
+/* PRELOADER */
 
 .preloader{
     position:fixed;
@@ -159,9 +145,7 @@ a{
     font:8px "Space Mono",monospace;
 }
 
-/* ==================================================
-   BACKGROUND
-================================================== */
+/* BACKGROUND */
 
 .background{
     position:fixed;
@@ -266,9 +250,7 @@ a{
     to{transform:translateY(65vh)}
 }
 
-/* ==================================================
-   HEADER
-================================================== */
+/* HEADER */
 
 .header{
     position:fixed;
@@ -319,6 +301,13 @@ a{
     box-shadow:0 0 13px rgba(66,200,109,.55);
 
     animation:pulse 2.8s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        opacity:.55;
+        transform:scale(.8);
+    }
 }
 
 .logo-state{
@@ -384,9 +373,7 @@ a{
     height:14px;
 }
 
-/* ==================================================
-   GLOBAL
-================================================== */
+/* GLOBAL */
 
 main{
     position:relative;
@@ -440,9 +427,7 @@ h2{
     line-height:1.75;
 }
 
-/* ==================================================
-   HERO
-================================================== */
+/* HERO */
 
 .hero{
     min-height:100svh;
@@ -591,9 +576,7 @@ h2{
     to{transform:translateX(100%)}
 }
 
-/* ==================================================
-   INTRO
-================================================== */
+/* INTRO */
 
 .intro{
     min-height:90vh;
@@ -630,9 +613,7 @@ h2{
     line-height:1.8;
 }
 
-/* ==================================================
-   STATES
-================================================== */
+/* STATES */
 
 .states{
     min-height:auto;
@@ -780,9 +761,57 @@ h2{
     letter-spacing:.18em;
 }
 
-/* ==================================================
-   PHONE
-================================================== */
+/* DURATION */
+
+.duration-pricing{
+    margin-top:18px;
+    padding:22px 25px;
+
+    border:1px solid var(--border);
+
+    background:rgba(5,9,6,.45);
+}
+
+.duration-pricing-title{
+    margin-bottom:18px;
+
+    color:#566159;
+
+    font:9px "Space Mono",monospace;
+    letter-spacing:.15em;
+}
+
+.duration-pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.duration-pricing-grid div{
+    min-height:70px;
+
+    padding:15px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.duration-pricing-grid span{
+    color:#737e76;
+
+    font:8px "Space Mono",monospace;
+}
+
+.duration-pricing-grid strong{
+    color:var(--green);
+
+    font:11px "Space Mono",monospace;
+}
+
+/* PHONE */
 
 .phone-section{
     overflow:hidden;
@@ -941,9 +970,7 @@ h2{
     cursor:pointer;
 }
 
-/* ==================================================
-   PROTOCOL
-================================================== */
+/* PROTOCOL */
 
 .protocol{
     margin-top:45px;
@@ -976,9 +1003,7 @@ h2{
     line-height:1.6;
 }
 
-/* ==================================================
-   CONCIERGE
-================================================== */
+/* CONCIERGE */
 
 .concierge{
     background:
@@ -1041,9 +1066,7 @@ h2{
     line-height:1.7;
 }
 
-/* ==================================================
-   SERVICES
-================================================== */
+/* SERVICES */
 
 .services{
     min-height:auto;
@@ -1105,9 +1128,7 @@ h2{
     line-height:1.7;
 }
 
-/* ==================================================
-   LOCATION
-================================================== */
+/* LOCATION */
 
 .location{
     min-height:90vh;
@@ -1234,9 +1255,7 @@ h2{
     color:#58645b;
 }
 
-/* ==================================================
-   FINAL CTA
-================================================== */
+/* FINAL */
 
 .final{
     min-height:90vh;
@@ -1271,9 +1290,7 @@ h2{
     line-height:1.75;
 }
 
-/* ==================================================
-   TELEGRAM CTA
-================================================== */
+/* TELEGRAM */
 
 .telegram-cta{
     display:flex;
@@ -1333,9 +1350,7 @@ h2{
     color:var(--green);
 }
 
-/* ==================================================
-   FOOTER
-================================================== */
+/* FOOTER */
 
 footer{
     min-height:100px;
@@ -1357,9 +1372,7 @@ footer span{
     color:var(--green);
 }
 
-/* ==================================================
-   REVEAL
-================================================== */
+/* REVEAL */
 
 .reveal{
     opacity:0;
@@ -1375,9 +1388,7 @@ footer span{
     transform:translateY(0);
 }
 
-/* ==================================================
-   MOBILE
-================================================== */
+/* MOBILE */
 
 @media(max-width:900px){
 
@@ -1423,10 +1434,26 @@ footer span{
 
     .header{
         height:68px;
+        padding:0 4vw;
     }
 
     .languages{
-        display:none;
+        display:flex;
+        gap:0;
+    }
+
+    .languages button{
+        padding:4px;
+        font-size:8px;
+    }
+
+    .header-right{
+        gap:8px;
+    }
+
+    .telegram-header{
+        width:33px;
+        height:33px;
     }
 
     .hero h1{
@@ -1448,6 +1475,10 @@ footer span{
 
     .state-card{
         min-height:500px;
+    }
+
+    .duration-pricing-grid{
+        grid-template-columns:1fr 1fr;
     }
 
     .services-grid{
@@ -1506,9 +1537,7 @@ footer span{
 
 <body>
 
-<!-- ==================================================
-     PRELOADER
-================================================== -->
+<!-- PRELOADER -->
 
 <div class="preloader" id="preloader">
 
@@ -1535,10 +1564,7 @@ footer span{
 
 </div>
 
-
-<!-- ==================================================
-     BACKGROUND
-================================================== -->
+<!-- BACKGROUND -->
 
 <div class="background">
 
@@ -1556,10 +1582,7 @@ footer span{
 
 </div>
 
-
-<!-- ==================================================
-     HEADER
-================================================== -->
+<!-- HEADER -->
 
 <header class="header" id="header">
 
@@ -1573,7 +1596,6 @@ footer span{
         </span>
 
     </a>
-
 
     <div class="header-right">
 
@@ -1594,7 +1616,6 @@ footer span{
             </button>
 
         </div>
-
 
         <a
             href="https://t.me/kaipovich"
@@ -1621,12 +1642,9 @@ footer span{
 
 </header>
 
-
 <main id="top">
 
-<!-- ==================================================
-     HERO
-================================================== -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -1642,11 +1660,9 @@ footer span{
 
         </div>
 
-
         <h1 class="reveal">
 
-            <span
-                data-i18n="heroLine1">
+            <span data-i18n="heroLine1">
                 БУДЬ
             </span>
 
@@ -1658,7 +1674,6 @@ footer span{
 
         </h1>
 
-
         <div class="typewriter reveal">
 
             <span id="typewriter"></span>
@@ -1669,7 +1684,6 @@ footer span{
 
     </div>
 
-
     <div class="hero-bottom">
 
         <div class="hero-price">
@@ -1679,11 +1693,10 @@ footer span{
             </span>
 
             <strong>
-                35 000 ₽ / 24 Ч
+                39 000 ₽ / 24 Ч
             </strong>
 
         </div>
-
 
         <div class="scroll-indicator">
 
@@ -1699,10 +1712,7 @@ footer span{
 
 </section>
 
-
-<!-- ==================================================
-     INTRO
-================================================== -->
+<!-- INTRO -->
 
 <section class="intro">
 
@@ -1723,7 +1733,6 @@ footer span{
                 </span>
 
             </div>
-
 
             <div class="intro-info reveal">
 
@@ -1754,10 +1763,7 @@ footer span{
 
 </section>
 
-
-<!-- ==================================================
-     STATES
-================================================== -->
+<!-- STATES -->
 
 <section class="states">
 
@@ -1780,7 +1786,6 @@ footer span{
 
             </div>
 
-
             <div class="states-note">
                 MOSCOW REGION<br>
                 PRIVATE LOCATIONS<br>
@@ -1789,9 +1794,7 @@ footer span{
 
         </div>
 
-
         <div class="state-grid">
-
 
             <!-- OFFLINE -->
 
@@ -1806,7 +1809,7 @@ footer span{
                 </div>
 
                 <div class="card-price">
-                    35 000 ₽ / 24 ЧАСА
+                    39 000 ₽ / 24 ЧАСА
                 </div>
 
                 <p
@@ -1839,16 +1842,14 @@ footer span{
                 </ul>
 
                 <a
-                    href="https://t.me/kaipovich?text=PRIVATE%20STATE%20—%20OFFLINE"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
+                    data-format="offline"
                     class="card-cta"
                     data-i18n="select">
                     ВЫБРАТЬ →
                 </a>
 
             </article>
-
 
             <!-- DARKNESS -->
 
@@ -1863,7 +1864,7 @@ footer span{
                 </div>
 
                 <div class="card-price">
-                    65 000 ₽ / 24 ЧАСА
+                    69 000 ₽ / 24 ЧАСА
                 </div>
 
                 <p
@@ -1895,16 +1896,14 @@ footer span{
                 </ul>
 
                 <a
-                    href="https://t.me/kaipovich?text=PRIVATE%20STATE%20—%20DARKNESS"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
+                    data-format="darkness"
                     class="card-cta"
                     data-i18n="select">
                     ВЫБРАТЬ →
                 </a>
 
             </article>
-
 
             <!-- PRIVATE -->
 
@@ -1919,7 +1918,7 @@ footer span{
                 </div>
 
                 <div class="card-price">
-                    ОТ 120 000 ₽ / 24 ЧАСА
+                    ОТ 129 000 ₽ / 24 ЧАСА
                 </div>
 
                 <p
@@ -1952,9 +1951,8 @@ footer span{
                 </ul>
 
                 <a
-                    href="https://t.me/kaipovich?text=PRIVATE%20STATE%20—%20PRIVATE"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
+                    data-format="private"
                     class="card-cta"
                     data-i18n="request">
                     ЗАПРОСИТЬ →
@@ -1964,14 +1962,67 @@ footer span{
 
         </div>
 
+        <!-- DURATION -->
+
+        <div class="duration-pricing reveal">
+
+            <div
+                class="duration-pricing-title"
+                data-i18n="durationTitle">
+                ПРОДОЛЖИТЕЛЬНОСТЬ
+            </div>
+
+            <div class="duration-pricing-grid">
+
+                <div>
+                    <span data-i18n="duration24">
+                        24 ЧАСА
+                    </span>
+
+                    <strong>
+                        ×1
+                    </strong>
+                </div>
+
+                <div>
+                    <span data-i18n="duration48">
+                        48 ЧАСОВ
+                    </span>
+
+                    <strong>
+                        ×1.8
+                    </strong>
+                </div>
+
+                <div>
+                    <span data-i18n="duration72">
+                        72 ЧАСА
+                    </span>
+
+                    <strong>
+                        ×2.5
+                    </strong>
+                </div>
+
+                <div>
+                    <span data-i18n="durationIndividual">
+                        ИНДИВИДУАЛЬНО
+                    </span>
+
+                    <strong data-i18n="durationRequest">
+                        ПО ЗАПРОСУ
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
 </section>
 
-
-<!-- ==================================================
-     PHONE
-================================================== -->
+<!-- PHONE -->
 
 <section class="phone-section">
 
@@ -1979,16 +2030,13 @@ footer span{
 
         <div class="phone-grid">
 
-
             <div class="phone-stage reveal">
 
                 <div class="phone-orbit"></div>
 
-
                 <div class="phone">
 
                     <div class="phone-notch"></div>
-
 
                     <div class="phone-screen">
 
@@ -2014,7 +2062,6 @@ footer span{
 
                     </div>
 
-
                     <div
                         class="phone-click"
                         id="phoneClick">
@@ -2023,7 +2070,6 @@ footer span{
                 </div>
 
             </div>
-
 
             <div class="reveal">
 
@@ -2045,7 +2091,6 @@ footer span{
                     и хранится до окончания пребывания.
                     Обычные сообщения ждут вашего возвращения.
                 </p>
-
 
                 <div class="protocol">
 
@@ -2074,7 +2119,6 @@ footer span{
 
                     </div>
 
-
                     <div class="protocol-row">
 
                         <div class="protocol-number">
@@ -2100,7 +2144,6 @@ footer span{
 
                     </div>
 
-
                     <div class="protocol-row">
 
                         <div class="protocol-number">
@@ -2109,9 +2152,8 @@ footer span{
 
                         <div>
 
-                            <div
-                                class="protocol-title"
-                                data-i18n="important">
+                            <div class="protocol-title"
+                                 data-i18n="important">
                                 Важное
                             </div>
 
@@ -2136,10 +2178,7 @@ footer span{
 
 </section>
 
-
-<!-- ==================================================
-     CONCIERGE
-================================================== -->
+<!-- CONCIERGE -->
 
 <section class="concierge">
 
@@ -2150,7 +2189,6 @@ footer span{
             <div class="concierge-number reveal">
                 02
             </div>
-
 
             <div class="concierge-copy reveal">
 
@@ -2171,7 +2209,6 @@ footer span{
                     остаётся на связи с внешним миром
                     и отсеивает обычный информационный шум.
                 </p>
-
 
                 <div class="concierge-box">
 
@@ -2195,10 +2232,7 @@ footer span{
 
 </section>
 
-
-<!-- ==================================================
-     SERVICES
-================================================== -->
+<!-- SERVICES -->
 
 <section class="services">
 
@@ -2210,14 +2244,12 @@ footer span{
             ОРГАНИЗОВАНО ПОД ВАС
         </div>
 
-
         <h2
             class="reveal"
             data-i18n="servicesTitle">
             Вам не нужно<br>
             думать о деталях.
         </h2>
-
 
         <p
             class="lead reveal"
@@ -2227,9 +2259,7 @@ footer span{
             согласуются заранее.
         </p>
 
-
         <div class="services-grid">
-
 
             <div class="service reveal">
 
@@ -2252,7 +2282,6 @@ footer span{
 
             </div>
 
-
             <div class="service reveal">
 
                 <div class="service-icon">
@@ -2274,7 +2303,6 @@ footer span{
 
             </div>
 
-
             <div class="service reveal">
 
                 <div class="service-icon">
@@ -2295,7 +2323,6 @@ footer span{
                 </div>
 
             </div>
-
 
             <div class="service reveal">
 
@@ -2324,10 +2351,7 @@ footer span{
 
 </section>
 
-
-<!-- ==================================================
-     LOCATION
-================================================== -->
+<!-- LOCATION -->
 
 <section class="location">
 
@@ -2339,14 +2363,12 @@ footer span{
             ПРОТОКОЛ ПРИБЫТИЯ
         </div>
 
-
         <h2
             class="reveal"
             data-i18n="arrivalTitle">
             Вы можете приехать сами.<br>
             Или мы организуем прибытие.
         </h2>
-
 
         <p
             class="lead reveal"
@@ -2356,7 +2378,6 @@ footer span{
             маршрут и остальные детали.
             Конкретная локация не публикуется открыто.
         </p>
-
 
         <div class="map reveal">
 
@@ -2370,7 +2391,6 @@ footer span{
             <div class="road second"></div>
 
             <div class="map-pin"></div>
-
 
             <div class="map-label">
 
@@ -2388,10 +2408,7 @@ footer span{
 
 </section>
 
-
-<!-- ==================================================
-     FINAL CTA
-================================================== -->
+<!-- FINAL CTA -->
 
 <section class="final" id="request">
 
@@ -2402,7 +2419,6 @@ footer span{
             data-i18n="finalState">
             ФИНАЛЬНЫЙ ШАГ
         </div>
-
 
         <h2 class="final-title reveal">
 
@@ -2420,7 +2436,6 @@ footer span{
 
         </h2>
 
-
         <p
             class="final-description reveal"
             data-i18n="finalText">
@@ -2430,10 +2445,10 @@ footer span{
             лично в Telegram.
         </p>
 
-
         <a
             class="telegram-cta reveal"
-            href="https://t.me/kaipovich?text=PRIVATE%20STATE%20—%20хочу%20узнать%20подробнее"
+            id="mainTelegram"
+            href="https://t.me/kaipovich"
             target="_blank"
             rel="noopener noreferrer">
 
@@ -2454,7 +2469,6 @@ footer span{
             </span>
 
         </a>
-
 
         <div class="telegram-direct">
 
@@ -2477,10 +2491,7 @@ footer span{
 
 </main>
 
-
-<!-- ==================================================
-     FOOTER
-================================================== -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -2498,15 +2509,9 @@ footer span{
 
 </footer>
 
-
 <script>
 
-/* ==================================================
-   CONFIG
-================================================== */
-
 const TELEGRAM_USERNAME = "kaipovich";
-
 
 /* ==================================================
    TRANSLATIONS
@@ -2553,7 +2558,7 @@ ru:{
         "Три способа<br>стать недоступным.",
 
     offlineDesc:
-        "Базовый формат полного цифрового отключения. Вы приезжаете в подготовленное пространство, передаёте телефон concierge и перестаёте быть доступным.",
+        "24 часа вне информационного шума. Приватная локация, трансфер и базовое сопровождение. Телефон передаётся concierge на время пребывания.",
 
     offline1:
         "Подготовленная локация",
@@ -2568,7 +2573,7 @@ ru:{
         "Связь только при важном событии",
 
     darknessDesc:
-        "Более глубокое отключение. Больше приватности, индивидуальная организация и расширенное сопровождение.",
+        "Более глубокий формат приватности. Индивидуально подготовленная локация, расширенное сопровождение и сценарий пребывания без необходимости заниматься организацией самостоятельно.",
 
     darkness1:
         "Индивидуальная подготовка",
@@ -2583,7 +2588,7 @@ ru:{
         "Дополнительные пожелания",
 
     privateDesc:
-        "Полностью индивидуальный сценарий. Локация, маршрут, сопровождение и детали пребывания создаются под конкретного клиента.",
+        "Полностью индивидуальный формат. Локация, маршрут, трансфер, сценарий и сопровождение собираются персонально под клиента.",
 
     private1:
         "Индивидуальная локация",
@@ -2602,6 +2607,24 @@ ru:{
 
     request:
         "ЗАПРОСИТЬ →",
+
+    durationTitle:
+        "ПРОДОЛЖИТЕЛЬНОСТЬ",
+
+    duration24:
+        "24 ЧАСА",
+
+    duration48:
+        "48 ЧАСОВ",
+
+    duration72:
+        "72 ЧАСА",
+
+    durationIndividual:
+        "ИНДИВИДУАЛЬНО",
+
+    durationRequest:
+        "ПО ЗАПРОСУ",
 
     phoneProtocol:
         "ПРОТОКОЛ ТЕЛЕФОНА",
@@ -2746,7 +2769,7 @@ en:{
         "Three ways<br>to become unavailable.",
 
     offlineDesc:
-        "The essential digital disconnect. Arrive at a prepared private space, hand your phone to the concierge and become unavailable.",
+        "24 hours outside the information noise. A private location, transfer and basic support. Your phone is held by the concierge during your stay.",
 
     offline1:
         "Prepared location",
@@ -2761,7 +2784,7 @@ en:{
         "Contact only when truly important",
 
     darknessDesc:
-        "A deeper level of disconnection with increased privacy, individual organization and extended support.",
+        "A deeper privacy format. Individually prepared location, extended support and a complete stay scenario without the need to organize anything yourself.",
 
     darkness1:
         "Individual preparation",
@@ -2776,7 +2799,7 @@ en:{
         "Additional requests",
 
     privateDesc:
-        "A completely individual scenario. Location, route, support and details are created specifically for you.",
+        "A completely individual format. Location, route, transfer, scenario and support are assembled specifically for each client.",
 
     private1:
         "Individual location",
@@ -2795,6 +2818,24 @@ en:{
 
     request:
         "REQUEST →",
+
+    durationTitle:
+        "DURATION",
+
+    duration24:
+        "24 HOURS",
+
+    duration48:
+        "48 HOURS",
+
+    duration72:
+        "72 HOURS",
+
+    durationIndividual:
+        "INDIVIDUAL",
+
+    durationRequest:
+        "ON REQUEST",
 
     phoneProtocol:
         "THE PHONE PROTOCOL",
@@ -2939,7 +2980,7 @@ zh:{
         "三种方式<br>暂时离开世界。",
 
     offlineDesc:
-        "基础数字断联体验。抵达准备好的私人空间，将手机交给私人管家，暂时不再接收外界信息。",
+        "24小时远离信息噪音。私人地点、接送以及基础支持。体验期间，你的手机由私人管家保管。",
 
     offline1:
         "私人地点",
@@ -2954,7 +2995,7 @@ zh:{
         "仅在重要情况下联系",
 
     darknessDesc:
-        "更深层的断联体验。更高的隐私、更个性化的安排以及更完整的支持。",
+        "更深层的隐私体验。个性化准备的地点、更完整的支持，以及无需自行安排的完整体验方案。",
 
     darkness1:
         "个性化准备",
@@ -2969,7 +3010,7 @@ zh:{
         "额外需求",
 
     privateDesc:
-        "完全私人定制的体验。地点、路线、陪同以及所有细节均根据客户需求安排。",
+        "完全私人定制的体验。地点、路线、接送、方案以及支持均根据客户需求安排。",
 
     private1:
         "私人地点",
@@ -2988,6 +3029,24 @@ zh:{
 
     request:
         "申请 →",
+
+    durationTitle:
+        "体验时长",
+
+    duration24:
+        "24 小时",
+
+    duration48:
+        "48 小时",
+
+    duration72:
+        "72 小时",
+
+    durationIndividual:
+        "私人定制",
+
+    durationRequest:
+        "按需定制",
 
     phoneProtocol:
         "手机协议",
@@ -3095,7 +3154,6 @@ zh:{
 
 };
 
-
 /* ==================================================
    LANGUAGE
 ================================================== */
@@ -3108,7 +3166,6 @@ const translatable =
 
 let currentLanguage =
     localStorage.getItem("privateStateLang") || "ru";
-
 
 function applyLanguage(language){
 
@@ -3128,7 +3185,6 @@ function applyLanguage(language){
             ? "zh-CN"
             : language;
 
-
     languageButtons.forEach(button => {
 
         button.classList.toggle(
@@ -3138,10 +3194,8 @@ function applyLanguage(language){
 
     });
 
-
     const dictionary =
         translations[language];
-
 
     translatable.forEach(element => {
 
@@ -3157,55 +3211,114 @@ function applyLanguage(language){
 
     });
 
-
     updateTelegramLinks();
 
     startTypewriter();
-
 }
-
 
 /* ==================================================
    TELEGRAM LINKS
 ================================================== */
 
+const telegramMessages = {
+
+    ru:{
+        offline:
+            "PRIVATE STATE — OFFLINE",
+
+        darkness:
+            "PRIVATE STATE — DARKNESS",
+
+        private:
+            "PRIVATE STATE — PRIVATE",
+
+        general:
+            "PRIVATE STATE — хочу узнать подробнее"
+    },
+
+    en:{
+        offline:
+            "PRIVATE STATE — OFFLINE",
+
+        darkness:
+            "PRIVATE STATE — DARKNESS",
+
+        private:
+            "PRIVATE STATE — PRIVATE",
+
+        general:
+            "PRIVATE STATE — I would like to know more"
+    },
+
+    zh:{
+        offline:
+            "PRIVATE STATE — 离线模式",
+
+        darkness:
+            "PRIVATE STATE — 深度静默",
+
+        private:
+            "PRIVATE STATE — 私人定制",
+
+        general:
+            "PRIVATE STATE — 我想了解更多"
+    }
+
+};
+
+function makeTelegramUrl(message){
+
+    return (
+        "https://t.me/" +
+        TELEGRAM_USERNAME +
+        "?text=" +
+        encodeURIComponent(message)
+    );
+
+}
+
 function updateTelegramLinks(){
 
-    const messages = {
-
-        ru:
-            "PRIVATE STATE — хочу узнать подробнее",
-
-        en:
-            "PRIVATE STATE — I would like to know more",
-
-        zh:
-            "PRIVATE STATE — 我想了解更多"
-
-    };
-
-
-    const message =
-        encodeURIComponent(
-            messages[currentLanguage]
-        );
-
-
     document
-        .querySelectorAll('a[href*="t.me/kaipovich"]')
+        .querySelectorAll("[data-format]")
         .forEach(link => {
 
-            const base =
-                "https://t.me/" +
-                TELEGRAM_USERNAME;
+            const format =
+                link.dataset.format;
+
+            const message =
+                telegramMessages[currentLanguage][format];
 
             link.href =
-                base + "?text=" + message;
+                makeTelegramUrl(message);
+
+        });
+
+    const mainTelegram =
+        document.getElementById("mainTelegram");
+
+    if(mainTelegram){
+
+        mainTelegram.href =
+            makeTelegramUrl(
+                telegramMessages[currentLanguage].general
+            );
+
+    }
+
+    document
+        .querySelectorAll(
+            '.telegram-header, .telegram-direct a'
+        )
+        .forEach(link => {
+
+            link.href =
+                "https://t.me/" +
+                TELEGRAM_USERNAME;
 
         });
 
 }
-
 
 languageButtons.forEach(button => {
 
@@ -3222,14 +3335,12 @@ languageButtons.forEach(button => {
 
 });
 
-
 /* ==================================================
    TYPEWRITER
 ================================================== */
 
 const typewriter =
     document.getElementById("typewriter");
-
 
 const typewriterTexts = {
 
@@ -3244,9 +3355,7 @@ const typewriterTexts = {
 
 };
 
-
 let typewriterTimer;
-
 
 function startTypewriter(){
 
@@ -3257,9 +3366,7 @@ function startTypewriter(){
     const text =
         typewriterTexts[currentLanguage];
 
-
     let index = 0;
-
 
     function write(){
 
@@ -3282,12 +3389,10 @@ function startTypewriter(){
 
     }
 
-
     typewriterTimer =
         setTimeout(write,250);
 
 }
-
 
 /* ==================================================
    PRELOADER
@@ -3305,7 +3410,6 @@ const prePercent =
 let loaderValue = 0;
 let loaderFinished = false;
 
-
 function finishPreloader(){
 
     if(loaderFinished){
@@ -3320,7 +3424,6 @@ function finishPreloader(){
     prePercent.textContent =
         "100%";
 
-
     setTimeout(() => {
 
         preloader.classList.add("hide");
@@ -3329,13 +3432,11 @@ function finishPreloader(){
 
 }
 
-
 const loaderInterval =
     setInterval(() => {
 
         loaderValue +=
             Math.random() * 8 + 4;
-
 
         if(loaderValue >= 94){
 
@@ -3352,7 +3453,6 @@ const loaderInterval =
 
         }
 
-
         preProgress.style.width =
             loaderValue + "%";
 
@@ -3360,7 +3460,6 @@ const loaderInterval =
             Math.floor(loaderValue) + "%";
 
     },120);
-
 
 window.addEventListener(
     "load",
@@ -3374,12 +3473,10 @@ window.addEventListener(
     }
 );
 
-
 setTimeout(
     finishPreloader,
     4500
 );
-
 
 /* ==================================================
    HEADER
@@ -3387,7 +3484,6 @@ setTimeout(
 
 const header =
     document.getElementById("header");
-
 
 function updateHeader(){
 
@@ -3398,13 +3494,11 @@ function updateHeader(){
 
 }
 
-
 window.addEventListener(
     "scroll",
     updateHeader,
     {passive:true}
 );
-
 
 /* ==================================================
    BACKGROUND PARALLAX
@@ -3425,34 +3519,28 @@ const mapGrid =
         "mapGrid"
     );
 
-
 let parallaxTick = false;
-
 
 function updateParallax(){
 
     const y =
         window.scrollY;
 
-
     backgroundGrid.style.setProperty(
         "--grid-y",
         `${y * -.045}px`
     );
-
 
     backgroundOrb.style.setProperty(
         "--orb-scale",
         `${1 + Math.min(y / 16000,.045)}`
     );
 
-
     if(mapGrid){
 
         const rect =
             mapGrid.parentElement
                 .getBoundingClientRect();
-
 
         mapGrid.style.setProperty(
             "--map-y",
@@ -3461,11 +3549,9 @@ function updateParallax(){
 
     }
 
-
     parallaxTick = false;
 
 }
-
 
 window.addEventListener(
     "scroll",
@@ -3484,7 +3570,6 @@ window.addEventListener(
     },
     {passive:true}
 );
-
 
 /* ==================================================
    REVEAL
@@ -3518,7 +3603,6 @@ const revealObserver =
         }
     );
 
-
 document
     .querySelectorAll(".reveal")
     .forEach(element => {
@@ -3526,7 +3610,6 @@ document
         revealObserver.observe(element);
 
     });
-
 
 /* ==================================================
    PHONE INTERACTION
@@ -3541,9 +3624,7 @@ const phoneClick =
 const signalText =
     document.getElementById("signalText");
 
-
 let phoneOffline = false;
-
 
 phoneClick.addEventListener(
     "click",
@@ -3551,7 +3632,6 @@ phoneClick.addEventListener(
 
         phoneOffline =
             !phoneOffline;
-
 
         if(phoneOffline){
 
@@ -3578,7 +3658,6 @@ phoneClick.addEventListener(
     }
 );
 
-
 /* ==================================================
    PHONE MOUSE PARALLAX
 ================================================== */
@@ -3591,7 +3670,6 @@ document.addEventListener(
             return;
         }
 
-
         const x =
             (
                 event.clientX /
@@ -3599,14 +3677,12 @@ document.addEventListener(
                 - .5
             ) * 14;
 
-
         const y =
             (
                 event.clientY /
                 window.innerHeight
                 - .5
             ) * 10;
-
 
         phone.style.setProperty(
             "--px",
@@ -3620,7 +3696,6 @@ document.addEventListener(
 
     }
 );
-
 
 /* ==================================================
    INITIALIZE
