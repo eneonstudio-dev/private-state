@@ -4,7 +4,7 @@ const pkgs=[{id:"offline",code:"01 / OFFLINE",name:"OFFLINE",price:"39 000 \u20b
 const gallery=[["/images/hero.jpg","01 \u00b7 FOREST"],["/images/house.jpg","02 \u00b7 VILLA"],["/images/house-2.jpg","03 \u00b7 NIGHT"],["/images/house-3.jpg","04 \u00b7 GLASS"],["/images/house-private.jpg","05 \u00b7 PRIVATE"],["/images/house-4.jpg","06 \u00b7 WATER"],["/images/pool.jpg","07 \u00b7 POOL"],["/images/spa.jpg","08 \u00b7 SPA"]];
 const protocol=[["p1","/images/hero.jpg"],["p2","/images/house-5.jpg"],["p3","/images/phone.jpg"],["p4","/images/spa.jpg"],["p5","/images/security.jpg"]];
 let lang="ru", gi=0, pi=0, offline=false, typingTimer;
-function asset(p){p=String(p||"");return (window.A&&window.A[p])||p.replace(/^\/?images\//,"").replace(/^\//,"")}
+function asset(p){p=String(p||"");if(window.A&&window.A[p])return window.A[p];return p.replace(/^\/?(images|video)\//,"").replace(/^\//,"")}
 function tr(k){return (T[lang]&&T[lang][k])||k}
 function href(id,url){const e=document.getElementById(id);if(e)e.href=url}
 function render(){document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(e=>e.textContent=tr(e.dataset.t));
@@ -27,6 +27,7 @@ let touchStart=null;document.getElementById("gallery").addEventListener("touchst
 setInterval(()=>setGallery(gi+1),4800);
 document.getElementById("toggle").onclick=()=>{offline=!offline;document.getElementById("toggle").classList.toggle("off",offline);renderPhone();document.getElementById("toggleText").textContent=offline?"OFFLINE":"NO SIGNAL"};
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.lang;render()});
-function setupMedia(){const poster=(id,p)=>{const e=document.getElementById(id);if(e)e.src=asset(p)};poster("spaPoster","/images/pool.jpg");poster("moscowPoster","/images/house-5.jpg");poster("phonePoster","/images/phone.jpg");poster("conciergeImg","/images/concierge-f.jpg");poster("securityImg","/images/security.jpg");poster("finalImg","/images/estate.jpg");const hv=document.getElementById("heroVideo");if(hv)hv.poster=asset("/images/hero.jpg")}
+function playVid(id,src){const v=document.getElementById(id);if(!v)return;v.src=asset(src);v.muted=true;v.playsInline=true;v.play().catch(()=>{})}
+function setupMedia(){const poster=(id,p)=>{const e=document.getElementById(id);if(e)e.src=asset(p)};poster("spaPoster","/images/pool.jpg");poster("moscowPoster","/images/house-5.jpg");poster("phonePoster","/images/phone.jpg");poster("conciergeImg","/images/concierge-f.jpg");poster("securityImg","/images/security.jpg");poster("finalImg","/images/estate.jpg");const hv=document.getElementById("heroVideo"),hs=document.getElementById("heroSource");if(hv){hv.poster=asset("/images/hero.jpg");if(hs){hs.src=asset("/video/estate.mp4");hv.load();hv.play().catch(()=>{});hv.onended=()=>{hs.src=asset("/video/spa.mp4");hv.load();hv.play().catch(()=>{})}}else{playVid("heroVideo","/video/estate.mp4")}}playVid("spaVideo","/video/spa.mp4");playVid("moscowVideo","/video/moscow.mp4");playVid("phoneVideo","/video/phone.mp4")}
 render();setupMedia();
 setTimeout(()=>{const b=document.getElementById("boot");if(b)b.classList.add("hide")},3000);
