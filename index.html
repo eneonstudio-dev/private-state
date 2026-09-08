@@ -32,43 +32,42 @@ h1,h2,h3,p{margin:0}h2{font-size:clamp(40px,6.6vw,84px);line-height:.94;letter-s
 .type{max-width:680px;margin-top:28px;min-height:48px;font:clamp(12px,1.3vw,16px)/1.65 "Space Mono";color:var(--muted)}
 .hero-bottom{position:absolute;left:5vw;right:5vw;bottom:26px;z-index:2;display:flex;justify-content:space-between;font:9px "Space Mono";color:var(--dim)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:end}
-.quote{font-size:clamp(32px,4.8vw,64px);line-height:1.02;letter-spacing:-.05em}
+.quote{font-size:clamp(32px,4.8vw,64px);line-height:1.02}
 .quote span{display:block;color:var(--muted);margin-top:10px}
 .intro p{font-size:15px;line-height:1.8;color:var(--muted);max-width:600px}.intro p+p{margin-top:16px}
 .gallery{position:relative;border:1px solid var(--border);overflow:hidden}
 .gallery img{display:block;width:100%;aspect-ratio:16/8.6;object-fit:cover}
 .gallery-bar{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 14px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(transparent,rgba(3,5,4,.95));font:10px "Space Mono"}
-.gallery-btns,.pager{display:flex;gap:7px}
-.gallery-btns button{min-width:40px;height:40px;border:1px solid var(--border);background:rgba(3,5,4,.5);cursor:pointer}
-.pager button{width:16px;height:5px;padding:0;background:var(--dim);cursor:pointer}
-.pager button.active{background:var(--green)}
+.pager,.gallery-btns{display:flex;gap:7px}
+.gallery-btns button{min-width:40px;height:40px;border:1px solid var(--border);cursor:pointer}
+.pager button{width:16px;height:5px;padding:0;background:var(--dim);cursor:pointer}.pager button.active{background:var(--green)}
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}
 .card{position:relative;overflow:hidden;border:1px solid var(--border);min-height:380px}
 .card.epic{grid-column:1/-1;min-height:300px}
 .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.38}
 .card .inner{position:relative;padding:26px;background:linear-gradient(90deg,rgba(3,5,4,.88),rgba(3,5,4,.42));height:100%}
 .code{font:10px "Space Mono";letter-spacing:.13em;color:var(--green)}
-.card h3{font-size:clamp(34px,4.8vw,54px);font-weight:500;letter-spacing:-.06em;margin-top:48px}
+.card h3{font-size:clamp(34px,4.8vw,54px);font-weight:500;margin-top:48px}
 .price{font:13px "Space Mono";color:var(--green);margin-top:8px}
-.desc{max-width:640px;color:var(--muted);line-height:1.65;font-size:14px;margin-top:18px}
+.desc{color:var(--muted);line-height:1.65;font-size:14px;margin-top:18px}
 .features{list-style:none;padding:0;margin:18px 0 0}
 .features li{padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted)}
 .cta-link{display:inline-block;margin-top:22px;font:10px "Space Mono";letter-spacing:.14em;text-decoration:none}
 .opt{margin-top:16px;border:1px solid var(--border);background:var(--surface);padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;cursor:pointer}
 .opt.on{border-color:var(--green)}
-.opt-copy p{font-size:13px;line-height:1.65;color:var(--muted);max-width:640px}
+.opt-copy p{font-size:13px;line-height:1.65;color:var(--muted)}
 .switch{flex:0 0 56px;width:56px;height:30px;border-radius:20px;border:1px solid var(--dim);position:relative}
 .switch i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--dim);transition:.25s}
 .opt.on .switch{border-color:var(--green)}.opt.on .switch i{left:29px;background:var(--green)}
 .coach-panel{display:none;margin-top:12px;border:1px solid var(--green);overflow:hidden}
 .coach-panel.open{display:grid;grid-template-columns:.9fr 1.1fr}
-.coach-panel img{width:100%;height:100%;min-height:240px;object-fit:cover;object-position:top}
+.coach-panel img{width:100%;min-height:240px;object-fit:cover;object-position:top}
 .coach-body{padding:22px}
 .svc{padding:12px 0;border-bottom:1px solid var(--border)}
-.svc .d{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.55}
+.svc .d{font-size:12px;color:var(--muted);margin-top:4px}
 .extras{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .extra{border:1px solid var(--border);min-height:220px;position:relative;overflow:hidden}
-.extra img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
+.extra img,.extra video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
 .extra .pad{position:relative;padding:20px;height:100%;background:linear-gradient(0deg,rgba(3,5,4,.92),rgba(3,5,4,.2))}
 .lead{max-width:650px;color:var(--muted);line-height:1.75;font-size:15px;margin-top:22px}
 .fullmedia{min-height:92svh;position:relative;display:flex;align-items:flex-end;overflow:hidden}
@@ -81,11 +80,13 @@ h1,h2,h3,p{margin:0}h2{font-size:clamp(40px,6.6vw,84px);line-height:.94;letter-s
 .steps button{min-height:54px;text-align:left;border:1px solid var(--border);padding:0 14px;cursor:pointer;font:10px "Space Mono";display:flex;justify-content:space-between}
 .steps button.active{border-color:var(--green);color:var(--green)}
 .phone{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}
-.phone-stage{position:relative;border:1px solid var(--border);overflow:hidden}
-.phone-stage img,.phone-stage video{width:100%;min-height:360px;object-fit:cover;display:block}
-.toggle{position:absolute;right:14px;bottom:14px;width:86px;height:132px;border:2px solid var(--dim);border-radius:24px;background:rgba(3,5,4,.9);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.phone-stage{position:relative;border:1px solid var(--border);overflow:hidden;aspect-ratio:3/4;max-height:72vh;background:#050705}
+.phone-stage img,.phone-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.phone-stage video{z-index:1}.phone-stage img{z-index:0}
+@media(min-width:801px){.phone-stage video+img{opacity:0}}
+.toggle{position:absolute;z-index:3;right:14px;bottom:14px;width:86px;height:132px;border:2px solid var(--dim);border-radius:24px;background:rgba(3,5,4,.9);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .toggle.off{border-color:var(--green)}
-.portrait{max-width:620px;margin:36px auto 0;border:1px solid var(--border);position:relative;overflow:hidden}
+.portrait{max-width:620px;margin:36px auto 0;border:1px solid var(--border);position:relative;overflow:hidden;cursor:pointer}
 .portrait img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top}
 .portrait .label{position:absolute;bottom:0;left:0;right:0;padding:70px 18px 18px;background:linear-gradient(transparent,var(--bg))}
 .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:36px}
@@ -100,10 +101,9 @@ summary{list-style:none;cursor:pointer;display:flex;justify-content:space-betwee
 details p{padding:0 28px 18px 0;color:var(--muted);font-size:13px;line-height:1.7}
 .final{min-height:100svh;position:relative;display:grid;place-items:center;text-align:center;overflow:hidden}
 .final .content{position:relative;z-index:2;padding:90px 18px}
-.final h2{font-size:clamp(52px,11vw,148px)}
-.final h2 span{display:block;color:var(--green)}
+.final h2{font-size:clamp(52px,11vw,148px)}.final h2 span{display:block;color:var(--green)}
 .buttons{display:flex;flex-direction:column;gap:12px;width:min(400px,100%);margin:34px auto 0}
-.buttons a{min-height:54px;display:grid;place-items:center;border:1px solid var(--green);text-decoration:none;font:11px "Space Mono";letter-spacing:.14em}
+.buttons a{min-height:54px;display:grid;place-items:center;border:1px solid var(--green);text-decoration:none;font:11px "Space Mono"}
 .buttons a:first-child{background:var(--green);color:var(--bg)}
 footer{padding:24px 5vw 40px;display:flex;justify-content:space-between;font:9px "Space Mono";color:var(--dim)}
 .boot{position:fixed;inset:0;background:var(--bg);z-index:5000;display:grid;place-items:center;cursor:pointer}
@@ -112,35 +112,33 @@ footer{padding:24px 5vw 40px;display:flex;justify-content:space-between;font:9px
 .boot-status{font:10px "Space Mono";letter-spacing:.2em;color:var(--green)}
 .boot-logo{font-size:36px;font-weight:500;margin:26px 0}
 .boot-list{font:10px/2 "Space Mono";color:var(--muted)}
-.progress{height:1px;background:var(--border);margin-top:28px}
-.progress i{display:block;width:0;height:100%;background:var(--green);animation:load 2s linear forwards}
+.progress{height:1px;background:var(--border);margin-top:28px}.progress i{display:block;width:0;height:100%;background:var(--green);animation:load 2s linear forwards}
 @keyframes load{to{width:100%}}
-.skip{margin-top:18px;font:9px "Space Mono";letter-spacing:.14em;color:var(--dim)}
+.skip{margin-top:18px;font:9px "Space Mono";color:var(--dim)}
 @media(max-width:800px){section{padding:72px 5vw 44px}.grid2,.phone,.protocol,.coach-panel.open,.extras{grid-template-columns:1fr}.cards,.service-grid,.trust-grid{grid-template-columns:1fr}.hero h1{font-size:clamp(52px,15vw,92px)}.phone-stage video{display:none}}
-</style>
-</head>
+</style></head>
 <body>
 <div class="boot" id="boot"><div class="boot-in"><div class="boot-status" id="bootStatus">// PROTOCOL</div><div class="boot-logo">PRIVATE <span class="green">STATE</span></div><div class="mono dim" style="font-size:10px" id="bootWait">ОТКЛЮЧЕНИЕ</div><div class="boot-list"><div>01 <span id="b1">СВЯЗЬ</span></div><div>02 <span id="b2">ЛОКАЦИЯ</span></div><div>03 <span id="b3">ТИШИНА</span></div></div><div class="progress"><i></i></div><div class="skip">КОСНИтесь, ЧТОБЫ ВОЙТИ</div></div></div>
-<header class="header"><a class="logo" href="#top"><span>P</span><i class="dot"></i><span>S</span><span class="dim" style="margin-left:6px">PRIVATE STATE</span></a><nav class="nav"><div class="lang"><button data-lang="ru" class="active">RU</button><button data-lang="en">EN</button><button data-lang="zh">ZH</button></div><a class="icon" id="tgHead" href="https://t.me/+xFj65mXQpeFhYWNi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.5 3.4 18.2 20c-.2 1-.8 1.2-1.6.8l-4.4-3.3-2.1 2c-.2.3-.5.5-1 .5l.3-4.5 8.2-7.4c.4-.3 0-.5-.5-.2l-10 6.3-4.3-1.3c-.9-.3-.9-.9.2-1.3L20.2 2.6c.8-.3 1.5.2 1.3.8Z"/></svg></a><a class="icon" id="igHead" href="https://www.instagram.com/privatstate" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.7" r="1.2" fill="currentColor"/></svg></a></nav></header>
+<header class="header"><a class="logo" href="#top"><span>P</span><i class="dot"></i><span>S</span><span class="dim" style="margin-left:6px">PRIVATE STATE</span></a><nav class="nav"><div class="lang"><button data-lang="ru" class="active">RU</button><button data-lang="en">EN</button><button data-lang="zh">ZH</button></div><a class="icon" href="https://t.me/+xFj65mXQpeFhYWNi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.5 3.4 18.2 20c-.2 1-.8 1.2-1.6.8l-4.4-3.3-2.1 2c-.2.3-.5.5-1 .5l.3-4.5 8.2-7.4c.4-.3 0-.5-.5-.2l-10 6.3-4.3-1.3c-.9-.3-.9-.9.2-1.3L20.2 2.6c.8-.3 1.5.2 1.3.8Z"/></svg></a><a class="icon" href="https://www.instagram.com/privatstate" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.7" r="1.2" fill="currentColor"/></svg></a></nav></header>
 <main id="top">
-<section class="hero"><video class="hero-media" autoplay muted playsinline loop poster="hero.jpg"><source src="estate.mp4"></video><img class="hero-media" src="hero.jpg" alt=""><div class="shade"></div><div class="hero-content"><div class="eyebrow" style="display:flex;gap:10px;align-items:center"><span class="dot"></span><span data-t="kicker">ПРИВАТНЫЙ СЕРВИС · МОСКОВСКАЯ ОБЛАСТЬ</span></div><h1><span data-t="hero1">БУДЬ</span><span data-t="hero2">НЕДОСТУПЕН.</span></h1><p class="type" id="type"></p></div><div class="hero-bottom"><span>MOSCOW REGION</span><span data-t="scroll">ЛИСТАЙТЕ, ЧТОБЫ ОТКЛЮЧИТЬСЯ</span></div></section>
-<section class="intro"><div class="container grid2"><div><div class="eyebrow" data-t="concept">КОНЦЕПЦИЯ</div><div class="quote"><span data-t="quote1">Вам не нужно исчезать.</span><span data-t="quote2">Достаточно перестать быть доступным.</span></div></div><div><p data-t="intro1">PRIVATE STATE — организованное пребывание в цифровой тишине.</p><p data-t="intro2">Вы выбираете формат. Адрес — только после подтверждения.</p></div></div></section>
-<section><div class="container"><div class="eyebrow" data-t="swipe">СВАЙП · РЕЗИДЕНЦИИ</div><div class="gallery" id="gallery"><img id="galleryImg" src="hero.jpg" alt=""><div class="gallery-bar"><span id="galleryCap">01 · FOREST</span><div class="pager" id="pager"></div><div class="gallery-btns"><button type="button" id="prev">‹</button><button type="button" id="next">›</button></div></div></div></div></section>
-<section id="formats"><div class="container"><div class="eyebrow" data-t="choose">ВЫБЕРИТЕ ФОРМАТ</div><h2 data-t="three">Четыре способа стать недоступным.</h2><p class="mono dim" style="font-size:10px;margin-top:14px" data-t="note">MOSCOW REGION · ₽ RUB</p><div class="cards" id="cards"></div>
-<div class="opt" id="trainerOpt" role="switch" aria-checked="false" tabindex="0"><div class="opt-copy"><div class="code" data-t="coachCode">ОПЦИЯ · SHADOW COACH</div><p data-t="coachDesc">По желанию. План на бумаге или 90 минут на участке.</p><div class="price" data-t="coachPrice">+ 18 000 ₽</div></div><div class="switch"><i></i></div></div>
-<div class="coach-panel" id="coachPanel"><img src="security.jpg" alt=""><div class="coach-body"><div class="code" data-t="coachNow">СЕЙЧАС НА УЧАСТКЕ</div><h3 style="font-size:32px;margin:10px 0 8px">SHADOW COACH</h3><p class="muted" style="font-size:13px;line-height:1.65" data-t="coachLead">Появляется только если вы включили опцию.</p><div class="svc"><div data-t="cs1">01 · План на бумаге</div><div class="d" data-t="cs1t">Протокол на 72 часа.</div></div><div class="svc"><div data-t="cs2">02 · 90 минут на участке</div><div class="d" data-t="cs2t">Одна тихая сессия. Ушёл.</div></div><div class="svc"><div data-t="cs3">03 · Никакого коучинга</div><div class="d" data-t="cs3t">Не терапия и не ретрит.</div></div></div></div>
-<div class="extras"><article class="extra"><img src="house-5.jpg" alt=""><div class="pad"><div class="code" data-t="trCode">ОПЦИЯ · TRANSFER</div><h3 style="font-size:28px;margin-top:40px" data-t="trTitle">Чёрный трансфер</h3><p class="desc" data-t="trDesc">Сами или заберём. Без разговоров в салоне.</p></div></article><article class="extra"><img src="house-private.jpg" alt=""><div class="pad"><div class="code" data-t="chefCode">ОПЦИЯ · CHEF</div><h3 style="font-size:28px;margin-top:40px" data-t="chefTitle">Один ужин шефа</h3><p class="desc" data-t="chefDesc">Не меню на три дня. Один вечер в PRIVATE / SOVEREIGN.</p></div></article></div></div></section>
-<section class="fullmedia"><video class="cover" autoplay muted loop playsinline poster="pool.jpg"><source src="spa.mp4"></video><img class="cover" src="pool.jpg" alt=""><div class="shade"></div><div class="container content"><div class="eyebrow" data-t="cinema">РЕЗИДЕНЦИЯ</div><h2 data-t="cinemaTitle">Резиденция. Лес. Никого рядом.</h2><p class="lead" data-t="cinemaLead">Не дача и не отель.</p></div></section>
-<section id="protocol"><div class="container"><div class="eyebrow" data-t="protocol">КАК ЭТО РАБОТАЕТ</div><h2 data-t="protocolTitle">Пять кадров. Один сценарий.</h2><p class="lead" data-t="protocolLead">От запроса до тишины — без форм.</p><div class="protocol"><div class="film"><img id="filmImg" src="hero.jpg" alt=""><div class="film-info"><div class="mono green" style="font-size:10px" id="filmTitle"></div><p class="muted" style="font-size:13px;margin-top:8px" id="filmText"></p></div></div><div class="steps" id="steps"></div></div></div></section>
-<section><div class="container phone"><div class="phone-stage"><video autoplay muted loop playsinline poster="phone.jpg"><source src="phone.mp4"></video><img src="phone.jpg" alt=""><button class="toggle" id="toggle" type="button"><span class="green mono" id="toggleText">NO SIGNAL</span><span class="dim mono" style="font-size:9px;margin-top:10px">TAP</span></button></div><div><div class="eyebrow" data-t="phone">ПРОТОКОЛ ТЕЛЕФОНА</div><h2 style="font-size:clamp(36px,5vw,62px)" data-t="phoneTitle">Телефон остаётся. Вы — недоступны.</h2><p class="lead" data-t="phoneLead">Два ключа от сейфа.</p><div id="phoneSteps" style="margin-top:28px"></div></div></div></section>
-<section><div class="container"><div class="eyebrow" data-t="concierge">CONCIERGE</div><h2 style="max-width:850px;font-size:clamp(36px,5.2vw,68px)" data-t="conciergeTitle">Пока вы недоступны — кто-то остаётся доступен вместо вас.</h2><p class="lead" data-t="conciergeText">Один человек рядом.</p><div class="portrait"><img src="concierge-f.jpg" alt=""><div class="label"><div class="mono green" style="font-size:10px">● CONCIERGE</div><strong style="display:block;margin-top:7px;font-size:26px">ANNA</strong></div></div></div></section>
-<section><div class="container"><div class="eyebrow" data-t="built">ОРГАНИЗОВАНО ПОД ВАС</div><h2 data-t="servicesTitle">Вам не нужно думать о деталях.</h2><p class="lead" data-t="servicesLead">Сейф, analog kit, еда на 72 часа.</p><div class="service-grid" id="services"></div></div></section>
-<section class="fullmedia"><video class="cover" autoplay muted loop playsinline poster="house-5.jpg"><source src="moscow.mp4"></video><img class="cover" src="house-5.jpg" alt=""><div class="shade"></div><div class="container content"><div class="eyebrow" data-t="arrival">ПРОТОКОЛ ПРИБЫТИЯ</div><h2 data-t="arrivalTitle">Вы можете приехать сами. Или мы заберём вас.</h2><p class="lead" data-t="arrivalText">Адрес не публикуется.</p></div></section>
-<section><div class="container"><div class="eyebrow" data-t="trust">ПРОТОКОЛ</div><div class="trust-grid" id="trust"></div></div></section>
-<section id="faq"><div class="container"><div class="eyebrow">FAQ</div><h2 data-t="faqTitle">Коротко, без формы.</h2><p class="lead" data-t="faqLead">Остальное — в Telegram.</p><div class="faq-list" id="faqList"></div></div></section>
-<section class="final"><img class="cover" src="estate.jpg" alt=""><div class="shade"></div><div class="final content"><div class="eyebrow" data-t="final">ФИНАЛЬНЫЙ ШАГ</div><h2><span style="color:var(--fg)" data-t="ready">ГОТОВЫ</span><span data-t="disappear">ОТКЛЮЧИТЬСЯ?</span></h2><p class="lead" style="margin-left:auto;margin-right:auto" data-t="finalText">Никаких форм. Напишите в Telegram.</p><div class="buttons"><a id="tgFinal" href="https://t.me/+xFj65mXQpeFhYWNi" target="_blank" rel="noopener" data-t="tg">НАПИСАТЬ В TELEGRAM →</a><a id="igFinal" href="https://www.instagram.com/privatstate" target="_blank" rel="noopener" data-t="igWrite">НАПИСАТЬ В INSTAGRAM →</a></div></div></section>
+<section class="hero"><video class="hero-media" autoplay muted playsinline loop poster="hero.jpg"><source src="estate.mp4"></video><div class="shade"></div><div class="hero-content"><div class="eyebrow" style="display:flex;gap:10px;align-items:center"><span class="dot"></span><span data-t="kicker">ПРИВАТНЫЙ СЕРВИС</span></div><h1><span data-t="hero1">БУДЬ</span><span data-t="hero2">НЕДОСТУПЕН.</span></h1><p class="type" id="type"></p></div><div class="hero-bottom"><span>MOSCOW REGION</span><span data-t="scroll">ЛИСТАЙТЕ</span></div></section>
+<section class="intro"><div class="container grid2"><div><div class="eyebrow" data-t="concept">КОНЦЕПЦИЯ</div><div class="quote"><span data-t="quote1">Вам не нужно исчезать.</span><span data-t="quote2">Достаточно перестать быть доступным.</span></div></div><div><p data-t="intro1"></p><p data-t="intro2"></p></div></div></section>
+<section><div class="container"><div class="eyebrow" data-t="swipe"></div><div class="gallery" id="gallery"><img id="galleryImg" src="hero.jpg" alt=""><div class="gallery-bar"><span id="galleryCap">01 · FOREST</span><div class="pager" id="pager"></div><div class="gallery-btns"><button type="button" id="prev">‹</button><button type="button" id="next">›</button></div></div></div></div></section>
+<section id="formats"><div class="container"><div class="eyebrow" data-t="choose"></div><h2 data-t="three"></h2><p class="mono dim" style="font-size:10px;margin-top:14px" data-t="note"></p><div class="cards" id="cards"></div>
+<div class="opt" id="trainerOpt" role="switch" aria-checked="false" tabindex="0"><div class="opt-copy"><div class="code" data-t="coachCode"></div><p data-t="coachDesc"></p><div class="price" data-t="coachPrice"></div></div><div class="switch"><i></i></div></div>
+<div class="coach-panel" id="coachPanel"><img src="security.jpg" alt=""><div class="coach-body"><div class="code" data-t="coachNow"></div><h3 style="font-size:32px;margin:10px 0 8px">SHADOW COACH</h3><p class="muted" style="font-size:13px" data-t="coachLead"></p><div class="svc"><div data-t="cs1"></div><div class="d" data-t="cs1t"></div></div><div class="svc"><div data-t="cs2"></div><div class="d" data-t="cs2t"></div></div><div class="svc"><div data-t="cs3"></div><div class="d" data-t="cs3t"></div></div></div></div>
+<div class="extras"><article class="extra"><video autoplay muted loop playsinline poster="house-5.jpg"><source src="moscow.mp4"></video><img src="house-5.jpg" alt=""><div class="pad"><div class="code" data-t="trCode"></div><h3 style="font-size:28px;margin-top:40px" data-t="trTitle"></h3><p class="desc" data-t="trDesc"></p></div></article><article class="extra"><img src="house-private.jpg" alt=""><div class="pad"><div class="code" data-t="chefCode"></div><h3 style="font-size:28px;margin-top:40px" data-t="chefTitle"></h3><p class="desc" data-t="chefDesc"></p></div></article></div></div></section>
+<section class="fullmedia"><video class="cover" autoplay muted loop playsinline poster="pool.jpg"><source src="spa.mp4"></video><div class="shade"></div><div class="container content"><div class="eyebrow" data-t="cinema"></div><h2 data-t="cinemaTitle"></h2><p class="lead" data-t="cinemaLead"></p></div></section>
+<section id="protocol"><div class="container"><div class="eyebrow" data-t="protocol"></div><h2 data-t="protocolTitle"></h2><p class="lead" data-t="protocolLead"></p><div class="protocol"><div class="film"><img id="filmImg" src="hero.jpg" alt=""><div class="film-info"><div class="mono green" style="font-size:10px" id="filmTitle"></div><p class="muted" style="font-size:13px;margin-top:8px" id="filmText"></p></div></div><div class="steps" id="steps"></div></div></div></section>
+<section><div class="container phone"><div class="phone-stage"><video autoplay muted loop playsinline poster="phone.jpg"><source src="phone.mp4"></video><img src="phone.jpg" alt=""><button class="toggle" id="toggle" type="button"><span class="green mono" id="toggleText">NO SIGNAL</span><span class="dim mono" style="font-size:9px;margin-top:10px">TAP</span></button></div><div><div class="eyebrow" data-t="phone"></div><h2 style="font-size:clamp(36px,5vw,62px)" data-t="phoneTitle"></h2><p class="lead" data-t="phoneLead"></p><div id="phoneSteps" style="margin-top:28px"></div></div></div></section>
+<section><div class="container"><div class="eyebrow" data-t="concierge"></div><h2 style="max-width:850px;font-size:clamp(36px,5.2vw,68px)" data-t="conciergeTitle"></h2><p class="lead" data-t="conciergeText"></p><div class="portrait" id="conciergeCard"><img id="conciergeImg" src="concierge-f.jpg" alt=""><div class="label"><div class="mono green" style="font-size:10px">● CONCIERGE</div><strong id="conciergeName" style="display:block;margin-top:7px;font-size:26px">ANNA</strong><div class="mono dim" style="font-size:9px;margin-top:8px">СВАЙП · ANNA / ED</div></div></div></div></section>
+<section><div class="container"><div class="eyebrow" data-t="built"></div><h2 data-t="servicesTitle"></h2><p class="lead" data-t="servicesLead"></p><div class="service-grid" id="services"></div></div></section>
+<section class="fullmedia"><video class="cover" autoplay muted loop playsinline poster="house-5.jpg"><source src="moscow.mp4"></video><div class="shade"></div><div class="container content"><div class="eyebrow" data-t="arrival"></div><h2 data-t="arrivalTitle"></h2><p class="lead" data-t="arrivalText"></p></div></section>
+<section><div class="container"><div class="eyebrow" data-t="trust"></div><div class="trust-grid" id="trust"></div></div></section>
+<section id="faq"><div class="container"><div class="eyebrow">FAQ</div><h2 data-t="faqTitle"></h2><p class="lead" data-t="faqLead"></p><div class="faq-list" id="faqList"></div></div></section>
+<section class="final"><img class="cover" src="estate.jpg" alt=""><div class="shade"></div><div class="final content"><div class="eyebrow" data-t="final"></div><h2><span style="color:var(--fg)" data-t="ready"></span><span data-t="disappear"></span></h2><p class="lead" style="margin-left:auto;margin-right:auto" data-t="finalText"></p><div class="buttons"><a href="https://t.me/+xFj65mXQpeFhYWNi" target="_blank" rel="noopener" data-t="tg"></a><a href="https://www.instagram.com/privatstate" target="_blank" rel="noopener" data-t="igWrite"></a></div></div></section>
 </main>
-<footer><span>PRIVATE STATE</span><span data-t="wait">THE WORLD CAN WAIT.</span><a href="https://www.instagram.com/privatstate" target="_blank" rel="noopener">INSTAGRAM</a></footer>
+<footer><span>PRIVATE STATE</span><span data-t="wait"></span><a href="https://www.instagram.com/privatstate" target="_blank" rel="noopener">INSTAGRAM</a></footer>
 <script>(function(){function hide(){var b=document.getElementById('boot');if(b)b.classList.add('hide')}setTimeout(hide,2200);var b=document.getElementById('boot');if(b){b.addEventListener('click',hide);b.addEventListener('touchstart',hide,{passive:true})}})();</script>
 <script src="app.js" defer></script>
 </body></html>
